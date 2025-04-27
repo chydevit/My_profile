@@ -615,6 +615,9 @@ body.dark #moon {
 .about {
   background: #fdfdfe;
   padding: 100px 0 50px 0;
+  margin: 20px;
+  border-radius: 20px;
+
 }
 
 .fixdwidth {
@@ -939,4 +942,9 @@ body.dark #moon {
     /* margin: 0px 20px 0px 20px; */
     width: 100%; /* 1 card per row on phone */
   }
+}
+/* myproject */
+.my-project{
+  margin: 20px;
+  color: var(--second-color);
 }
