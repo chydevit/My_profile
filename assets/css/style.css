@@ -335,6 +335,10 @@ body.dark #moon {
   color: var(--first_color);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
 }
+.btn_1 a{
+  text-decoration: none;
+  color: var(--black-color);
+}
 .btn_2 {
   margin-left: 1vw;
   background: var(--first_color);
@@ -751,6 +755,10 @@ body.dark #moon {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.submit-btn a{
+  color: #fff;
+  text-decoration: none;
+}
 
 .submit-btn:hover {
   background-color: #1d2bcf;
@@ -868,7 +876,7 @@ body.dark #moon {
 /* my project */
 .project-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 20px;
   gap: 20px;
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
