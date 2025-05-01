@@ -271,7 +271,7 @@ body.dark #moon {
   margin-bottom: 0;
 }
 .icon:hover {
-  color: var(--orange-color);
+  color: var(--blue-color);
 }
 .icon_circle {
   position: absolute;
@@ -292,9 +292,10 @@ body.dark #moon {
     top: 70px;
   }
   /* for add 2 item   */
-  /* 75% {
-    top: 110px;
+  75% {
+    top: 120px;
   }
+  /*
   100% {
     top: 150px;
   } */
