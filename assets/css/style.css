@@ -746,7 +746,7 @@ body.dark #moon {
   margin-top: 30px;
 }
 
-.submit-btn {
+.submit-btn1 {
   background: #3243e3;
   padding: 15px 30px;
   border: none;
@@ -756,7 +756,7 @@ body.dark #moon {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.submit-btn a{
+.submit-btn1 {
   color: #fff;
   text-decoration: none;
  
