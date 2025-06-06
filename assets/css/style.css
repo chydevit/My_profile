@@ -282,7 +282,7 @@ body.dark #moon {
   height: 40px;
   border: 2px solid var(--blue-color);
   border-radius: 50%;
-  animation: iconSlide 8s ease 1s infinite alternate;
+  animation: iconSlide 9s ease 1s infinite alternate;
 }
 @keyframes iconSlide {
   25% {
