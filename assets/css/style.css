@@ -358,8 +358,8 @@ body.dark #moon {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 590px;
-  animation: circleZoom 5s infinite;
+  width: 650px;
+  animation: circleZoom 6s infinite;
 }
 @keyframes circleZoom {
   50% {
