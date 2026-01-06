@@ -1,0 +1,40 @@
+[
+    {
+        "id": "exp-1",
+        "title": "Frontend Developer",
+        "company": "Freelance",
+        "location": "Remote",
+        "startDate": "2023-01-01",
+        "endDate": null,
+        "description": "Building modern web applications for various clients using React and Next.js ecosystems.",
+        "responsibilities": [
+            "Developing responsive and accessible user interfaces",
+            "Optimizing website performance and SEO",
+            "Collaborating with clients to translate requirements into technical solutions"
+        ],
+        "technologies": [
+            "React",
+            "Next.js",
+            "Tailwind CSS",
+            "TypeScript"
+        ],
+        "type": "work"
+    },
+    {
+        "id": "edu-1",
+        "title": "Bachelor's Degree in Information Technology",
+        "company": "Norton University",
+        "location": "Phnom Penh, Cambodia",
+        "startDate": "2021-01-01",
+        "endDate": null,
+        "description": "Focusing on Software Engineering and Web Development. Gaining strong foundation in algorithms, data structures, and system design.",
+        "responsibilities": [],
+        "technologies": [
+            "Java",
+            "C++",
+            "Database Management",
+            "Networking"
+        ],
+        "type": "education"
+    }
+]

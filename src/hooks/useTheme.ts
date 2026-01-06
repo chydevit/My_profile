@@ -1,4 +1,4 @@
-import { useThemeContext } from "@/context/ThemeContext";
+import { useTheme as useNextTheme } from "next-themes";
 
 /**
  * Custom hook to access theme context
@@ -11,5 +11,5 @@ import { useThemeContext } from "@/context/ThemeContext";
  * setTheme("dark"); // Switch to dark mode
  */
 export function useTheme() {
-    return useThemeContext();
+    return useNextTheme();
 }

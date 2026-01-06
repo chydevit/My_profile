@@ -1,0 +1,54 @@
+[
+    {
+        "id": "web-development",
+        "title": "Web Development",
+        "description": "Building modern, responsive websites using the latest technologies and best practices.",
+        "icon": "code",
+        "features": [
+            "Responsive web design",
+            "Single Page Applications (SPA)",
+            "Progressive Web Apps (PWA)",
+            "E-commerce solutions",
+            "Content Management Systems"
+        ]
+    },
+    {
+        "id": "web-design",
+        "title": "Web Design",
+        "description": "Creating beautiful, user-friendly interfaces that engage and delight users.",
+        "icon": "palette",
+        "features": [
+            "UI/UX Design",
+            "Wireframing & Prototyping",
+            "Brand Identity",
+            "Responsive Layouts",
+            "Design Systems"
+        ]
+    },
+    {
+        "id": "mobile-development",
+        "title": "Mobile Development",
+        "description": "Developing cross-platform mobile applications with Flutter for iOS and Android.",
+        "icon": "smartphone",
+        "features": [
+            "Cross-platform apps",
+            "Native performance",
+            "Beautiful animations",
+            "API integration",
+            "App store deployment"
+        ]
+    },
+    {
+        "id": "software-development",
+        "title": "Software Development",
+        "description": "Custom software solutions tailored to your specific business needs.",
+        "icon": "laptop",
+        "features": [
+            "Full-stack development",
+            "Database design",
+            "API development",
+            "System architecture",
+            "Code optimization"
+        ]
+    }
+]

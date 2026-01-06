@@ -1,0 +1,41 @@
+{
+    "name": "Chy Devit",
+    "title": "Software Developer",
+    "roles": [
+        "Software Development",
+        "Mobile Developer",
+        "Web Developer"
+    ],
+    "bio": "Experienced frontend developer with a passion for creating visually stunning and user-friendly websites. Currently studying Information Technology at Norton University in Phnom Penh, Cambodia. Skilled in mobile and web application development with a focus on modern technologies.",
+    "email": "Chydevit2023@gmail.com",
+    "phone": "+855 16517170",
+    "location": "Russei Keo, Phnom Penh, Cambodia",
+    "image": "/images/profile.jpg",
+    "cvUrl": "/cv/chy-devit-cv.pdf",
+    "socialLinks": [
+        {
+            "platform": "GitHub",
+            "url": "https://github.com/chydevit",
+            "icon": "github"
+        },
+        {
+            "platform": "LinkedIn",
+            "url": "https://www.linkedin.com/in/chy-devit-4971032b2/",
+            "icon": "linkedin"
+        },
+        {
+            "platform": "Telegram",
+            "url": "https://t.me/chydevit",
+            "icon": "send"
+        },
+        {
+            "platform": "Email",
+            "url": "mailto:Chydevit2023@gmail.com",
+            "icon": "mail"
+        }
+    ],
+    "stats": {
+        "happyClients": "2k+",
+        "experience": "3+ Months"
+    }
+}

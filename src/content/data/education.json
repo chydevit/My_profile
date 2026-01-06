@@ -1,0 +1,25 @@
+[
+    {
+        "id": "norton-university",
+        "type": "education",
+        "title": "Bachelor of Information Technology",
+        "company": "Norton University",
+        "location": "Phnom Penh, Cambodia",
+        "startDate": "2023-01-01",
+        "endDate": null,
+        "description": "Currently pursuing a Bachelor's degree in Information Technology with a focus on software development and modern web technologies.",
+        "responsibilities": [
+            "Learning full-stack web development",
+            "Mobile application development with Flutter",
+            "Database management and design",
+            "Software engineering principles"
+        ],
+        "technologies": [
+            "React",
+            "Flutter",
+            "PHP",
+            "MySQL",
+            "JavaScript"
+        ]
+    }
+]

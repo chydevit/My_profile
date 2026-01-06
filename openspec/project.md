@@ -8,20 +8,15 @@ Personal portfolio website showcasing web development skills, projects, and prof
 - Central hub for professional contact and networking
 
 ## Tech Stack
-**Current (Legacy)**:
-- HTML5 for structure
-- Vanilla CSS for styling
-- Vanilla JavaScript for interactivity
-- Static file hosting
-
-**Target (After Migration)**:
-- Next.js 14+ with App Router
+- Next.js 16.1.1 with App Router
 - TypeScript 5+ for type safety
-- Tailwind CSS for styling
-- Framer Motion for animations
+- Tailwind CSS 4 for styling
+- Framer Motion 12 for animations
 - MDX for blog content
 - Resend for email functionality
-- Vercel for deployment
+- Vercel for deployment and analytics
+- next-themes for dark mode management
+- React Hook Form + Zod for form processing
 
 ## Project Conventions
 - Use TypeScript strict mode with no `any` types

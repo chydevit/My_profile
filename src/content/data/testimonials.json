@@ -1,0 +1,29 @@
+[
+    {
+        "id": "1",
+        "name": "Alex Johnson",
+        "role": "CTO",
+        "company": "TechVision Inc.",
+        "content": "An exceptional developer who delivered our project ahead of schedule. The attention to detail and code quality were outstanding.",
+        "avatar": "/images/testimonials/alex.jpg",
+        "rating": 5
+    },
+    {
+        "id": "2",
+        "name": "Sarah Williams",
+        "role": "Product Manager",
+        "company": "Creative Solutions",
+        "content": "Working with this team was a pleasure. They understood our requirements perfectly and translated them into a beautiful, functional website.",
+        "avatar": "/images/testimonials/sarah.jpg",
+        "rating": 5
+    },
+    {
+        "id": "3",
+        "name": "Michael Brown",
+        "role": "Founder",
+        "company": "StartupX",
+        "content": "Highly recommended! The ability to solve complex problems and suggest improvements made a huge difference to our product.",
+        "avatar": "/images/testimonials/michael.jpg",
+        "rating": 5
+    }
+]

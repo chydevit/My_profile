@@ -1,0 +1,105 @@
+{
+    "categories": [
+        {
+            "name": "Frontend",
+            "skills": [
+                {
+                    "name": "HTML",
+                    "proficiency": 90
+                },
+                {
+                    "name": "CSS",
+                    "proficiency": 85
+                },
+                {
+                    "name": "JavaScript",
+                    "proficiency": 80
+                },
+                {
+                    "name": "React.js",
+                    "proficiency": 75
+                },
+                {
+                    "name": "Next.js",
+                    "proficiency": 70
+                },
+                {
+                    "name": "Tailwind CSS",
+                    "proficiency": 85
+                },
+                {
+                    "name": "TypeScript",
+                    "proficiency": 70
+                }
+            ]
+        },
+        {
+            "name": "Backend",
+            "skills": [
+                {
+                    "name": "PHP",
+                    "proficiency": 70
+                },
+                {
+                    "name": "Node.js",
+                    "proficiency": 65
+                },
+                {
+                    "name": "Express.js",
+                    "proficiency": 65
+                },
+                {
+                    "name": "Laravel",
+                    "proficiency": 60
+                }
+            ]
+        },
+        {
+            "name": "Mobile",
+            "skills": [
+                {
+                    "name": "Flutter",
+                    "proficiency": 75
+                },
+                {
+                    "name": "Dart",
+                    "proficiency": 75
+                }
+            ]
+        },
+        {
+            "name": "Database",
+            "skills": [
+                {
+                    "name": "MySQL",
+                    "proficiency": 75
+                },
+                {
+                    "name": "PostgreSQL",
+                    "proficiency": 65
+                }
+            ]
+        },
+        {
+            "name": "Tools",
+            "skills": [
+                {
+                    "name": "Git",
+                    "proficiency": 80
+                },
+                {
+                    "name": "GitHub",
+                    "proficiency": 80
+                },
+                {
+                    "name": "VS Code",
+                    "proficiency": 90
+                },
+                {
+                    "name": "Figma",
+                    "proficiency": 60
+                }
+            ]
+        }
+    ]
+}

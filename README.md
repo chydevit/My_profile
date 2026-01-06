@@ -1,36 +1,172 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chy Devit - Portfolio Website
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js 14+, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Features
+
+- ✨ **Modern Design** - Beautiful UI with animations and glassmorphism effects
+- 🌓 **Dark/Light Mode** - Seamless theme switching with system preference detection
+- 📱 **Fully Responsive** - Optimized for mobile, tablet, and desktop
+- ⚡ **Fast Performance** - Built with Next.js App Router and optimized for speed
+- 🎨 **Framer Motion** - Smooth animations and transitions throughout
+- 🔍 **SEO Optimized** - Proper metadata, sitemap, and structured data
+- 📂 **Project Showcase** - 11 projects with filtering and search
+- 💼 **Professional Layout** - Clean navigation and user-friendly interface
+- 🎯 **Type-Safe** - Full TypeScript implementation with strict mode
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16.1.1 (App Router)
+- **Language**: TypeScript 5+
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion 12
+- **Icons**: Lucide React
+- **Forms**: React Hook Form + Zod
+- **Email**: Resend integrated
+- **Deployment**: Vercel ready
+- **Admin**: Basic Admin Panel for content management
+- **Analytics**: Vercel Analytics integrated
+
+## 📦 Installation
 
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+
+# Navigate to project directory
+cd portfolio-nextjs
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🏗️ Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+portfolio-nextjs/
+├── src/
+│   ├── app/                    # Next.js App Router folders
+│   │   ├── (site)/            # Public site routes (Home, Projects, Blog, Contact)
+│   │   ├── admin/             # Restricted admin panel routes
+│   │   ├── api/               # API routes (Admin, Contact, Newsletter)
+│   │   └── layout.tsx         # Root layout
+│   ├── components/            # React components
+│   │   ├── admin/            # Admin panel specific components
+│   │   ├── ui/               # Reusable UI components
+│   │   ├── layout/           # Layout components
+│   │   ├── sections/         # Page sections
+│   │   ├── providers/        # Context providers
+│   │   └── features/         # Feature components
+│   ├── lib/                  # Utility functions
+│   │   ├── types.ts         # TypeScript types
+│   │   ├── content.ts       # Content utilities
+│   │   └── utils.ts         # Helper functions
+│   ├── content/             # Content data
+│   │   ├── data/           # JSON data files
+│   │   ├── projects/       # Project JSON data
+│   │   └── blog/           # Blog MDX posts
+│   └── hooks/              # Custom React hooks
+├── public/                 # Static assets
+└── openspec/             # OpenSpec documentation server
+```
 
-## Learn More
+## 📄 Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Development
+npm run dev          # Start development server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Production
+npm run build        # Build for production
+npm run start        # Start production server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Linting
+npm run lint         # Run ESLint
+```
 
-## Deploy on Vercel
+## 🎨 Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Colors
+Edit `src/app/globals.css` to customize the color palette.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Content
+Update JSON files in `src/content/data/` to modify:
+- Profile information (`profile.json`)
+- Skills (`skills.json`)
+- Services (`services.json`)
+- Projects (`projects/projects.json`)
+- Education (`education.json`)
+
+### Components
+All components are in `src/components/` and can be customized as needed.
+
+## 🌐 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Import project in Vercel
+3. Configure environment variables:
+   ```
+   NEXT_PUBLIC_SITE_URL=https://yourdomain.com
+   RESEND_API_KEY=your_api_key (for contact form)
+   ```
+4. Deploy!
+
+### Other Platforms
+
+The project can be deployed to any platform that supports Next.js:
+- Netlify
+- AWS Amplify
+- Railway
+- DigitalOcean App Platform
+
+## 📝 Environment Variables
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+RESEND_API_KEY=your_resend_api_key
+```
+
+## 🎯 Features Roadmap
+
+- [x] Home page with all sections
+- [x] Projects listing and details
+- [x] Contact information page
+- [x] Dark/light theme
+- [x] Responsive design
+- [x] SEO optimization
+- [x] Blog system with MDX
+- [x] Contact form API
+- [x] Newsletter subscription
+- [x] Admin panel
+- [x] Analytics dashboard
+
+## 📧 Contact
+
+- **Email**: Chydevit2023@gmail.com
+- **LinkedIn**: [linkedin.com/in/chy-devit-4971032b2](https://www.linkedin.com/in/chy-devit-4971032b2/)
+- **GitHub**: [github.com/chydevit](https://github.com/chydevit)
+- **Telegram**: [@chydevit](https://t.me/chydevit)
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 🙏 Acknowledgments
+
+- Built with [Next.js](https://nextjs.org/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- Animated with [Framer Motion](https://www.framer.com/motion/)
+- Icons from [Lucide](https://lucide.dev/)
+
+---
+
+**Made with ❤️ by Chy Devit**
