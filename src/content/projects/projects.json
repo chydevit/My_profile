@@ -5,9 +5,9 @@
         "title": "Discount Calculator",
         "description": "A React-based discount calculator application for quick price calculations.",
         "longDescription": "This project is a fully functional discount calculator built with React.js. It allows users to input original prices and discount percentages to instantly calculate the final price. Features a clean, intuitive interface with real-time calculations.",
-        "image": "/images/discount-calculator.png",
+        "image": "/images/discount-calculator-new.png",
         "images": [
-            "/images/discount-calculator.png"
+            "/images/discount-calculator-new.png"
         ],
         "tags": [
             "React",
@@ -37,9 +37,9 @@
         "title": "Foodpanda Clone",
         "description": "A clone of the Foodpanda food delivery platform built with React.js (40% complete).",
         "longDescription": "This is a work-in-progress clone of the popular Foodpanda food delivery application. Built with React.js, it aims to replicate the core features of the original platform including restaurant browsing, menu viewing, and cart functionality.",
-        "image": "/images/project1.png",
+        "image": "/images/foodpanda-clone-new.png",
         "images": [
-            "/images/project1.png"
+            "/images/foodpanda-clone-new.png"
         ],
         "tags": [
             "React",
@@ -69,9 +69,9 @@
         "title": "Study Online",
         "description": "An online learning platform project created as a homework assignment.",
         "longDescription": "Study Online is an educational platform designed to facilitate online learning. This project demonstrates skills in creating interactive educational interfaces and managing course content.",
-        "image": "/images/project2.png",
+        "image": "/images/ticket-registration-new.png",
         "images": [
-            "/images/project2.png"
+            "/images/ticket-registration-new.png"
         ],
         "tags": [
             "Education",
@@ -99,9 +99,9 @@
         "title": "Link Share",
         "description": "A link sharing application for easy URL management and sharing.",
         "longDescription": "Link Share is a web application that allows users to create, manage, and share links easily. Perfect for social media bio links or quick link collections.",
-        "image": "/images/project3.png",
+        "image": "/images/crud-mobile-new.png",
         "images": [
-            "/images/project3.png"
+            "/images/crud-mobile-new.png"
         ],
         "tags": [
             "Utility",
@@ -128,9 +128,9 @@
         "title": "QR Code Generator",
         "description": "Create custom QR codes instantly with this simple web application.",
         "longDescription": "A QR code generation tool that allows users to create QR codes from text, URLs, or other data. Features instant generation and download capabilities.",
-        "image": "/images/project4.png",
+        "image": "/images/ticket-registration-new.png",
         "images": [
-            "/images/project4.png"
+            "/images/ticket-registration-new.png"
         ],
         "tags": [
             "Utility",
@@ -157,9 +157,9 @@
         "title": "Exchange Rate Calculator",
         "description": "Real-time currency exchange rate calculator.",
         "longDescription": "An exchange rate calculator that provides real-time currency conversion. Users can quickly convert between different currencies with up-to-date exchange rates.",
-        "image": "/images/project5.png",
+        "image": "/images/discount-calculator-new.png",
         "images": [
-            "/images/project5.png"
+            "/images/discount-calculator-new.png"
         ],
         "tags": [
             "Finance",
@@ -186,9 +186,9 @@
         "title": "Blogs Project",
         "description": "A blog platform with API integration (final project for short course).",
         "longDescription": "This blog platform was created as a final project for a short course. It features API integration for dynamic content management, though the server is currently down.",
-        "image": "/images/blogs.png",
+        "image": "/images/foodpanda-clone-new.png",
         "images": [
-            "/images/blogs.png"
+            "/images/foodpanda-clone-new.png"
         ],
         "tags": [
             "Blog",
@@ -217,9 +217,9 @@
         "title": "CRUD Mobile App",
         "description": "Mobile CRUD application built with Flutter and Express.js backend.",
         "longDescription": "A full-stack mobile application demonstrating Create, Read, Update, and Delete operations. Built with Flutter for the mobile frontend and Express.js for the backend API.",
-        "image": "/images/crud-product.png",
+        "image": "/images/crud-mobile-new.png",
         "images": [
-            "/images/crud-product.png"
+            "/images/crud-mobile-new.png"
         ],
         "tags": [
             "Flutter",
@@ -248,9 +248,9 @@
         "title": "Ticket Registration System",
         "description": "Mobile ticket registration app with Flutter and Laravel backend.",
         "longDescription": "A comprehensive ticket registration system built with Flutter for the mobile app and Laravel for the backend. Allows users to browse events and register for tickets.",
-        "image": "/images/Register-ticket.png",
+        "image": "/images/ticket-registration-new.png",
         "images": [
-            "/images/Register-ticket.png"
+            "/images/ticket-registration-new.png"
         ],
         "tags": [
             "Flutter",
@@ -279,9 +279,9 @@
         "title": "Foodpanda Mobile Clone",
         "description": "Mobile clone of Foodpanda app built with Flutter.",
         "longDescription": "A mobile application clone of the Foodpanda food delivery platform, created as an assignment to practice Flutter development and UI/UX design.",
-        "image": "/images/m1.jpg",
+        "image": "/images/foodpanda-clone-new.png",
         "images": [
-            "/images/m1.jpg"
+            "/images/foodpanda-clone-new.png"
         ],
         "tags": [
             "Flutter",
@@ -309,9 +309,9 @@
         "title": "ABA Bank Clone",
         "description": "Mobile banking app clone built with Flutter for learning purposes.",
         "longDescription": "A clone of the ABA Bank mobile application created to learn and practice Flutter development, focusing on financial app UI/UX patterns.",
-        "image": "/images/m2.jpg",
+        "image": "/images/discount-calculator-new.png",
         "images": [
-            "/images/m2.jpg"
+            "/images/discount-calculator-new.png"
         ],
         "tags": [
             "Flutter",
