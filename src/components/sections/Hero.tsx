@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Send, Mail, Download, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { TechStack } from "@/components/features/TechStack";
 import { getProfile } from "@/lib/content";
 
 const socialIcons = {
@@ -169,76 +170,9 @@ export function Hero() {
                             {/* Decorative circle */}
                             <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-accent-purple rounded-full opacity-20 blur-2xl animate-pulse-slow" />
 
-                            {/* Profile Image with Enhanced Actions */}
-                            <motion.div
-                                animate={{ y: [0, -20, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="relative z-10 w-full h-full group cursor-pointer"
-                                whileHover={{ scale: 1.02, rotate: 1 }}
-                            >
-                                {/* Glowing rotating border effect */}
-                                <motion.div
-                                    className="absolute -inset-1 bg-gradient-to-r from-primary-600 via-accent-purple to-primary-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-500"
-                                    animate={{
-                                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                                    }}
-                                    transition={{
-                                        duration: 5,
-                                        repeat: Infinity,
-                                        ease: "linear"
-                                    }}
-                                    style={{ backgroundSize: "200% 200%" }}
-                                />
-
-                                <div className="relative w-full h-full rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl">
-                                    <Image
-                                        src={profile.image}
-                                        alt={profile.name}
-                                        fill
-                                        priority
-                                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                                        sizes="(max-width: 768px) 100vw, 500px"
-                                    />
-
-                                    {/* Glass sheen overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                                </div>
-                            </motion.div>
-
-                            {/* Stats Cards */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 1 }}
-                                className="absolute bottom-10 left-0 glass p-4 rounded-xl shadow-lg"
-                            >
-                                <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-primary-600 rounded-lg">
-                                        <Mail className="w-5 h-5 text-white" />
-                                    </div>
-                                    <div>
-                                        <p className="text-2xl font-bold">{profile.stats?.happyClients || "2k+"}</p>
-                                        <p className="text-sm text-muted-foreground">Happy Clients</p>
-                                    </div>
-                                </div>
-                            </motion.div>
-
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 1.2 }}
-                                className="absolute top-10 right-0 glass p-4 rounded-xl shadow-lg"
-                            >
-                                <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-accent-purple rounded-lg">
-                                        <span className="text-white text-xl">⭐</span>
-                                    </div>
-                                    <div>
-                                        <p className="text-2xl font-bold">{profile.stats?.experience || "3+"}</p>
-                                        <p className="text-sm text-muted-foreground">Months Experience</p>
-                                    </div>
-                                </div>
-                            </motion.div>
+                            <div className="relative w-full h-full min-h-[400px]">
+                                <TechStack />
+                            </div>
                         </div>
                     </motion.div>
                 </div>
