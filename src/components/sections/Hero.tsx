@@ -38,11 +38,24 @@ export function Hero() {
     };
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-background to-accent-purple/10 dark:from-slate-950 dark:via-background dark:to-accent-purple/5">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+            {/* Background Image */}
+            <div className="absolute inset-0 w-full h-full">
+                <Image
+                    src="/angkor-wat-bg-new.png"
+                    alt="Hero Background"
+                    fill
+                    className="object-cover object-center opacity-100 dark:opacity-80"
+                    priority
+                />
+                {/* Gradient Overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background/90" />
+            </div>
+
             {/* Animated background elements */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl animate-pulse-slow" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-purple/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "1s" }} />
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-400/10 rounded-full blur-3xl animate-pulse-slow" />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "1s" }} />
             </div>
 
             <Container className="relative z-10 py-20">
@@ -167,9 +180,6 @@ export function Hero() {
                         className="relative"
                     >
                         <div className="relative w-full aspect-square max-w-lg mx-auto">
-                            {/* Decorative circle */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-accent-purple rounded-full opacity-20 blur-2xl animate-pulse-slow" />
-
                             <div className="relative w-full h-full min-h-[400px]">
                                 <TechStack />
                             </div>

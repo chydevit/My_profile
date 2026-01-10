@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import { motion, useAnimationFrame } from "framer-motion";
+import React, { useEffect, useState, useRef } from "react";
 
 // Icon components (Standardized SVG paths)
 
@@ -310,26 +310,33 @@ interface TechStackProps {
 export function TechStack({ onBack }: TechStackProps) {
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
+    const velocity = useRef({ x: 0, y: 0 });
 
-    // Auto-rotation when not dragging
-    useEffect(() => {
+    // Auto-rotation with inertia
+    useAnimationFrame((t, delta) => {
         if (isDragging) return;
 
-        const interval = setInterval(() => {
-            setRotation(prev => ({
-                x: prev.x + 0.2, // Slow continuous rotation
-                y: prev.y + 0.2
-            }));
-        }, 20);
+        // Decay velocity
+        velocity.current.x *= 0.95;
+        velocity.current.y *= 0.95;
 
-        return () => clearInterval(interval);
-    }, [isDragging]);
+        // Combined constant rotation + inertia
+        setRotation(prev => ({
+            x: prev.x + (delta * 0.002) + (velocity.current.x * delta * 0.0001),
+            y: prev.y + (delta * 0.002) + (velocity.current.y * delta * 0.0001)
+        }));
+    });
 
     const handleDrag = (_: any, info: any) => {
         setRotation(prev => ({
-            x: prev.x + info.delta.y * 0.1, // Reduced sensitivity
+            x: prev.x + info.delta.y * 0.1,
             y: prev.y + info.delta.x * 0.1
         }));
+    };
+
+    const handleDragEnd = (_: any, info: any) => {
+        setIsDragging(false);
+        velocity.current = { x: info.velocity.y, y: info.velocity.x };
     };
 
     return (
@@ -346,7 +353,7 @@ export function TechStack({ onBack }: TechStackProps) {
             }}
             onPan={handleDrag}
             onPanStart={() => setIsDragging(true)}
-            onPanEnd={() => setIsDragging(false)}
+            onPanEnd={handleDragEnd}
         >
             {/* Central Logo/Icon (Optional - User's logo or just empty space) */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
