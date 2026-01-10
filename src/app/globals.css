@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@variant dark (&:where(.dark, .dark *));
+
 /* Root Variables - Light Mode */
 :root {
   /* Background Colors */
@@ -43,19 +45,22 @@
 }
 
 /* Dark Mode Variables */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-    --card: #1e293b;
-    --card-foreground: #f1f5f9;
+.dark {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card: #1e293b;
+  --card-foreground: #f1f5f9;
 
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --border: #334155;
-    --input: #334155;
-    --ring: #60a5fa;
-  }
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #334155;
+  --input: #334155;
+  --ring: #60a5fa;
+
+  /* Adjust primary for dark mode flexibility if needed, 
+     though they are usually defined globally. 
+     You can override specific shades here if necessary. 
+  */
 }
 
 /* Tailwind Theme Configuration */
@@ -253,11 +258,9 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-@media (prefers-color-scheme: dark) {
-  .glass {
-    background: rgba(30, 41, 59, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
+.dark .glass {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Gradient Text */
