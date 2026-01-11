@@ -8,9 +8,11 @@ import { Container } from "@/components/ui/Container";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { getFeaturedProjects } from "@/lib/content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function FeaturedProjects() {
     const projects = getFeaturedProjects().slice(0, 6);
+    const { t } = useLanguage();
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -38,10 +40,10 @@ export function FeaturedProjects() {
                     className="text-center mb-12"
                 >
                     <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-                        Featured <span className="gradient-text">Projects</span>
+                        <span className="gradient-text">{t('featuredProjects')}</span>
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                        A showcase of my recent work and personal projects
+                        {t('projectsDescription')}
                     </p>
                 </motion.div>
 
@@ -138,7 +140,7 @@ export function FeaturedProjects() {
                         className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg border-2 border-primary-600 text-primary-600 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950"
                     >
                         <ArrowRight className="w-5 h-5" />
-                        View All Projects
+                        {t('viewAllProjects')}
                     </Link>
                 </motion.div>
             </Container>

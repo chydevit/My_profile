@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const socialLinks = [
     { href: "https://github.com/chydevit", icon: Github, label: "GitHub" },
@@ -9,14 +12,15 @@ const socialLinks = [
 ];
 
 const footerLinks = [
-    { href: "/", label: "Home" },
-    { href: "/projects", label: "Projects" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", key: "home" },
+    { href: "/projects", key: "projects" },
+    { href: "/blog", key: "blog" },
+    { href: "/contact", key: "contact" },
 ];
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
+    const { t } = useLanguage();
 
     return (
         <footer className="bg-muted border-t border-border">
@@ -28,13 +32,13 @@ export function Footer() {
                             Chy Devit
                         </h3>
                         <p className="text-muted-foreground text-sm">
-                            Web Developer passionate about creating beautiful, functional, and user-friendly websites.
+                            {t('footerDescription')}
                         </p>
                     </div>
 
                     {/* Quick Links */}
                     <div>
-                        <h4 className="font-heading font-semibold mb-4">Quick Links</h4>
+                        <h4 className="font-heading font-semibold mb-4">{t('quickLinks')}</h4>
                         <ul className="space-y-2">
                             {footerLinks.map((link) => (
                                 <li key={link.href}>
@@ -42,7 +46,7 @@ export function Footer() {
                                         href={link.href}
                                         className="text-sm text-muted-foreground hover:text-primary-600 transition-colors"
                                     >
-                                        {link.label}
+                                        {t(link.key)}
                                     </Link>
                                 </li>
                             ))}
@@ -51,7 +55,7 @@ export function Footer() {
 
                     {/* Social Links */}
                     <div>
-                        <h4 className="font-heading font-semibold mb-4">Connect</h4>
+                        <h4 className="font-heading font-semibold mb-4">{t('connect')}</h4>
                         <div className="flex gap-4">
                             {socialLinks.map((social) => {
                                 const Icon = social.icon;
@@ -75,7 +79,7 @@ export function Footer() {
                 {/* Copyright */}
                 <div className="mt-8 pt-8 border-t border-border text-center">
                     <p className="text-sm text-muted-foreground">
-                        © {currentYear} Chy Devit. All rights reserved.
+                        © {currentYear} Chy Devit. {t('allRightsReserved')}
                     </p>
                 </div>
             </div>

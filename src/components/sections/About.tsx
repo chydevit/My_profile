@@ -7,9 +7,11 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
 import { getProfile } from "@/lib/content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function About() {
     const profile = getProfile();
+    const { t } = useLanguage();
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -60,7 +62,7 @@ export function About() {
                         {/* Section Title */}
                         <div className="space-y-2">
                             <div className="flex items-center gap-2">
-                                <h2 className="text-4xl md:text-5xl font-heading font-bold">Hello</h2>
+                                <h2 className="text-4xl md:text-5xl font-heading font-bold">{t('hello')}</h2>
                                 <span className="text-4xl">👋</span>
                             </div>
                             <div className="h-1 w-20 bg-gradient-to-r from-primary-600 to-accent-purple rounded-full" />
@@ -68,11 +70,12 @@ export function About() {
 
                         {/* Main Heading */}
                         <h1 className="text-2xl md:text-3xl font-heading font-semibold text-foreground">
-                            I'm {profile.name}, Software Developer from Phnom Penh, Cambodia.
+                            {t('aboutTitle').replace('{name}', profile.name)}
                         </h1>
 
                         {/* Description */}
                         <p className="text-muted-foreground leading-relaxed">
+                            {/* We might want to translate bio too, but for now using the profile bio */}
                             {profile.bio}
                         </p>
 
@@ -83,7 +86,7 @@ export function About() {
                                     <Mail className="w-5 h-5 text-primary-600" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">Email</p>
+                                    <p className="text-sm font-medium text-muted-foreground">{t('email')}</p>
                                     <p className="text-sm font-semibold">{profile.email}</p>
                                 </div>
                             </div>
@@ -93,7 +96,7 @@ export function About() {
                                     <Phone className="w-5 h-5 text-primary-600" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">Phone</p>
+                                    <p className="text-sm font-medium text-muted-foreground">{t('phone')}</p>
                                     <p className="text-sm font-semibold">{profile.phone}</p>
                                 </div>
                             </div>
@@ -103,7 +106,7 @@ export function About() {
                                     <MapPin className="w-5 h-5 text-primary-600" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">Address</p>
+                                    <p className="text-sm font-medium text-muted-foreground">{t('address')}</p>
                                     <p className="text-sm font-semibold">{profile.location}</p>
                                 </div>
                             </div>
@@ -117,7 +120,7 @@ export function About() {
                                 className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md"
                             >
                                 <Download className="w-5 h-5" />
-                                Download CV
+                                {t('downloadCV')}
                             </a>
                         </div>
                     </motion.div>

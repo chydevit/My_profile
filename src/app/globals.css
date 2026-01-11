@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -97,7 +98,7 @@
   --color-info: var(--info);
 
   /* Fonts */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Google Sans', 'Kantumruy Pro', 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
   --font-mono: 'Fira Code', 'Courier New', monospace;
 
@@ -271,6 +272,11 @@ body {
   background-clip: text;
 }
 
+/* Glow Text */
+.glow-text {
+  filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.5)) drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
+}
+
 /* Smooth Scroll */
 html {
   scroll-behavior: smooth;
@@ -293,4 +299,12 @@ html {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Khmer Font */
+.kantumruy-pro,
+.kantumruy-pro * {
+  font-family: var(--font-kantumruy), "Kantumruy Pro", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
 }

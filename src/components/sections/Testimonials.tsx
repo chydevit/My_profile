@@ -6,11 +6,13 @@ import { getTestimonials } from "@/lib/content";
 import { Container } from "@/components/ui/Container";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Testimonials() {
     const testimonials = getTestimonials();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
+    const { t } = useLanguage();
 
     const slideNext = useCallback(() => {
         setDirection(1);
@@ -54,10 +56,10 @@ export function Testimonials() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                        Client Testimonials
+                        {t('clientTestimonials')}
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        What others say about working with me
+                        {t('testimonialsDescription')}
                     </p>
                 </motion.div>
 
@@ -141,8 +143,8 @@ export function Testimonials() {
                                 setCurrentIndex(idx);
                             }}
                             className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentIndex
-                                    ? "w-8 bg-primary-600"
-                                    : "bg-gray-300 dark:bg-gray-600"
+                                ? "w-8 bg-primary-600"
+                                : "bg-gray-300 dark:bg-gray-600"
                                 }`}
                             aria-label={`Go to testimonial ${idx + 1}`}
                         />

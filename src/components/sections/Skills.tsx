@@ -6,10 +6,12 @@ import { Card } from "@/components/ui/Card";
 import { getSkills } from "@/lib/content";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Skills() {
     const skillsData = getSkills();
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const { t } = useLanguage();
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -41,10 +43,10 @@ export function Skills() {
                     className="text-center mb-12"
                 >
                     <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-                        My <span className="gradient-text">Skills</span>
+                        <span className="gradient-text">{t('mySkills')}</span>
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                        Technologies and tools I work with to bring ideas to life
+                        {t('skillsDescription')}
                     </p>
                 </motion.div>
 
@@ -64,7 +66,7 @@ export function Skills() {
                                 : "bg-muted hover:bg-muted/80 text-foreground"
                         )}
                     >
-                        All
+                        {t('all')}
                     </button>
                     {skillsData.categories.map((category) => (
                         <button

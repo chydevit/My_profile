@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Outfit, Kantumruy_Pro } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { LanguageProvider } from "@/components/providers/LanguageProvider";
+import { WelcomePopup } from "@/components/ui/WelcomePopup";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
@@ -13,6 +15,12 @@ const inter = Inter({
 const outfit = Outfit({
   variable: "--font-heading",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const kantumruy = Kantumruy_Pro({
+  variable: "--font-kantumruy",
+  subsets: ["khmer", "latin"],
   display: "swap",
 });
 
@@ -36,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${outfit.variable} antialiased`}
+        className={`${inter.variable} ${outfit.variable} ${kantumruy.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -44,8 +52,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Analytics />
+          <LanguageProvider>
+            {children}
+            <WelcomePopup />
+            <Analytics />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

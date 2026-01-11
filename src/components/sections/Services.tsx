@@ -5,6 +5,7 @@ import { Code, Palette, Smartphone, Laptop } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card";
 import { getServices } from "@/lib/content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const iconMap = {
     code: Code,
@@ -15,6 +16,7 @@ const iconMap = {
 
 export function Services() {
     const services = getServices();
+    const { t } = useLanguage();
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -42,10 +44,10 @@ export function Services() {
                     className="text-center mb-12"
                 >
                     <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-                        Services <span className="gradient-text">I Offer</span>
+                        <span className="gradient-text">{t('servicesOffer')}</span>
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                        I work together with my team to deliver exceptional digital solutions
+                        {t('servicesDescription')}
                     </p>
                 </motion.div>
 

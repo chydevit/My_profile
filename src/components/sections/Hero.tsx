@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { TechStack } from "@/components/features/TechStack";
 import { getProfile } from "@/lib/content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const socialIcons = {
     github: Github,
@@ -20,15 +21,23 @@ const socialIcons = {
 export function Hero() {
     const profile = getProfile();
     const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+    const { t } = useLanguage();
+
+    const roleKeys = [
+        "role_software",
+        "role_mobile",
+        "role_web",
+        "role_vibe"
+    ];
 
     // Typing effect for roles
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentRoleIndex((prev) => (prev + 1) % profile.roles.length);
+            setCurrentRoleIndex((prev) => (prev + 1) % roleKeys.length);
         }, 3000);
 
         return () => clearInterval(interval);
-    }, [profile.roles.length]);
+    }, [roleKeys.length]);
 
     const scrollToNext = () => {
         const aboutSection = document.getElementById("about");
@@ -101,7 +110,7 @@ export function Hero() {
                             transition={{ delay: 0.4 }}
                         >
                             <p className="text-lg text-muted-foreground mb-2">
-                                Hello, I Am{" "}
+                                {t('helloIam')}{" "}
                                 <span className="inline-block bg-muted px-3 py-1 rounded-full font-medium text-foreground">
                                     Devit
                                 </span>
@@ -113,7 +122,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5 }}
-                            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold gradient-text leading-tight"
+                            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold gradient-text glow-text leading-tight"
                         >
                             {profile.name}
                         </motion.h1>
@@ -132,7 +141,7 @@ export function Hero() {
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                {profile.roles[currentRoleIndex]}
+                                {t(roleKeys[currentRoleIndex])}
                             </motion.span>
                         </motion.div>
 
@@ -143,7 +152,7 @@ export function Hero() {
                             transition={{ delay: 0.7 }}
                             className="text-lg text-muted-foreground max-w-xl"
                         >
-                            {profile.bio.split('.')[0]}.
+                            {t('heroDescription')}.
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -159,7 +168,7 @@ export function Hero() {
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md"
                             >
-                                Hire Me
+                                {t('hireMe')}
                             </a>
                             <a
                                 href={profile.cvUrl}
@@ -167,7 +176,7 @@ export function Hero() {
                                 className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg border-2 border-primary-600 text-primary-600 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950"
                             >
                                 <Download className="w-5 h-5" />
-                                View CV
+                                {t('viewCV')}
                             </a>
                         </motion.div>
                     </motion.div>
@@ -196,7 +205,7 @@ export function Hero() {
                     className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground hover:text-primary-600 transition-colors cursor-pointer"
                     aria-label="Scroll to next section"
                 >
-                    <span className="text-sm font-medium">Scroll Down</span>
+                    <span className="text-sm font-medium">{t('scrollDown')}</span>
                     <motion.div
                         animate={{ y: [0, 10, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}

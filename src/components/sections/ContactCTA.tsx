@@ -5,8 +5,11 @@ import Link from "next/link";
 import { Mail, Send } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function ContactCTA() {
+    const { t } = useLanguage();
+
     return (
         <section className="py-20 bg-gradient-to-br from-primary-600 to-accent-purple relative overflow-hidden">
             {/* Background decoration */}
@@ -35,13 +38,12 @@ export function ContactCTA() {
 
                     {/* Heading */}
                     <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
-                        Let's Work Together
+                        {t('letsWorkTogether')}
                     </h2>
 
                     {/* Description */}
                     <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                        Have a project in mind? I'm always open to discussing new opportunities,
-                        creative ideas, or partnerships.
+                        {t('contactDescription')}
                     </p>
 
                     {/* CTA Buttons */}
@@ -50,7 +52,7 @@ export function ContactCTA() {
                             href="/contact"
                             className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg bg-white text-primary-600 hover:bg-white/90 shadow-sm hover:shadow-md"
                         >
-                            Get In Touch
+                            {t('getInTouch')}
                         </Link>
                         <a
                             href="https://t.me/chydevit"
@@ -59,7 +61,7 @@ export function ContactCTA() {
                             className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg border-2 border-white text-white hover:bg-white/10"
                         >
                             <Send className="w-5 h-5" />
-                            Message on Telegram
+                            {t('messageTelegram')}
                         </a>
                     </div>
                 </motion.div>
