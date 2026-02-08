@@ -14,6 +14,7 @@ pipeline {
   }
 
   stages {
+
     stage('Print OS & Runtime Info') {
       steps {
         sh '''
@@ -81,10 +82,10 @@ pipeline {
     stage('Sonar Analysis') {
       steps {
         withSonarQubeEnv('sonarqube') {
-          sh '''
+          sh """
             set -e
-            sonarqube
-          '''
+            ${tool 'sonarqube'}/bin/sonar-scanner
+          """
         }
       }
     }
