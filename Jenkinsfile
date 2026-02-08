@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:20-bullseye'
+      args '-u root:root'
+    }
+  }
 
   environment {
     CI = 'true'
@@ -19,8 +24,8 @@ pipeline {
           cat /etc/os-release || true
 
           echo "===== NODE & NPM ====="
-          node -v || true
-          npm -v || true
+          node -v
+          npm -v
 
           echo "===== JAVA (Required for SonarScanner) ====="
           java -version || true
@@ -38,7 +43,7 @@ pipeline {
         sh '''
           echo "===== GIT INFO ====="
           git rev-parse --short HEAD
-          git branch --show-current
+          git branch --show-current || true
         '''
       }
     }
@@ -47,10 +52,7 @@ pipeline {
       steps {
         sh '''
           set -e
-          echo "===== INSTALL DEPENDENCIES ====="
           npm ci
-
-          echo "===== BUILD NEXT.JS ====="
           npm run build
         '''
       }
@@ -60,7 +62,6 @@ pipeline {
       steps {
         sh '''
           set -e
-          echo "===== RUN TESTS (CI MODE) ====="
           npm run test:ci
         '''
       }
@@ -69,16 +70,11 @@ pipeline {
     stage('Coverage Verification') {
       steps {
         sh '''
-          echo "===== VERIFY COVERAGE FILE ====="
+          set -e
           ls -la coverage || true
-
-          if [ -f coverage/lcov.info ]; then
-            echo "✅ coverage/lcov.info found"
-            head -n 20 coverage/lcov.info
-          else
-            echo "❌ coverage/lcov.info missing"
-            exit 1
-          fi
+          test -f coverage/lcov.info
+          echo "✅ coverage/lcov.info found"
+          head -n 20 coverage/lcov.info
         '''
       }
     }
@@ -88,7 +84,6 @@ pipeline {
         withSonarQubeEnv('sonarqube') {
           sh '''
             set -e
-            echo "===== RUN SONAR SCANNER ====="
             sonar-scanner
           '''
         }
@@ -98,16 +93,7 @@ pipeline {
 
   post {
     always {
-      echo "===== ARCHIVING COVERAGE ARTIFACTS ====="
       archiveArtifacts artifacts: 'coverage/**', allowEmptyArchive: true
-    }
-
-    failure {
-      echo "❌ Pipeline failed"
-    }
-
-    success {
-      echo "✅ Pipeline completed successfully"
     }
   }
 }
