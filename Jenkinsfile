@@ -80,14 +80,18 @@ pipeline {
     }
 
     stage('Sonar Analysis') {
-      steps {
-        withSonarQubeEnv('sonarqube') {
-          sh """
-            set -e
-            ${tool 'sonarqube'}/bin/sonar-scanner
-          """
+        steps {
+            withSonarQubeEnv('sonarqube') {
+            script {
+                def scannerHome = tool 'sonar-scanner'
+                sh """
+                set -e
+                echo "Using SonarScanner at: ${scannerHome}"
+                ${scannerHome}/bin/sonar-scanner
+                """
+            }
+            }
         }
-      }
     }
   }
 
