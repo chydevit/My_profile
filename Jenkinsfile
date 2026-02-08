@@ -1,9 +1,8 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:20-bullseye'
-      args '-u root:root'
-    }
+  agent any
+
+  tools {
+    nodejs 'node-20'
   }
 
   environment {
@@ -15,7 +14,6 @@ pipeline {
   }
 
   stages {
-
     stage('Print OS & Runtime Info') {
       steps {
         sh '''
@@ -71,6 +69,7 @@ pipeline {
       steps {
         sh '''
           set -e
+          echo "===== VERIFY COVERAGE FILE ====="
           ls -la coverage || true
           test -f coverage/lcov.info
           echo "✅ coverage/lcov.info found"
