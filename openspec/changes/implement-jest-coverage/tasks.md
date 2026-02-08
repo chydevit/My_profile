@@ -1,0 +1,33 @@
+# Tasks: Implement Jest Coverage
+
+- [x] Update `package.json` scripts:
+  - Replace `lint` script with `next lint`.
+  - Add `test`: `jest`.
+  - Add `test:watch`: `jest --watch`.
+  - Add `test:ci`: `jest --ci --coverage`.
+- [x] Install devDependencies:
+  - `jest`
+  - `jest-environment-jsdom`
+  - `@types/jest`
+  - `@testing-library/react`
+  - `@testing-library/dom`
+  - `@testing-library/jest-dom`
+  - `@testing-library/user-event`
+- [x] Create `jest.config.js` at root:
+  - Configure `next/jest`.
+  - Set `testEnvironment` to `jsdom`.
+  - setup `coverageReporters` to include `lcov`, `text`, `html`.
+  - Configure `collectCoverageFrom` to target `src/**/*.{ts,tsx}` excluding definitions and tests.
+  - Set `coverageDirectory: "coverage"`.
+- [x] Create `jest.setup.ts` at root:
+  - Import `@testing-library/jest-dom`.
+- [x] Create minimal test file `src/__tests__/smoke.test.tsx`:
+  - Render a simple component.
+  - Assert presence in document.
+- [x] Update `sonar-project.properties`:
+  - Set `sonar.sources=src`.
+  - Set `sonar.javascript.lcov.reportPaths=coverage/lcov.info`.
+  - Verify exclusions.
+- [x] Update `README.md`:
+  - Add section on Running Tests locally.
+  - Add section on CI/Jenkins pipeline order (install -> lint -> test:ci -> sonar).

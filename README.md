@@ -75,6 +75,23 @@ portfolio-nextjs/
 └── openspec/             # OpenSpec documentation server
 ```
 
+## 🧪 Testing
+
+### Running Tests Locally
+
+- Run unit tests: `npm test`
+- Watch mode: `npm run test:watch`
+- CI mode (coverage): `npm run test:ci`
+
+### CI Configuration (Jenkins/GitHub Actions)
+
+Ensure the pipeline executes steps in this order:
+
+1. `npm ci` (Install dependencies)
+2. `npm run lint` (Lint check)
+3. `npm run test:ci` (Run tests & generate coverage)
+4. SonarQube Scanner (imports `coverage/lcov.info`)
+
 ## 📄 Available Scripts
 
 ```bash
@@ -92,10 +109,13 @@ npm run lint         # Run ESLint
 ## 🎨 Customization
 
 ### Colors
+
 Edit `src/app/globals.css` to customize the color palette.
 
 ### Content
+
 Update JSON files in `src/content/data/` to modify:
+
 - Profile information (`profile.json`)
 - Skills (`skills.json`)
 - Services (`services.json`)
@@ -103,6 +123,7 @@ Update JSON files in `src/content/data/` to modify:
 - Education (`education.json`)
 
 ### Components
+
 All components are in `src/components/` and can be customized as needed.
 
 ## 🌐 Deployment
@@ -121,6 +142,7 @@ All components are in `src/components/` and can be customized as needed.
 ### Other Platforms
 
 The project can be deployed to any platform that supports Next.js:
+
 - Netlify
 - AWS Amplify
 - Railway
