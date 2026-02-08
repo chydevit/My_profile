@@ -83,7 +83,7 @@ pipeline {
         withSonarQubeEnv('sonarqube') {
           sh '''
             set -e
-            sonar-scanner
+            sonarqube
           '''
         }
       }
