@@ -60,7 +60,7 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                             {project.category}
                         </span>
                         {project.featured && (
-                            <span className="px-4 py-1.5 text-sm font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded-full">
+                            <span className="px-4 py-1.5 text-sm font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 rounded-full">
                                 ⭐ Featured
                             </span>
                         )}

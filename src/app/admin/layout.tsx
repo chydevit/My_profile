@@ -11,7 +11,7 @@ export default function AdminLayout({
             {/* Sidebar */}
             <aside className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 hidden md:flex flex-col">
                 <div className="p-6">
-                    <Link href="/admin" className="text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+                    <Link href="/admin" className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-500 dark:from-gray-100 dark:to-gray-500 bg-clip-text text-transparent">
                         Devit Admin
                     </Link>
                 </div>

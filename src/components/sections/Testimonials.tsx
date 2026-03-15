@@ -55,7 +55,7 @@ export function Testimonials() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary-700 to-primary-500 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent">
                         {t('clientTestimonials')}
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">

@@ -65,7 +65,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                                             </div>
                                         </div>
                                         {isEducation && (
-                                            <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs px-2 py-1 rounded-full font-medium whitespace-nowrap">
+                                            <span className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded-full font-medium whitespace-nowrap">
                                                 Education
                                             </span>
                                         )}

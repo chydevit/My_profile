@@ -92,7 +92,7 @@ export default function ContactPage() {
                         </div>
 
                         {/* Additional Info */}
-                        <div className="p-6 rounded-xl bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border border-primary-200 dark:border-primary-800">
+                        <div className="p-6 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/20 dark:to-gray-800/20 border border-gray-200 dark:border-gray-800">
                             <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
                                 Response Time
                             </h3>

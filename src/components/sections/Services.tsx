@@ -71,7 +71,7 @@ export function Services() {
                                 >
                                     <CardHeader>
                                         {/* Icon */}
-                                        <div className="mb-4 p-4 bg-gradient-to-br from-primary-600 to-accent-purple rounded-xl w-fit group-hover:scale-110 transition-transform duration-300">
+                                        <div className="mb-4 p-4 bg-gradient-to-br from-primary-600 to-primary-800 rounded-xl w-fit group-hover:scale-110 transition-transform duration-300">
                                             <Icon className="w-8 h-8 text-white" />
                                         </div>
 

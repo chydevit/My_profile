@@ -39,7 +39,7 @@ export function FeaturedProjects() {
                     viewport={{ once: true }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+                    <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
                         <span className="gradient-text">{t('featuredProjects')}</span>
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -47,17 +47,16 @@ export function FeaturedProjects() {
                     </p>
                 </motion.div>
 
-                {/* Projects Grid */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={containerVariants}
-                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
                 >
                     {projects.map((project) => (
                         <motion.div key={project.id} variants={itemVariants}>
-                            <Card variant="elevated" hover className="h-full overflow-hidden group">
+                            <Card variant="premium" hover className="h-full group">
                                 {/* Project Image */}
                                 <div className="relative h-48 overflow-hidden bg-muted">
                                     <Image
@@ -137,7 +136,7 @@ export function FeaturedProjects() {
                 >
                     <Link
                         href="/projects"
-                        className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg border-2 border-primary-600 text-primary-600 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-12 md:h-13 px-6 md:px-8 text-base md:text-lg border-2 border-primary-600 text-primary-600 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950"
                     >
                         <ArrowRight className="w-5 h-5" />
                         {t('viewAllProjects')}

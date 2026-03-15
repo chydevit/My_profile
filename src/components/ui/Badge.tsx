@@ -24,7 +24,7 @@ const Badge: React.FC<BadgeProps> = ({
     const variantStyles = {
         default: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
         primary: 'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300',
-        secondary: 'bg-secondary-100 text-secondary-800 dark:bg-secondary-900/30 dark:text-secondary-300',
+        secondary: 'bg-zinc-100 text-zinc-800 dark:bg-zinc-900/30 dark:text-zinc-300',
         success: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
         warning: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300',
         error: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300',

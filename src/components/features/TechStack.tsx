@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useAnimationFrame } from "framer-motion";
+import { motion, useAnimationFrame, AnimatePresence } from "framer-motion";
 import React, { useEffect, useState, useRef } from "react";
 
 // Icon components (Standardized SVG paths)
@@ -25,9 +25,7 @@ const Icons = {
             {props.title ? <title>{props.title}</title> : null}
             <path
                 fill="currentColor"
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM9.33 16.42L16.67 6.34l-1.25-.92-8.67 11.92h2.58zm-2.08-1.75l-1.09-1.5c-1.12 2.37-1.12 5.16 0 7.53l1.09-6.03zm10.5-3.34l1.09 1.5c1.12-2.37 1.12-5.16 0-7.53l-1.09 6.03z"
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.122 17.562L12.5 11.45V17.5h-2.14V6.5h2.14l4.622 6.112V6.5h2.14v11.062h-2.14z"
             />
         </svg>
     ),
@@ -47,7 +45,7 @@ const Icons = {
             {props.title ? <title>{props.title}</title> : null}
             <path
                 fill="currentColor"
-                d="M0 0v24h24V0H0zm22.034 18.276c-.175 1.095-.888 2.015-3.003 2.873-.736.345-1.554.585-1.797 1.14-.091.33-.105.51-.046.705.15.646.915.84 1.515.66.39-.12.75-.42.976-.9 1.034.676 1.034.676 1.755 1.125.27.42.404.601.586.78.63.705 1.469 1.065 2.834 1.034l.705-.089c.676-.165 1.32-.525 1.71-1.005 1.14-1.291.811-3.541-.569-4.471-1.365-1.02-3.361-1.244-3.616-2.205-.24-1.17.87-1.545 1.966-1.41.811.18 1.26.586 1.755 1.336l1.83-1.051c-.21-.48-.45-.689-.81-1.109-1.74-1.756-6.09-1.666-6.871 1.004-.029.09-.24.705-.074 1.65l-.046-.067zm-8.983 7.245h2.248c0-1.938.009-3.864.009-5.805 0-1.232-.063-2.363.138-2.711.33-.689 1.18-.601 1.566-.48.396.196.597.466.83.855.063.105.11.196.127.196l1.825-1.125c-.305-.63-.75-1.172-1.324-1.517-.855-.51-2.004-.675-3.207-.405-.783.226-1.458.691-1.811 1.411-.51.93-.402 2.07-.397 3.346-.012 2.054 0 4.109 0 6.179l-.004.056z"
+                d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"
             />
         </svg>
     ),
@@ -57,8 +55,22 @@ const Icons = {
             {props.title ? <title>{props.title}</title> : null}
             <path
                 fill="currentColor"
-                d="M23.15 2.587l-2.19 1.6L6.52 9l-3.37-2.44L0 9.44l15.15 11.56 5.81-4.24 2.19 1.61c.42.3.93.08.93-.41V2.997c0-.49-.51-.71-.93-.41zM5.52 14.72L3 17.06l3.52 2.54 5.31-3.86-6.31-1.02zm-2.37-5.04l2.37 2.36 6.31-1.02-5.31-3.86-3.37 2.54z"
+                d="M23.15 2.587l-2.19-1.6L6.52 9l-3.37-2.438L0 9.44l15.15 11.562 5.812-4.24 2.188 1.61c.42.308.93.08.93-.41V2.997c0-.49-.51-.71-.93-.41zM18 16.27l-5.46-3.75L18 8.77v7.5z"
             />
+        </svg>
+    ),
+
+    Vite: (props: IconProps) => (
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+            {props.title ? <title>{props.title}</title> : null}
+            <path fill="currentColor" d="M19.85 1.14c-.11-.2-.36-.25-.53-.1L4.82 12.56a.4.4 0 0 0 .14.68l4.37.95-3.04 8.67a.4.4 0 0 0 .61.45L21.4 8.7a.4.4 0 0 0-.14-.68l-4.37-.95 2.96-6.03z" />
+        </svg>
+    ),
+
+    NestJS: (props: IconProps) => (
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+            {props.title ? <title>{props.title}</title> : null}
+            <path fill="currentColor" fillRule="evenodd" clipRule="evenodd" d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm5.669 8.199c0 1.008-.456 1.974-1.251 2.607-.272.215-.572.392-.892.527V6.023l-3.551 2.812v8.118c-.469-.272-.884-.622-1.229-1.026.438-1.216 1.341-2.227 2.535-2.835 1.109-.567 2.373-.853 3.61-.853 1.258 0 2.443.292 3.428.853.511.291-.568.568-.568.568s-1.076-.568-1.785-.568c-1.109 0-2.115.309-2.924.853-.272.183-.517.397-.732.639-.345.389-.597.834-.732 1.314.157 1.547 1.451 2.766 3.018 2.766 1.567 0 2.861-1.219 3.018-2.766l.001-8.525c.001-.986-.454-1.93-1.248-2.561-.272-.217-.573-.396-.893-.532z" />
         </svg>
     ),
 
@@ -108,7 +120,7 @@ const Icons = {
             {props.title ? <title>{props.title}</title> : null}
             <path
                 fill="currentColor"
-                d="M12 2c5.6 0 10 3.6 10 8.1 0 6.2-4.7 11.9-10 11.9S2 16.3 2 10.1C2 5.6 6.4 2 12 2zm-3.2 9.1c.6 0 1.1-.5 1.1-1.1S9.4 8.9 8.8 8.9 7.7 9.4 7.7 10s.5 1.1 1.1 1.1zm6.4 0c.6 0 1.1-.5 1.1-1.1s-.5-1.1-1.1-1.1-1.1.5-1.1 1.1.5 1.1 1.1 1.1zM8.7 14.7c.9.9 2 1.3 3.3 1.3s2.4-.4 3.3-1.3a.8.8 0 1 0-1.1-1.1c-.6.6-1.4.9-2.2.9s-1.6-.3-2.2-.9a.8.8 0 1 0-1.1 1.1z"
+                d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.3 13.9c-.9 1.1-2.2 1.8-3.3 1.8s-2.4-.7-3.3-1.8c-.2-.2-.2-.5 0-.7.2-.2.5-.2.7 0 .7.9 1.7 1.5 2.6 1.5s1.9-.6 2.6-1.5c.2-.2.5-.2.7 0s.2.5 0 .7zM8.5 11c-.8 0-1.5-.7-1.5-1.5S7.7 8 8.5 8s1.5.7 1.5 1.5S9.3 11 8.5 11zm7 0c-.8 0-1.5-.7-1.5-1.5S14.7 8 15.5 8s1.5.7 1.5 1.5-.7 1.5-1.5 1.5z"
             />
         </svg>
     ),
@@ -118,7 +130,7 @@ const Icons = {
             {props.title ? <title>{props.title}</title> : null}
             <path
                 fill="currentColor"
-                d="M12 2c4.9 0 7.8 2.4 7.8 6.4 0 2.4-1 4.4-2.8 5.7.1.8.1 1.8-.2 2.8-.7 2.5-2.6 5.1-4.8 5.1-2.1 0-3.7-2.3-4.5-4.6-.5-1.4-.6-2.9-.4-4.2C5.1 11.9 4.2 10.2 4.2 8.4 4.2 4.4 7.1 2 12 2zm-3.5 9.5c.7.3 1.5.4 2.5.4s1.8-.1 2.5-.4c.4-.2.9 0 1 .5.1.4-.1.9-.5 1-1 .4-2 .6-3 .6s-2-.2-3-.6a.8.8 0 1 1 .5-1.5z"
+                d="M12 2c-.015 0-.03 0-.045.002a8 8 0 0 0-4.04 1.258c-.011.006-.021.012-.032.018a1.5 1.5 0 0 0 .041 2.361c.451.341.97.55 1.52.613V9.5h3v-3.242c1.7.35 3 2.1 3 4.242 0 .08 0 .16-.002.24a1.5 1.5 0 0 0 .341 1.487c.3.336.72.502 1.15.502.43 0 .85-.166 1.15-.502a1.5 1.5 0 0 0 .341-1.487 7.94 7.94 0 0 0-6.424-6.242A8 8 0 0 0 12 2zM12 22a8 8 0 0 0 8.045-7.758c0-.08 0-.16-.002-.24a1.5 1.5 0 0 0-.341-1.487 1.5 1.5 0 0 0-2.3 0 1.5 1.5 0 0 0-.341 1.487 5 5 0 0 1-5 4.75h-0.24c-1.7-.35-3-2.1-3-4.242V10h-3v4.5c0 3.3 2.2 6.1 5.3 7.3A8 8 0 0 0 12 22z"
             />
         </svg>
     ),
@@ -208,7 +220,7 @@ const Icons = {
             {props.title ? <title>{props.title}</title> : null}
             <path
                 fill="currentColor"
-                d="M12 12c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zm0-6c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3-3-3 1.343-3 3zM6 12c0 1.657 1.343 3 3 3s3-1.343 3-3-1.343-3-3-3-3 1.343-3 3zM6 6c0 1.657 1.343 3 3 3s3-1.343 3-3-1.343-3-3-3-3 1.343-3 3zM6 18c0 1.657 1.343 3 3 3s3-1.343 3-3-1.343-3-3-3V18z"
+                d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"
             />
         </svg>
     ),
@@ -284,23 +296,28 @@ const Icons = {
     ),
 };
 const items = [
-    { icon: Icons.React, color: "text-[#61DAFB]", label: "React" },
-    { icon: Icons.TypeScript, color: "text-[#3178C6]", label: "TypeScript" },
-    { icon: Icons.NextJS, color: "text-foreground", label: "Next.js" },
-    { icon: Icons.VSCode, color: "text-[#007ACC]", label: "VS Code" },
-    { icon: Icons.Docker, color: "text-[#2496ED]", label: "Docker" },
-    { icon: Icons.Github, color: "text-foreground", label: "GitHub" },
-    { icon: Icons.JavaScript, color: "text-[#F7DF1E]", label: "JavaScript" },
-    { icon: Icons.Tailwind, color: "text-[#38B2AC]", label: "Tailwind CSS" },
-    { icon: Icons.NodeJS, color: "text-[#339933]", label: "Node.js" },
-    { icon: Icons.Figma, color: "text-[#F24E1E]", label: "Figma" },
-    { icon: Icons.MongoDB, color: "text-[#47A248]", label: "MongoDB" },
-    { icon: Icons.Android, color: "text-[#3DDC84]", label: "Android" },
-    { icon: Icons.Java, color: "text-[#F89820]", label: "Java" },
-    { icon: Icons.Kotlin, color: "text-[#7F52FF]", label: "Kotlin" },
-    { icon: Icons.Python, color: "text-[#3776AB]", label: "Python" },
-    { icon: Icons.HTML, color: "text-[#E34F26]", label: "HTML5" },
-    { icon: Icons.CSS, color: "text-[#1572B6]", label: "CSS3" },
+    { icon: Icons.React, color: "text-[#61DAFB]", glow: "shadow-[#61DAFB]/20", label: "React", description: "A JavaScript library for building user interfaces." },
+    { icon: Icons.TypeScript, color: "text-[#3178C6]", glow: "shadow-[#3178C6]/20", label: "TypeScript", description: "Typed superset of JavaScript that compiles to plain JavaScript." },
+    { icon: Icons.NextJS, color: "text-foreground", glow: "shadow-foreground/20", label: "Next.js", description: "React framework for production-grade applications." },
+    { icon: Icons.VSCode, color: "text-[#007ACC]", glow: "shadow-[#007ACC]/20", label: "VS Code", description: "Powerful code editor with extensive extensions." },
+    { icon: Icons.Docker, color: "text-[#2496ED]", glow: "shadow-[#2496ED]/20", label: "Docker", description: "Platform for developing and running applications in containers." },
+    { icon: Icons.Github, color: "text-foreground", glow: "shadow-foreground/20", label: "GitHub", description: "Hosting platform for version control and collaboration." },
+    { icon: Icons.JavaScript, color: "text-[#F7DF1E]", glow: "shadow-[#F7DF1E]/20", label: "JavaScript", description: "Versatile programming language for web development." },
+    { icon: Icons.Tailwind, color: "text-[#38B2AC]", glow: "shadow-[#38B2AC]/20", label: "Tailwind CSS", description: "Utility-first CSS framework for rapid UI development." },
+    { icon: Icons.NodeJS, color: "text-[#339933]", glow: "shadow-[#339933]/20", label: "Node.js", description: "JavaScript runtime built on Chrome's V8 engine." },
+    { icon: Icons.Figma, color: "text-[#F24E1E]", glow: "shadow-[#F24E1E]/20", label: "Figma", description: "Collaborative interface design tool." },
+    { icon: Icons.MongoDB, color: "text-[#47A248]", glow: "shadow-[#47A248]/20", label: "MongoDB", description: "NoSQL database program using JSON-like documents." },
+    { icon: Icons.Android, color: "text-[#3DDC84]", glow: "shadow-[#3DDC84]/20", label: "Android", description: "Mobile operating system based on Linux." },
+    { icon: Icons.Java, color: "text-[#F89820]", glow: "shadow-[#F89820]/20", label: "Java", description: "High-level, class-based, object-oriented ecosystem." },
+    { icon: Icons.Kotlin, color: "text-[#7F52FF]", glow: "shadow-[#7F52FF]/20", label: "Kotlin", description: "Cross-platform, statically typed, general-purpose language." },
+    { icon: Icons.Python, color: "text-[#3776AB]", glow: "shadow-[#3776AB]/20", label: "Python", description: "High-level, general-purpose programming language." },
+    { icon: Icons.HTML, color: "text-[#E34F26]", glow: "shadow-[#E34F26]/20", label: "HTML5", description: "Standard markup language for building web pages." },
+    { icon: Icons.CSS, color: "text-[#1572B6]", glow: "shadow-[#1572B6]/20", label: "CSS3", description: "Style sheet language for styling HTML documents." },
+    { icon: Icons.Vite, color: "text-[#646CFF]", glow: "shadow-[#646CFF]/20", label: "Vite", description: "Next generation front-end tooling designed for speed." },
+    { icon: Icons.NestJS, color: "text-[#E0234E]", glow: "shadow-[#E0234E]/20", label: "NestJS", description: "Progressive Node.js framework for server-side apps." },
+    { icon: Icons.Bun, color: "text-[#FBF0BA]", glow: "shadow-[#FBF0BA]/20", label: "Bun", description: "Fast all-in-one JavaScript runtime." },
+    { icon: Icons.PostgreSQL, color: "text-[#336791]", glow: "shadow-[#336791]/20", label: "PostgreSQL", description: "Powerful, open source object-relational database." },
+    { icon: Icons.Git, color: "text-[#F05032]", glow: "shadow-[#F05032]/20", label: "Git", description: "Distributed version control system." },
 ];
 
 interface TechStackProps {
@@ -308,6 +325,24 @@ interface TechStackProps {
 }
 
 export function TechStack({ onBack }: TechStackProps) {
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(() => setIsMounted(true), []);
+    
+    const [radius, setRadius] = useState(190);
+    const [selectedTech, setSelectedTech] = useState<typeof items[0] | null>(null);
+
+    // Update radius based on screen size
+    useEffect(() => {
+        const updateRadius = () => {
+            if (window.innerWidth < 640) setRadius(120);
+            else if (window.innerWidth < 768) setRadius(150);
+            else setRadius(190);
+        };
+        updateRadius();
+        window.addEventListener("resize", updateRadius);
+        return () => window.removeEventListener("resize", updateRadius);
+    }, []);
+
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const velocity = useRef({ x: 0, y: 0 });
@@ -368,12 +403,9 @@ export function TechStack({ onBack }: TechStackProps) {
             </div>
 
             {/* Floating Icons */}
-            {items.map((item, index) => {
-                // Spherical distribution (Fibonacci Sphere)
+            {isMounted && items.map((item, index) => {
                 const phi = Math.acos(-1 + (2 * index) / items.length);
                 const theta = Math.sqrt(items.length * Math.PI) * phi;
-
-                const radius = 190; // Increased radius further
 
                 // Convert spherical to Cartesian coordinates
                 const x0 = radius * Math.cos(theta) * Math.sin(phi);
@@ -394,38 +426,90 @@ export function TechStack({ onBack }: TechStackProps) {
                 const z2 = -x0 * Math.sin(rotY) + z1 * Math.cos(rotY);
 
                 // Perspective projection
-                const scale = (z2 + radius * 2) / (radius * 3); // Simple depth scaling
-                const opacity = Math.max(0.1, (z2 + radius) / (radius * 2)); // Fade distant items
+                const scale = (z2 + radius * 2) / (radius * 3);
+                const opacity = Math.max(0.1, (z2 + radius) / (radius * 2));
                 const zIndex = Math.floor(z2 + radius);
+                const blur = Math.max(0, (radius - z2) * 0.02); // Depth blur
 
                 return (
-                    <motion.div
+                    <div
                         key={index}
                         className={`absolute top-1/2 left-1/2 ${item.color} flex flex-col items-center justify-center`}
-                        animate={{
-                            x: x2,
-                            y: y1,
-                            scale: scale,
-                            opacity: opacity,
-                            zIndex: zIndex
-                        }}
-                        transition={{ type: "spring", stiffness: 200, damping: 20 }}
                         style={{
-                            translateX: "-50%",
-                            translateY: "-50%"
+                            transform: `translate(calc(-50% + ${x2}px), calc(-50% + ${y1}px)) scale(${scale})`,
+                            opacity: opacity,
+                            zIndex: zIndex,
+                            filter: `blur(${blur}px)`,
                         }}
                     >
-                        <item.icon className="w-12 h-12 md:w-16 md:h-16 drop-shadow-2xl" />
-                    </motion.div>
+                        <div 
+                            className={`relative group p-2 md:p-4 rounded-2xl transition-all duration-500 hover:bg-white/5 cursor-pointer`}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedTech(item);
+                            }}
+                        >
+                            <item.icon className={`w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 drop-shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-110`} />
+                            
+                            {/* Glow Effect */}
+                            <div className={`absolute inset-0 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity bg-current`} />
+                        </div>
+                    </div>
                 );
             })}
 
             {/* Click hint */}
-            {onBack && (
-                <div className="absolute bottom-4 left-0 right-0 text-center">
-                    <p className="text-xs text-muted-foreground">Click to return</p>
+            {onBack && !selectedTech && (
+                <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-none">
+                    <p className="text-xs text-muted-foreground animate-bounce">Click surrounding space to return</p>
                 </div>
             )}
+
+            {/* Selected Tech Detail Overlay */}
+            <AnimatePresence>
+                {selectedTech && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 z-[1000] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4 cursor-default"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedTech(null);
+                        }}
+                    >
+                        <motion.div 
+                            initial={{ scale: 0.9, y: 20, opacity: 0 }}
+                            animate={{ scale: 1, y: 0, opacity: 1 }}
+                            exit={{ scale: 0.9, y: 20, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                            className={`relative bg-background border border-foreground/10 rounded-3xl p-8 pt-12 max-w-sm w-full flex flex-col items-center gap-6 shadow-2xl ${selectedTech.glow} cursor-auto`}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button 
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelectedTech(null);
+                                }}
+                                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors p-2 rounded-full hover:bg-foreground/5 cursor-pointer z-10"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                            </button>
+                            
+                            <div className={`${selectedTech.color} p-4 rounded-2xl bg-foreground/5`}>
+                                <selectedTech.icon className="w-24 h-24 drop-shadow-[0_0_20px_rgba(0,0,0,0.5)]" />
+                            </div>
+                            
+                            <div className="text-center space-y-3">
+                                <h3 className={`text-3xl font-bold ${selectedTech.color}`}>{selectedTech.label}</h3>
+                                <p className="text-muted-foreground text-sm leading-relaxed">
+                                    {selectedTech.description}
+                                </p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 }

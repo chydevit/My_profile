@@ -1,5 +1,70 @@
 [
     {
+        "id": "emenu-system",
+        "slug": "emenu-system",
+        "title": "Digital E-Menu System",
+        "description": "An interactive digital menu solution for modern restaurants and cafes.",
+        "longDescription": "E-Menu System is a digital alternative to paper menus, allowing customers to browse dishes, view high-quality images, and see detailed descriptions. Built with a focus on speed and luxury aesthetic, it supports category filtering and real-time updates.",
+        "image": "/images/emenu-project.png",
+        "images": [
+            "/images/emenu-project.png"
+        ],
+        "tags": [
+            "E-Menu",
+            "Restaurant",
+            "UI/UX"
+        ],
+        "technologies": [
+            "React.js",
+            "Tailwind CSS",
+            "Framer Motion"
+        ],
+        "liveUrl": "",
+        "githubUrl": "https://github.com/chydevit/e-menu-test-1.git",
+        "featured": true,
+        "category": "web",
+        "completedDate": "2024",
+        "features": [
+            "Interactive category navigation",
+            "High-resolution dish gallery",
+            "Fast search and filtering",
+            "Mobile-optimized responsive design"
+        ]
+    },
+    {
+        "id": "pos-system",
+        "slug": "pos-system",
+        "title": "Modern POS System",
+        "description": "A comprehensive Point of Sale system for retail and hospitality management.",
+        "longDescription": "This Modern POS System is a full-featured application designed to streamline sales, inventory, and customer management. It features a responsive dashboard, real-time analytics, and a user-friendly interface for quick checkouts.",
+        "image": "/images/pos-system.png",
+        "images": [
+            "/images/pos-system.png"
+        ],
+        "tags": [
+            "POS",
+            "Retail",
+            "Full Stack"
+        ],
+        "technologies": [
+            "React.js",
+            "Node.js",
+            "PostgreSQL",
+            "Tailwind CSS"
+        ],
+        "liveUrl": "https://system-pos-qm0s.onrender.com/",
+        "githubUrl": "",
+        "featured": true,
+        "category": "fullstack",
+        "completedDate": "2024",
+        "features": [
+            "Real-time sales tracking",
+            "Inventory management",
+            "Customer database",
+            "Responsive checkout interface"
+        ]
+    },
+    {
         "id": "discount-calculator",
         "slug": "discount-calculator",
         "title": "Discount Calculator",

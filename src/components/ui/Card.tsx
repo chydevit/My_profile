@@ -2,7 +2,7 @@ import { HTMLAttributes, forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-    variant?: "default" | "glass" | "elevated";
+    variant?: "default" | "glass" | "elevated" | "premium";
     hover?: boolean;
 }
 
@@ -14,6 +14,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
             default: "bg-card border border-border",
             glass: "glass",
             elevated: "bg-card shadow-lg hover:shadow-xl",
+            premium: "premium-card glow-on-hover",
         };
 
         const hoverStyles = hover

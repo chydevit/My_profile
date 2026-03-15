@@ -42,10 +42,10 @@ export function About() {
                     <motion.div variants={itemVariants} className="relative">
                         <div className="relative w-full max-w-md mx-auto">
                             {/* Decorative background */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-accent-purple rounded-2xl rotate-6 opacity-20" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 rounded-2xl rotate-6 opacity-30 blur-2xl animate-pulse-slow" />
 
                             {/* Image container */}
-                            <Card variant="elevated" className="relative overflow-hidden p-0">
+                            <Card variant="premium" className="relative overflow-hidden p-0 border-none shadow-2xl">
                                 <Image
                                     src={profile.image}
                                     alt={profile.name}
@@ -60,22 +60,21 @@ export function About() {
                     {/* Content Section */}
                     <motion.div variants={itemVariants} className="space-y-6">
                         {/* Section Title */}
-                        <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                                <h2 className="text-4xl md:text-5xl font-heading font-bold">{t('hello')}</h2>
-                                <span className="text-4xl">👋</span>
+                        <div className="space-y-4 text-center lg:text-left">
+                            <div className="flex items-center justify-center lg:justify-start gap-2">
+                                <h2 className="text-3xl md:text-5xl font-heading font-bold">{t('hello')}</h2>
+                                <span className="text-4xl animate-bounce">👋</span>
                             </div>
-                            <div className="h-1 w-20 bg-gradient-to-r from-primary-600 to-accent-purple rounded-full" />
+                            <div className="h-1.5 w-20 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 rounded-full mx-auto lg:mx-0" />
                         </div>
 
                         {/* Main Heading */}
-                        <h1 className="text-2xl md:text-3xl font-heading font-semibold text-foreground">
+                        <h3 className="text-xl md:text-3xl font-heading font-semibold text-foreground text-center lg:text-left">
                             {t('aboutTitle').replace('{name}', profile.name)}
-                        </h1>
+                        </h3>
 
                         {/* Description */}
-                        <p className="text-muted-foreground leading-relaxed">
-                            {/* We might want to translate bio too, but for now using the profile bio */}
+                        <p className="text-muted-foreground leading-relaxed text-center lg:text-left">
                             {profile.bio}
                         </p>
 
@@ -113,11 +112,11 @@ export function About() {
                         </div>
 
                         {/* CTA Button */}
-                        <div>
+                        <div className="flex justify-center lg:justify-start">
                             <a
                                 href={profile.cvUrl}
                                 download
-                                className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md"
+                                className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-12 md:h-13 px-8 text-base md:text-lg bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md"
                             >
                                 <Download className="w-5 h-5" />
                                 {t('downloadCV')}

@@ -12,17 +12,17 @@
   --card: #f8fafc;
   --card-foreground: #0f172a;
 
-  /* Primary Colors - Blue Gradient */
-  --primary-50: #eff6ff;
-  --primary-100: #dbeafe;
-  --primary-200: #bfdbfe;
-  --primary-300: #93c5fd;
-  --primary-400: #60a5fa;
-  --primary-500: #3b82f6;
-  --primary-600: #2563eb;
-  --primary-700: #1d4ed8;
-  --primary-800: #1e40af;
-  --primary-900: #1e3a8a;
+  /* Primary Colors - Gray and White Theme */
+  --primary-50: #fafafa;
+  --primary-100: #f4f4f5;
+  --primary-200: #e4e4e7;
+  --primary-300: #d4d4d8;
+  --primary-400: #a1a1aa;
+  --primary-500: #71717a;
+  --primary-600: #52525b;
+  --primary-700: #3f3f46;
+  --primary-800: #27272a;
+  --primary-900: #18181b;
 
   /* Accent Colors - Vibrant */
   --accent-purple: #a855f7;
@@ -35,14 +35,14 @@
   --success: #10b981;
   --error: #ef4444;
   --warning: #f59e0b;
-  --info: #3b82f6;
+  --info: #71717a;
 
   /* Neutral Colors */
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #3b82f6;
+  --ring: #71717a;
 }
 
 /* Dark Mode Variables */
@@ -56,7 +56,7 @@
   --muted-foreground: #94a3b8;
   --border: #334155;
   --input: #334155;
-  --ring: #60a5fa;
+  --ring: #a1a1aa;
 
   /* Adjust primary for dark mode flexibility if needed, 
      though they are usually defined globally. 
@@ -251,6 +251,26 @@ body {
   animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* Premium Card Styles */
+.premium-card {
+  @apply relative overflow-hidden transition-all duration-500 rounded-2xl border border-white/10;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(12px);
+}
+
+.dark .premium-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.3) 100%);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.glow-on-hover {
+  @apply transition-shadow duration-500;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 25px -5px var(--primary-400), 0 0 15px -8px var(--primary-600);
+}
+
 /* Glassmorphism Effect */
 .glass {
   background: rgba(255, 255, 255, 0.1);
@@ -260,13 +280,13 @@ body {
 }
 
 .dark .glass {
-  background: rgba(30, 41, 59, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary-500), var(--accent-purple), var(--accent-pink));
+  background: linear-gradient(135deg, var(--foreground), var(--primary-500), var(--primary-300));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -274,7 +294,7 @@ body {
 
 /* Glow Text */
 .glow-text {
-  filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.5)) drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
+  filter: drop-shadow(0 0 8px rgba(161, 161, 170, 0.4)) drop-shadow(0 0 20px rgba(113, 113, 122, 0.2));
 }
 
 /* Smooth Scroll */

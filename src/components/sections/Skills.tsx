@@ -42,7 +42,7 @@ export function Skills() {
                     viewport={{ once: true }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+                    <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
                         <span className="gradient-text">{t('mySkills')}</span>
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -60,7 +60,7 @@ export function Skills() {
                     <button
                         onClick={() => setSelectedCategory(null)}
                         className={cn(
-                            "px-6 py-2 rounded-full font-medium transition-all duration-300",
+                            "px-4 md:px-6 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300",
                             selectedCategory === null
                                 ? "bg-primary-600 text-white shadow-lg"
                                 : "bg-muted hover:bg-muted/80 text-foreground"
@@ -73,7 +73,7 @@ export function Skills() {
                             key={category.name}
                             onClick={() => setSelectedCategory(category.name)}
                             className={cn(
-                                "px-6 py-2 rounded-full font-medium transition-all duration-300",
+                                "px-4 md:px-6 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300",
                                 selectedCategory === category.name
                                     ? "bg-primary-600 text-white shadow-lg"
                                     : "bg-muted hover:bg-muted/80 text-foreground"
@@ -97,11 +97,11 @@ export function Skills() {
                             <h3 className="text-2xl font-heading font-semibold mb-6 text-center">
                                 {category.name}
                             </h3>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
                                 {category.skills.map((skill) => (
                                     <motion.div key={skill.name} variants={itemVariants}>
                                         <Card
-                                            variant="elevated"
+                                            variant="premium"
                                             hover
                                             className="p-6 text-center group"
                                         >
@@ -113,13 +113,13 @@ export function Skills() {
 
                                                 {/* Proficiency Bar */}
                                                 <div className="space-y-1">
-                                                    <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                                                    <div className="w-full h-2 bg-muted/50 rounded-full overflow-hidden">
                                                         <motion.div
                                                             initial={{ width: 0 }}
                                                             whileInView={{ width: `${skill.proficiency}%` }}
                                                             viewport={{ once: true }}
                                                             transition={{ duration: 1, delay: 0.2 }}
-                                                            className="h-full bg-gradient-to-r from-primary-600 to-accent-purple rounded-full"
+                                                            className="h-full bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 rounded-full"
                                                         />
                                                     </div>
                                                     <p className="text-xs text-muted-foreground">

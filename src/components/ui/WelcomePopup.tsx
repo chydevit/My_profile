@@ -56,8 +56,8 @@ export function WelcomePopup() {
                         className="relative w-full max-w-md overflow-hidden border rounded-2xl bg-card/90 backdrop-blur-xl border-white/20 shadow-2xl"
                     >
                         {/* Decorative background gradients */}
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 via-accent-purple to-accent-pink" />
-                        <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent-purple/20 rounded-full blur-3xl animate-pulse-slow" />
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600" />
+                        <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary-400/20 rounded-full blur-3xl animate-pulse-slow" />
                         <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-primary-500/20 rounded-full blur-3xl animate-pulse-slow" />
 
                         {/* Language Switcher */}
@@ -114,7 +114,7 @@ export function WelcomePopup() {
                             {/* Action Button */}
                             <button
                                 onClick={handleClose}
-                                className="w-full py-3 px-6 rounded-xl font-medium text-white bg-gradient-to-r from-primary-600 to-accent-purple hover:opacity-90 transition-opacity shadow-lg shadow-primary-500/20"
+                                className="w-full py-3 px-6 rounded-xl font-medium text-white bg-gradient-to-r from-primary-600 to-primary-800 hover:opacity-90 transition-opacity shadow-lg shadow-primary-500/20"
                             >
                                 {t('explore')}
                             </button>

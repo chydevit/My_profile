@@ -11,7 +11,7 @@ interface ScrollProgressProps {
 
 const ScrollProgress: React.FC<ScrollProgressProps> = ({
     className = '',
-    color = 'bg-gradient-to-r from-primary-500 to-secondary-500',
+    color = 'bg-gradient-to-r from-primary-400 to-primary-700',
     height = 3,
 }) => {
     const { scrollYProgress } = useScroll();

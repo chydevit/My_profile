@@ -64,11 +64,11 @@ export function Hero() {
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-400/10 rounded-full blur-3xl animate-pulse-slow" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "1s" }} />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-400/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "1s" }} />
             </div>
 
-            <Container className="relative z-10 py-20">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <Container className="relative z-10 py-10 md:py-20">
+                <div className="grid lg:grid-cols-2 gap-10 md:gap-12 items-center text-center lg:text-left">
                     {/* Left Column - Text Content */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -81,7 +81,7 @@ export function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="flex gap-4"
+                            className="flex justify-center lg:justify-start gap-4"
                         >
                             {profile.socialLinks.map((social, index) => {
                                 const Icon = socialIcons[social.icon as keyof typeof socialIcons];
@@ -109,9 +109,9 @@ export function Hero() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
                         >
-                            <p className="text-lg text-muted-foreground mb-2">
-                                {t('helloIam')}{" "}
-                                <span className="inline-block bg-muted px-3 py-1 rounded-full font-medium text-foreground">
+                            <p className="text-base md:text-lg text-muted-foreground mb-2 flex items-center justify-center lg:justify-start gap-3">
+                                {t('helloIam')}
+                                <span className="inline-flex items-center px-4 py-1 rounded-full text-xs md:text-sm font-semibold bg-primary-500/10 text-primary-600 border border-primary-500/20 backdrop-blur-md">
                                     Devit
                                 </span>
                             </p>
@@ -122,7 +122,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5 }}
-                            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold gradient-text glow-text leading-tight"
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold gradient-text glow-text leading-tight"
                         >
                             {profile.name}
                         </motion.h1>
@@ -150,7 +150,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7 }}
-                            className="text-lg text-muted-foreground max-w-xl"
+                            className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0"
                         >
                             {t('heroDescription')}.
                         </motion.p>
@@ -160,7 +160,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
-                            className="flex flex-wrap gap-4"
+                            className="flex flex-wrap justify-center lg:justify-start gap-4"
                         >
                             <a
                                 href="https://t.me/chydevit"
@@ -188,8 +188,8 @@ export function Hero() {
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className="relative"
                     >
-                        <div className="relative w-full aspect-square max-w-lg mx-auto">
-                            <div className="relative w-full h-full min-h-[400px]">
+                        <div className="relative w-full aspect-square max-w-[280px] sm:max-w-md lg:max-w-lg mx-auto">
+                            <div className="relative w-full h-full min-h-[300px] sm:min-h-[400px]">
                                 <TechStack />
                             </div>
                         </div>

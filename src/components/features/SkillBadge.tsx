@@ -27,7 +27,7 @@ const SkillBadge: React.FC<SkillBadgeProps> = ({
     const variantStyles = {
         default: 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700',
         outlined: 'bg-transparent border-2 border-primary-500 dark:border-primary-400',
-        filled: 'bg-gradient-to-br from-primary-500 to-secondary-500 text-white border-none',
+        filled: 'bg-gradient-to-br from-primary-400 to-primary-700 text-white border-none',
     };
 
     const proficiencyColor = (level: number) => {
@@ -51,7 +51,7 @@ const SkillBadge: React.FC<SkillBadgeProps> = ({
             )}
         >
             {/* Background gradient effect on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 to-secondary-500/0 group-hover:from-primary-500/10 group-hover:to-secondary-500/10 transition-all duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 to-primary-700/0 group-hover:from-primary-500/10 group-hover:to-primary-700/10 transition-all duration-300" />
 
             <div className="relative z-10 flex items-center gap-3">
                 {/* Icon */}

@@ -30,7 +30,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             primary:
                 "bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md",
             secondary:
-                "bg-accent-purple text-white hover:bg-accent-purple/90 active:bg-accent-purple/80 shadow-sm hover:shadow-md",
+                "bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-900 shadow-sm hover:shadow-md dark:bg-gray-200 dark:text-gray-900 dark:hover:bg-gray-300 dark:active:bg-gray-400",
             outline:
                 "border-2 border-primary-600 text-primary-600 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950",
             ghost:
