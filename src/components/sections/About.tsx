@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Download, Mail, Phone, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
 import { getProfile } from "@/lib/content";
@@ -29,97 +28,89 @@ export function About() {
     };
 
     return (
-        <section id="about" className="py-20 bg-muted/30">
+        <section id="about" className="holo-section bg-muted/20 py-20">
             <Container>
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={containerVariants}
-                    className="grid lg:grid-cols-2 gap-12 items-center"
+                    className="grid items-center gap-12 lg:grid-cols-2"
                 >
-                    {/* Image Section */}
                     <motion.div variants={itemVariants} className="relative">
-                        <div className="relative w-full max-w-md mx-auto">
-                            {/* Decorative background */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 rounded-2xl rotate-6 opacity-30 blur-2xl animate-pulse-slow" />
+                        <div className="relative mx-auto w-full max-w-md">
+                            <div className="absolute inset-0 rotate-6 rounded-2xl bg-gradient-to-br from-cyan-400 via-sky-500 to-indigo-500 opacity-25 blur-2xl animate-pulse-slow" />
+                            <div className="absolute -inset-6 rounded-[2rem] border border-cyan-300/10" />
 
-                            {/* Image container */}
-                            <Card variant="premium" className="relative overflow-hidden p-0 border-none shadow-2xl">
+                            <Card variant="premium" className="relative overflow-hidden border-none p-0 shadow-none">
                                 <Image
                                     src={profile.image}
                                     alt={profile.name}
                                     width={500}
                                     height={600}
-                                    className="w-full h-auto object-cover"
+                                    className="h-auto w-full object-cover"
                                 />
                             </Card>
                         </div>
                     </motion.div>
 
-                    {/* Content Section */}
                     <motion.div variants={itemVariants} className="space-y-6">
-                        {/* Section Title */}
                         <div className="space-y-4 text-center lg:text-left">
-                            <div className="flex items-center justify-center lg:justify-start gap-2">
-                                <h2 className="text-3xl md:text-5xl font-heading font-bold">{t('hello')}</h2>
-                                <span className="text-4xl animate-bounce">👋</span>
+                            <div className="flex items-center justify-center gap-2 lg:justify-start">
+                                <h2 className="text-3xl font-heading font-bold md:text-5xl">{t("hello")}</h2>
+                                <span className="text-sm uppercase tracking-[0.3em] text-cyan-300/80">scan</span>
                             </div>
-                            <div className="h-1.5 w-20 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 rounded-full mx-auto lg:mx-0" />
+                            <div className="mx-auto h-1.5 w-20 rounded-full bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 lg:mx-0" />
                         </div>
 
-                        {/* Main Heading */}
-                        <h3 className="text-xl md:text-3xl font-heading font-semibold text-foreground text-center lg:text-left">
-                            {t('aboutTitle').replace('{name}', profile.name)}
+                        <h3 className="text-center text-xl font-heading font-semibold text-foreground lg:text-left md:text-3xl">
+                            {t("aboutTitle").replace("{name}", profile.name)}
                         </h3>
 
-                        {/* Description */}
-                        <p className="text-muted-foreground leading-relaxed text-center lg:text-left">
+                        <p className="text-center leading-relaxed text-muted-foreground lg:text-left">
                             {profile.bio}
                         </p>
 
-                        {/* Info Grid */}
-                        <div className="grid sm:grid-cols-2 gap-4 py-4">
-                            <div className="flex items-start gap-3">
-                                <div className="p-2 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
-                                    <Mail className="w-5 h-5 text-primary-600" />
+                        <div className="grid gap-4 py-4 sm:grid-cols-2">
+                            <div className="holo-panel flex items-start gap-3 rounded-2xl p-4">
+                                <div className="holo-chip rounded-lg p-2">
+                                    <Mail className="h-5 w-5 text-cyan-200" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">{t('email')}</p>
+                                    <p className="text-sm font-medium text-muted-foreground">{t("email")}</p>
                                     <p className="text-sm font-semibold">{profile.email}</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-3">
-                                <div className="p-2 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
-                                    <Phone className="w-5 h-5 text-primary-600" />
+                            <div className="holo-panel flex items-start gap-3 rounded-2xl p-4">
+                                <div className="holo-chip rounded-lg p-2">
+                                    <Phone className="h-5 w-5 text-cyan-200" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">{t('phone')}</p>
+                                    <p className="text-sm font-medium text-muted-foreground">{t("phone")}</p>
                                     <p className="text-sm font-semibold">{profile.phone}</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-3 sm:col-span-2">
-                                <div className="p-2 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
-                                    <MapPin className="w-5 h-5 text-primary-600" />
+                            <div className="holo-panel flex items-start gap-3 rounded-2xl p-4 sm:col-span-2">
+                                <div className="holo-chip rounded-lg p-2">
+                                    <MapPin className="h-5 w-5 text-cyan-200" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">{t('address')}</p>
+                                    <p className="text-sm font-medium text-muted-foreground">{t("address")}</p>
                                     <p className="text-sm font-semibold">{profile.location}</p>
                                 </div>
                             </div>
                         </div>
 
-                        {/* CTA Button */}
                         <div className="flex justify-center lg:justify-start">
                             <a
                                 href={profile.cvUrl}
                                 download
-                                className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-12 md:h-13 px-8 text-base md:text-lg bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md"
+                                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-cyan-300/24 bg-cyan-400/12 px-8 text-base font-medium text-cyan-50 transition-all duration-200 hover:bg-cyan-400/20 md:h-13 md:text-lg"
                             >
-                                <Download className="w-5 h-5" />
-                                {t('downloadCV')}
+                                <Download className="h-5 w-5" />
+                                {t("downloadCV")}
                             </a>
                         </div>
                     </motion.div>

@@ -121,6 +121,13 @@
 body {
   @apply bg-background text-foreground font-sans antialiased;
   font-feature-settings: "rlig" 1, "calt" 1;
+  background-image:
+    radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.12), transparent 28%),
+    radial-gradient(circle at 80% 18%, rgba(14, 165, 233, 0.08), transparent 24%),
+    linear-gradient(rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
+  background-size: auto, auto, 56px 56px, 56px 56px;
+  background-attachment: fixed;
 }
 
 /* Custom Animations */
@@ -256,11 +263,14 @@ body {
   @apply relative overflow-hidden transition-all duration-500 rounded-2xl border border-white/10;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
   backdrop-filter: blur(12px);
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.06), 0 10px 28px rgba(2, 6, 23, 0.16);
 }
 
 .dark .premium-card {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.3) 100%);
-  border-color: rgba(255, 255, 255, 0.05);
+  background:
+    linear-gradient(135deg, rgba(8, 47, 73, 0.24) 0%, rgba(15, 23, 42, 0.72) 45%, rgba(2, 6, 23, 0.88) 100%);
+  border-color: rgba(103, 232, 249, 0.12);
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 14px 36px rgba(2, 6, 23, 0.24);
 }
 
 .glow-on-hover {
@@ -268,20 +278,22 @@ body {
 }
 
 .glow-on-hover:hover {
-  box-shadow: 0 0 25px -5px var(--primary-400), 0 0 15px -8px var(--primary-600);
+  box-shadow: 0 0 14px -8px var(--primary-400), 0 10px 24px rgba(2, 6, 23, 0.18);
 }
 
 /* Glassmorphism Effect */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(103, 232, 249, 0.18);
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.06), 0 8px 22px rgba(2, 6, 23, 0.12);
 }
 
 .dark .glass {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(8, 47, 73, 0.24), rgba(15, 23, 42, 0.72));
+  border: 1px solid rgba(103, 232, 249, 0.14);
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 10px 28px rgba(2, 6, 23, 0.18);
 }
 
 /* Gradient Text */
@@ -295,6 +307,52 @@ body {
 /* Glow Text */
 .glow-text {
   filter: drop-shadow(0 0 8px rgba(161, 161, 170, 0.4)) drop-shadow(0 0 20px rgba(113, 113, 122, 0.2));
+}
+
+.holo-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12), transparent 20%),
+    radial-gradient(circle at 85% 25%, rgba(99, 102, 241, 0.08), transparent 22%);
+  opacity: 0.9;
+}
+
+.holo-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(103, 232, 249, 0.14);
+  background:
+    linear-gradient(135deg, rgba(8, 47, 73, 0.16), rgba(15, 23, 42, 0.82)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 10px 26px rgba(2, 6, 23, 0.16);
+}
+
+.holo-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.08), transparent),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 26%);
+  opacity: 0.9;
+}
+
+.holo-chip {
+  border: 1px solid rgba(103, 232, 249, 0.18);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(15, 23, 42, 0.5));
+  color: rgb(207 250 254);
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.04);
 }
 
 /* Smooth Scroll */

@@ -24,7 +24,7 @@ export function Header() {
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
                 isScrolled
-                    ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border"
+                    ? "holo-panel border-b border-cyan-300/12 shadow-[0_10px_35px_rgba(2,6,23,0.34)]"
                     : "bg-transparent"
             )}
         >
@@ -46,7 +46,7 @@ export function Header() {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+                        className="md:hidden p-2 rounded-lg border border-transparent hover:border-cyan-300/15 hover:bg-cyan-300/8 transition-colors"
                         aria-label="Toggle mobile menu"
                     >
                         {isMobileMenuOpen ? (
@@ -60,7 +60,7 @@ export function Header() {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="md:hidden bg-background border-t border-border">
+                <div className="md:hidden holo-panel border-t border-cyan-300/12">
                     <div className="container mx-auto px-4 py-4">
                         <Navigation mobile onLinkClick={() => setIsMobileMenuOpen(false)} />
                     </div>

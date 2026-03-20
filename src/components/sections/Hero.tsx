@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Send, Mail, Download, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { TechStack } from "@/components/features/TechStack";
 import { getProfile } from "@/lib/content";

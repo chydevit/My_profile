@@ -11,9 +11,9 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
         const baseStyles = "rounded-xl transition-all duration-300";
 
         const variants = {
-            default: "bg-card border border-border",
+            default: "holo-panel",
             glass: "glass",
-            elevated: "bg-card shadow-lg hover:shadow-xl",
+            elevated: "holo-panel shadow-lg hover:shadow-xl",
             premium: "premium-card glow-on-hover",
         };
 

@@ -4,18 +4,18 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Mail, Send } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function ContactCTA() {
     const { t } = useLanguage();
 
     return (
-        <section className="py-20 bg-gradient-to-br from-primary-600 to-primary-800 relative overflow-hidden">
+        <section className="holo-section relative overflow-hidden py-20 bg-[linear-gradient(135deg,rgba(6,182,212,0.18),rgba(15,23,42,0.94)_38%,rgba(30,41,59,0.94))]">
             {/* Background decoration */}
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
+            <div className="absolute inset-0 opacity-80">
+                <div className="absolute top-0 left-0 h-96 w-96 rounded-full bg-cyan-300/18 blur-3xl" />
+                <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-sky-400/16 blur-3xl" />
+                <div className="absolute inset-0 [background-image:linear-gradient(rgba(56,189,248,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.09)_1px,transparent_1px)] [background-size:68px_68px]" />
             </div>
 
             <Container className="relative z-10">
@@ -23,7 +23,7 @@ export function ContactCTA() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center max-w-3xl mx-auto"
+                    className="holo-panel mx-auto max-w-3xl rounded-[2rem] px-8 py-12 text-center"
                 >
                     {/* Icon */}
                     <motion.div
@@ -31,18 +31,18 @@ export function ContactCTA() {
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2, type: "spring" }}
-                        className="inline-flex p-4 bg-white/20 backdrop-blur-sm rounded-full mb-6"
+                        className="mb-6 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/12 p-4 backdrop-blur-sm shadow-[0_0_40px_rgba(34,211,238,0.18)]"
                     >
-                        <Mail className="w-12 h-12 text-white" />
+                        <Mail className="w-12 h-12 text-cyan-100" />
                     </motion.div>
 
                     {/* Heading */}
-                    <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
+                    <h2 className="mb-4 text-4xl font-heading font-bold text-white md:text-5xl">
                         {t('letsWorkTogether')}
                     </h2>
 
                     {/* Description */}
-                    <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                    <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-200/90">
                         {t('contactDescription')}
                     </p>
 
@@ -50,7 +50,7 @@ export function ContactCTA() {
                     <div className="flex flex-wrap justify-center gap-4">
                         <Link
                             href="/contact"
-                            className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg bg-white text-primary-600 hover:bg-white/90 shadow-sm hover:shadow-md"
+                            className="inline-flex h-13 items-center justify-center gap-2 rounded-lg border border-cyan-300/20 bg-cyan-300/90 px-8 text-lg font-medium text-slate-950 transition-all duration-200 hover:bg-cyan-200"
                         >
                             {t('getInTouch')}
                         </Link>
@@ -58,7 +58,7 @@ export function ContactCTA() {
                             href="https://t.me/chydevit"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg border-2 border-white text-white hover:bg-white/10"
+                            className="inline-flex h-13 items-center justify-center gap-2 rounded-lg border border-cyan-300/24 bg-white/4 px-8 text-lg font-medium text-cyan-50 transition-all duration-200 hover:bg-cyan-300/10"
                         >
                             <Send className="w-5 h-5" />
                             {t('messageTelegram')}

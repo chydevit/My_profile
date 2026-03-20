@@ -33,7 +33,7 @@ export function Skills() {
         : skillsData.categories;
 
     return (
-        <section id="skills" className="py-20 bg-background">
+        <section id="skills" className="holo-section py-20 bg-background/70">
             <Container>
                 {/* Section Header */}
                 <motion.div
@@ -60,11 +60,11 @@ export function Skills() {
                     <button
                         onClick={() => setSelectedCategory(null)}
                         className={cn(
-                            "px-4 md:px-6 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300",
-                            selectedCategory === null
-                                ? "bg-primary-600 text-white shadow-lg"
-                                : "bg-muted hover:bg-muted/80 text-foreground"
-                        )}
+                             "px-4 md:px-6 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300 border",
+                             selectedCategory === null
+                                 ? "border-cyan-300/24 bg-cyan-400/14 text-cyan-50 shadow-[0_0_28px_rgba(34,211,238,0.14)]"
+                                 : "border-cyan-300/10 bg-slate-900/60 hover:bg-cyan-300/8 text-foreground"
+                         )}
                     >
                         {t('all')}
                     </button>
@@ -73,11 +73,11 @@ export function Skills() {
                             key={category.name}
                             onClick={() => setSelectedCategory(category.name)}
                             className={cn(
-                                "px-4 md:px-6 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300",
-                                selectedCategory === category.name
-                                    ? "bg-primary-600 text-white shadow-lg"
-                                    : "bg-muted hover:bg-muted/80 text-foreground"
-                            )}
+                                 "px-4 md:px-6 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300 border",
+                                 selectedCategory === category.name
+                                     ? "border-cyan-300/24 bg-cyan-400/14 text-cyan-50 shadow-[0_0_28px_rgba(34,211,238,0.14)]"
+                                     : "border-cyan-300/10 bg-slate-900/60 hover:bg-cyan-300/8 text-foreground"
+                             )}
                         >
                             {category.name}
                         </button>
@@ -113,13 +113,13 @@ export function Skills() {
 
                                                 {/* Proficiency Bar */}
                                                 <div className="space-y-1">
-                                                    <div className="w-full h-2 bg-muted/50 rounded-full overflow-hidden">
+                                                    <div className="w-full h-2 rounded-full overflow-hidden bg-slate-900/70 ring-1 ring-cyan-300/10">
                                                         <motion.div
                                                             initial={{ width: 0 }}
                                                             whileInView={{ width: `${skill.proficiency}%` }}
                                                             viewport={{ once: true }}
                                                             transition={{ duration: 1, delay: 0.2 }}
-                                                            className="h-full bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 rounded-full"
+                                                            className="h-full rounded-full bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 shadow-[0_0_16px_rgba(56,189,248,0.35)]"
                                                         />
                                                     </div>
                                                     <p className="text-xs text-muted-foreground">

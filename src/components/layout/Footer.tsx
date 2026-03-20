@@ -23,64 +23,62 @@ export function Footer() {
     const { t } = useLanguage();
 
     return (
-        <footer className="bg-muted border-t border-border">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {/* Brand Section */}
-                    <div>
-                        <h3 className="text-2xl font-heading font-bold gradient-text mb-4">
-                            Chy Devit
-                        </h3>
-                        <p className="text-muted-foreground text-sm">
-                            {t('footerDescription')}
-                        </p>
-                    </div>
+        <footer className="holo-section border-t border-cyan-300/10 bg-slate-950/50">
+            <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+                <div className="holo-panel rounded-3xl px-6 py-8 md:px-8">
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                        <div>
+                            <h3 className="mb-4 text-2xl font-heading font-bold gradient-text">
+                                Chy Devit
+                            </h3>
+                            <p className="text-sm text-muted-foreground">
+                                {t("footerDescription")}
+                            </p>
+                        </div>
 
-                    {/* Quick Links */}
-                    <div>
-                        <h4 className="font-heading font-semibold mb-4">{t('quickLinks')}</h4>
-                        <ul className="space-y-2">
-                            {footerLinks.map((link) => (
-                                <li key={link.href}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-sm text-muted-foreground hover:text-primary-600 transition-colors"
-                                    >
-                                        {t(link.key)}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        <div>
+                            <h4 className="mb-4 font-heading font-semibold">{t("quickLinks")}</h4>
+                            <ul className="space-y-2">
+                                {footerLinks.map((link) => (
+                                    <li key={link.href}>
+                                        <Link
+                                            href={link.href}
+                                            className="text-sm text-muted-foreground transition-colors hover:text-cyan-300"
+                                        >
+                                            {t(link.key)}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    {/* Social Links */}
-                    <div>
-                        <h4 className="font-heading font-semibold mb-4">{t('connect')}</h4>
-                        <div className="flex gap-4">
-                            {socialLinks.map((social) => {
-                                const Icon = social.icon;
-                                return (
-                                    <a
-                                        key={social.label}
-                                        href={social.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="p-2 rounded-lg bg-background hover:bg-primary-600 hover:text-white transition-colors"
-                                        aria-label={social.label}
-                                    >
-                                        <Icon className="w-5 h-5" />
-                                    </a>
-                                );
-                            })}
+                        <div>
+                            <h4 className="mb-4 font-heading font-semibold">{t("connect")}</h4>
+                            <div className="flex gap-4">
+                                {socialLinks.map((social) => {
+                                    const Icon = social.icon;
+                                    return (
+                                        <a
+                                            key={social.label}
+                                            href={social.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="rounded-lg border border-cyan-300/12 bg-cyan-300/8 p-2 transition-colors hover:bg-cyan-300/16 hover:text-cyan-100"
+                                            aria-label={social.label}
+                                        >
+                                            <Icon className="h-5 w-5" />
+                                        </a>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Copyright */}
-                <div className="mt-8 pt-8 border-t border-border text-center">
-                    <p className="text-sm text-muted-foreground">
-                        © {currentYear} Chy Devit. {t('allRightsReserved')}
-                    </p>
+                    <div className="mt-8 border-t border-cyan-300/10 pt-8 text-center">
+                        <p className="text-sm text-muted-foreground">
+                            © {currentYear} Chy Devit. {t("allRightsReserved")}
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>

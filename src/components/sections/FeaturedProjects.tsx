@@ -6,7 +6,6 @@ import Link from "next/link";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Card, CardContent } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
 import { getFeaturedProjects } from "@/lib/content";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
@@ -30,7 +29,7 @@ export function FeaturedProjects() {
     };
 
     return (
-        <section id="projects" className="py-20 bg-background">
+        <section id="projects" className="holo-section py-20 bg-background/70">
             <Container>
                 {/* Section Header */}
                 <motion.div
@@ -58,14 +57,16 @@ export function FeaturedProjects() {
                         <motion.div key={project.id} variants={itemVariants}>
                             <Card variant="premium" hover className="h-full group">
                                 {/* Project Image */}
-                                <div className="relative h-48 overflow-hidden bg-muted">
+                                <div className="relative h-48 overflow-hidden bg-slate-950/60">
                                     <Image
                                         src={project.image}
                                         alt={project.title}
                                         fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/88 via-slate-950/18 to-cyan-300/6 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <div className="absolute inset-x-4 top-3 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent opacity-70" />
 
                                     {/* Links overlay */}
                                     <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -74,7 +75,7 @@ export function FeaturedProjects() {
                                                 href={project.liveUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="p-3 bg-white rounded-full hover:bg-primary-600 hover:text-white transition-colors"
+                                                className="holo-chip p-3 rounded-full transition-colors hover:bg-cyan-300/22"
                                                 aria-label="View live project"
                                             >
                                                 <ExternalLink className="w-5 h-5" />
@@ -85,7 +86,7 @@ export function FeaturedProjects() {
                                                 href={project.githubUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="p-3 bg-white rounded-full hover:bg-primary-600 hover:text-white transition-colors"
+                                                className="holo-chip p-3 rounded-full transition-colors hover:bg-cyan-300/22"
                                                 aria-label="View source code"
                                             >
                                                 <Github className="w-5 h-5" />
@@ -96,7 +97,7 @@ export function FeaturedProjects() {
 
                                 <CardContent className="p-6">
                                     {/* Category Badge */}
-                                    <span className="inline-block px-3 py-1 text-xs font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-600 rounded-full mb-3">
+                                     <span className="holo-chip inline-block rounded-full px-3 py-1 text-xs font-medium mb-3">
                                         {project.category}
                                     </span>
 
@@ -115,7 +116,7 @@ export function FeaturedProjects() {
                                         {project.tags.slice(0, 3).map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="text-xs px-2 py-1 bg-muted rounded-md text-muted-foreground"
+                                                className="rounded-md border border-cyan-300/10 bg-slate-900/55 px-2 py-1 text-xs text-muted-foreground"
                                             >
                                                 {tag}
                                             </span>
@@ -136,7 +137,7 @@ export function FeaturedProjects() {
                 >
                     <Link
                         href="/projects"
-                        className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-12 md:h-13 px-6 md:px-8 text-base md:text-lg border-2 border-primary-600 text-primary-600 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950"
+                        className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-cyan-300/22 bg-cyan-400/10 px-6 text-base font-medium text-cyan-100 transition-all duration-200 hover:bg-cyan-400/18 md:h-13 md:px-8 md:text-lg"
                     >
                         <ArrowRight className="w-5 h-5" />
                         {t('viewAllProjects')}

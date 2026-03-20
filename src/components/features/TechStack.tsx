@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useAnimationFrame, AnimatePresence } from "framer-motion";
+import { motion, useAnimationFrame, AnimatePresence, type PanInfo } from "framer-motion";
 import React, { useEffect, useState, useRef } from "react";
 
 // Icon components (Standardized SVG paths)
@@ -330,6 +330,9 @@ export function TechStack({ onBack }: TechStackProps) {
     
     const [radius, setRadius] = useState(190);
     const [selectedTech, setSelectedTech] = useState<typeof items[0] | null>(null);
+    const [hoveredTech, setHoveredTech] = useState<typeof items[0] | null>(null);
+    const [pointerPosition, setPointerPosition] = useState({ x: 0, y: 0 });
+    const [isPointerActive, setIsPointerActive] = useState(false);
 
     // Update radius based on screen size
     useEffect(() => {
@@ -351,27 +354,52 @@ export function TechStack({ onBack }: TechStackProps) {
     useAnimationFrame((t, delta) => {
         if (isDragging) return;
 
+        const pointerInfluenceX = isPointerActive ? pointerPosition.y * 0.003 : 0;
+        const pointerInfluenceY = isPointerActive ? pointerPosition.x * 0.003 : 0;
+
         // Decay velocity
         velocity.current.x *= 0.95;
         velocity.current.y *= 0.95;
 
         // Combined constant rotation + inertia
         setRotation(prev => ({
-            x: prev.x + (delta * 0.002) + (velocity.current.x * delta * 0.0001),
-            y: prev.y + (delta * 0.002) + (velocity.current.y * delta * 0.0001)
+            x: prev.x + (delta * 0.002) + (velocity.current.x * delta * 0.0001) + pointerInfluenceX,
+            y: prev.y + (delta * 0.002) + (velocity.current.y * delta * 0.0001) + pointerInfluenceY
         }));
     });
 
-    const handleDrag = (_: any, info: any) => {
+    const updatePointerPosition = (clientX: number, clientY: number, element: HTMLDivElement) => {
+        const bounds = element.getBoundingClientRect();
+        const x = clientX - (bounds.left + bounds.width / 2);
+        const y = clientY - (bounds.top + bounds.height / 2);
+
+        setPointerPosition({ x, y });
+        setIsPointerActive(true);
+    };
+
+    const handleDrag = (_: PointerEvent, info: PanInfo) => {
         setRotation(prev => ({
             x: prev.x + info.delta.y * 0.1,
             y: prev.y + info.delta.x * 0.1
         }));
     };
 
-    const handleDragEnd = (_: any, info: any) => {
+    const handleDragEnd = (_: PointerEvent, info: PanInfo) => {
         setIsDragging(false);
         velocity.current = { x: info.velocity.y, y: info.velocity.x };
+    };
+
+    const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+        updatePointerPosition(event.clientX, event.clientY, event.currentTarget);
+    };
+
+    const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+        updatePointerPosition(event.clientX, event.clientY, event.currentTarget);
+    };
+
+    const resetPointerState = () => {
+        setIsPointerActive(false);
+        setPointerPosition({ x: 0, y: 0 });
     };
 
     return (
@@ -389,6 +417,20 @@ export function TechStack({ onBack }: TechStackProps) {
             onPan={handleDrag}
             onPanStart={() => setIsDragging(true)}
             onPanEnd={handleDragEnd}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerLeave={() => {
+                resetPointerState();
+                setHoveredTech(null);
+            }}
+            onPointerCancel={() => {
+                resetPointerState();
+                setHoveredTech(null);
+            }}
+            onPointerUp={() => {
+                resetPointerState();
+                setHoveredTech(null);
+            }}
         >
             {/* Central Logo/Icon (Optional - User's logo or just empty space) */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -396,11 +438,38 @@ export function TechStack({ onBack }: TechStackProps) {
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="w-16 h-16 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/5 backdrop-blur-sm"
+                    className={`w-16 h-16 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/5 backdrop-blur-sm transition-opacity duration-300 ${hoveredTech && !selectedTech ? "opacity-0" : "opacity-100"}`}
                 >
                     <div className="w-8 h-8 rounded-full bg-primary-500/50 blur-md" />
                 </motion.div>
             </div>
+
+            <AnimatePresence>
+                {hoveredTech && !selectedTech && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 18, scale: 0.94 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 18, scale: 0.94 }}
+                        transition={{ duration: 0.24, ease: "easeOut" }}
+                        className="pointer-events-none absolute left-1/2 top-1/2 z-40 w-[min(92%,24rem)] -translate-x-1/2 -translate-y-1/2"
+                    >
+                        <div className="rounded-[2rem] border border-white/10 bg-background/70 px-6 py-7 text-center shadow-[0_30px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+                            <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-foreground/5 ${hoveredTech.color}`}>
+                                <hoveredTech.icon className="h-9 w-9 drop-shadow-[0_0_18px_currentColor]" />
+                            </div>
+                            <p className={`mb-2 text-sm font-medium tracking-[0.18em] uppercase ${hoveredTech.color}`}>
+                                Tech Stack
+                            </p>
+                            <h3 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                                {hoveredTech.label}
+                            </h3>
+                            <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-muted-foreground sm:text-base">
+                                {hoveredTech.description}
+                            </p>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Floating Icons */}
             {isMounted && items.map((item, index) => {
@@ -430,29 +499,60 @@ export function TechStack({ onBack }: TechStackProps) {
                 const opacity = Math.max(0.1, (z2 + radius) / (radius * 2));
                 const zIndex = Math.floor(z2 + radius);
                 const blur = Math.max(0, (radius - z2) * 0.02); // Depth blur
+                const distanceFromPointer = Math.hypot(pointerPosition.x - x2, pointerPosition.y - y1);
+                const hoverStrength = isPointerActive ? Math.max(0, 1 - distanceFromPointer / 140) : 0;
+                const interactiveScale = scale + hoverStrength * 0.22;
+                const interactiveY = y1 - hoverStrength * 14;
+                const interactiveOpacity = Math.min(1, opacity + hoverStrength * 0.35);
 
                 return (
                     <div
                         key={index}
                         className={`absolute top-1/2 left-1/2 ${item.color} flex flex-col items-center justify-center`}
                         style={{
-                            transform: `translate(calc(-50% + ${x2}px), calc(-50% + ${y1}px)) scale(${scale})`,
-                            opacity: opacity,
+                            transform: `translate(calc(-50% + ${x2}px), calc(-50% + ${interactiveY}px)) scale(${interactiveScale})`,
+                            opacity: interactiveOpacity,
                             zIndex: zIndex,
                             filter: `blur(${blur}px)`,
                         }}
                     >
                         <div 
                             className={`relative group p-2 md:p-4 rounded-2xl transition-all duration-500 hover:bg-white/5 cursor-pointer`}
+                            onMouseEnter={() => setHoveredTech(item)}
+                            onMouseLeave={() => setHoveredTech((current) => current?.label === item.label ? null : current)}
+                            onPointerDown={(e) => {
+                                e.stopPropagation();
+                                setHoveredTech(item);
+                            }}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 setSelectedTech(item);
                             }}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    e.preventDefault();
+                                    setSelectedTech(item);
+                                }
+                            }}
+                            style={{
+                                backgroundColor: hoverStrength > 0 ? `rgb(255 255 255 / ${0.04 + hoverStrength * 0.1})` : undefined,
+                            }}
                         >
-                            <item.icon className={`w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 drop-shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-110`} />
+                            <item.icon
+                                className={`w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 drop-shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-110`}
+                                style={{
+                                    transform: `scale(${1 + hoverStrength * 0.18})`,
+                                    filter: `drop-shadow(0 0 ${15 + hoverStrength * 18}px currentColor)`,
+                                }}
+                            />
                             
                             {/* Glow Effect */}
-                            <div className={`absolute inset-0 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity bg-current`} />
+                            <div
+                                className={`absolute inset-0 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity bg-current`}
+                                style={{ opacity: 0.2 + hoverStrength * 0.45 }}
+                            />
                         </div>
                     </div>
                 );
