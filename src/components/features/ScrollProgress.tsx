@@ -14,12 +14,17 @@ const ScrollProgress: React.FC<ScrollProgressProps> = ({
     color = 'bg-gradient-to-r from-primary-400 to-primary-700',
     height = 3,
 }) => {
+    const [mounted, setMounted] = useState(false);
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 100,
         damping: 30,
         restDelta: 0.001,
     });
+
+    useEffect(() => { setMounted(true); }, []);
+
+    if (!mounted) return null;
 
     return (
         <motion.div
