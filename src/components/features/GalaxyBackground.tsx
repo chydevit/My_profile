@@ -222,8 +222,10 @@ export function GalaxyBackground() {
 
           ctx.shadowBlur  = 6;
           ctx.shadowColor = `${p.color}1)`;
+          const radius = Math.max(0, p.size * p.life);
+          if (radius <= 0) continue;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
           ctx.fillStyle = `${p.color}${Math.max(0, p.life).toFixed(2)})`;
           ctx.fill();
         }
@@ -273,7 +275,7 @@ export function GalaxyBackground() {
         const proximity  = dist < GATHER_RADIUS ? 1 - dist / GATHER_RADIUS : 0;
         const twinkle    = Math.sin(now * 0.0012 * star.z + star.twinkleOffset);
         const alpha      = Math.min(1, 0.3 + twinkle * 0.2 + proximity * 0.5);
-        const drawSize   = star.size * star.z * (1 + proximity * 1.0);
+        const drawSize   = Math.max(0.1, star.size * star.z * (1 + proximity * 1.0));
 
         if (proximity > 0.08) {
           ctx.shadowBlur  = 6 + proximity * 18;
