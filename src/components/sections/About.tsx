@@ -28,7 +28,7 @@ export function About() {
     };
 
     return (
-        <section id="about" className="holo-section bg-muted/20 py-20">
+        <section id="about" className="holo-section overflow-hidden bg-muted/20 py-20">
             <Container>
                 <motion.div
                     initial="hidden"
@@ -78,7 +78,7 @@ export function About() {
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-muted-foreground">{t("email")}</p>
-                                    <p className="text-sm font-semibold">{profile.email}</p>
+                                    <p className="break-all text-sm font-semibold">{profile.email}</p>
                                 </div>
                             </div>
 
@@ -88,7 +88,7 @@ export function About() {
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-muted-foreground">{t("phone")}</p>
-                                    <p className="text-sm font-semibold">{profile.phone}</p>
+                                    <p className="break-words text-sm font-semibold">{profile.phone}</p>
                                 </div>
                             </div>
 
@@ -98,7 +98,7 @@ export function About() {
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-muted-foreground">{t("address")}</p>
-                                    <p className="text-sm font-semibold">{profile.location}</p>
+                                    <p className="break-words text-sm font-semibold">{profile.location}</p>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@ export function About() {
                             <a
                                 href={profile.cvUrl}
                                 download
-                                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-cyan-300/24 bg-cyan-400/12 px-8 text-base font-medium text-cyan-50 transition-all duration-200 hover:bg-cyan-400/20 md:h-13 md:text-lg"
+                                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg border border-cyan-300/24 bg-cyan-400/12 px-6 text-base font-medium text-cyan-50 transition-all duration-200 hover:bg-cyan-400/20 sm:w-auto sm:px-8 md:h-13 md:text-lg"
                             >
                                 <Download className="h-5 w-5" />
                                 {t("downloadCV")}

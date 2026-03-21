@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { GalaxyBackground } from "@/components/features/GalaxyBackground";
 
 export default function SiteLayout({
     children,
@@ -7,9 +8,10 @@ export default function SiteLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex min-h-screen flex-col overflow-x-clip">
+            <GalaxyBackground />
             <Header />
-            <main className="flex-1 pt-16 md:pt-20">
+            <main className="min-w-0 flex-1 overflow-x-clip pt-16 md:pt-20">
                 {children}
             </main>
             <Footer />

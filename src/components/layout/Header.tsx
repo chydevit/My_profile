@@ -33,7 +33,7 @@ export function Header() {
                     {/* Logo/Brand */}
                     <Link
                         href="/"
-                        className="text-2xl font-heading font-bold gradient-text hover:opacity-80 transition-opacity"
+                        className="max-w-[70%] text-xl font-heading font-bold gradient-text transition-opacity hover:opacity-80 sm:text-2xl"
                     >
                         Chy Devit
                     </Link>
@@ -60,7 +60,7 @@ export function Header() {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="md:hidden holo-panel border-t border-cyan-300/12">
+                <div className="md:hidden holo-panel max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-cyan-300/12">
                     <div className="container mx-auto px-4 py-4">
                         <Navigation mobile onLinkClick={() => setIsMobileMenuOpen(false)} />
                     </div>

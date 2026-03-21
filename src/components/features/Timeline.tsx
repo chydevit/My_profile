@@ -18,7 +18,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
     });
 
     return (
-        <div className="relative max-w-4xl mx-auto px-4 py-8">
+        <div className="relative mx-auto max-w-4xl px-0 py-8 sm:px-4">
             {/* Central Line */}
             <div className="absolute left-4 md:left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-primary-500/20 via-primary-500 to-primary-500/20 md:-translate-x-1/2" />
 
@@ -36,7 +36,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className={cn(
-                                "relative flex flex-col md:flex-row gap-8 md:gap-0",
+                                "relative flex flex-col gap-8 pl-10 md:flex-row md:gap-0 md:pl-0",
                                 index % 2 === 0 ? "md:flex-row-reverse" : ""
                             )}
                         >

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -43,7 +43,6 @@
   --border: #e2e8f0;
   --input: #e2e8f0;
   --ring: #71717a;
-  --font-kantumruy: "Kantumruy Pro", sans-serif;
 }
 
 /* Dark Mode Variables */
@@ -99,9 +98,10 @@
   --color-info: var(--info);
 
   /* Fonts */
-  --font-sans: 'Google Sans', 'Kantumruy Pro', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Google Sans', 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
   --font-mono: 'Fira Code', 'Courier New', monospace;
+  --font-khmer: "Moulpali", sans-serif;
 
   /* Animations */
   --animate-fade-in: fade-in 0.5s ease-in;
@@ -359,6 +359,13 @@ body {
 /* Smooth Scroll */
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+  width: 100%;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: clip;
 }
 
 /* Focus Visible */
@@ -381,9 +388,99 @@ html {
 }
 
 /* Khmer Font */
+.khmer-font,
+.khmer-font *,
 .kantumruy-pro,
 .kantumruy-pro * {
-  font-family: var(--font-kantumruy), "Kantumruy Pro", sans-serif !important;
-  font-optical-sizing: auto;
+  font-family: "Moulpali", sans-serif !important;
   font-style: normal;
+}
+
+/* =============================================
+   Galaxy Hologram & Fly Hover Effects
+   ============================================= */
+
+/* --- Keyframes --- */
+@keyframes galaxy-fly {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
+  50%  { transform: translateY(-18px) translateX(6px) scale(1.08); opacity: 1; }
+  100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
+}
+
+@keyframes star-drift {
+  0%   { transform: translateY(0px) translateX(0px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-120vh) translateX(40px); opacity: 0; }
+}
+
+@keyframes holo-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes holo-glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(103,232,249,0.25), 0 0 20px rgba(103,232,249,0.1); }
+  50%       { box-shadow: 0 0 18px rgba(103,232,249,0.55), 0 0 40px rgba(103,232,249,0.25), 0 0 60px rgba(99,102,241,0.15); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(28px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(28px) rotate(-360deg); }
+}
+
+/* --- Utility Classes --- */
+
+/* Fly hover: element lifts and floats on hover */
+.fly-hover {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+.fly-hover:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 16px 40px rgba(103, 232, 249, 0.2), 0 4px 12px rgba(2, 6, 23, 0.3);
+}
+
+/* Galaxy hologram shimmer on hover */
+.holo-hover {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.holo-hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(103, 232, 249, 0.18) 50%,
+    rgba(99, 102, 241, 0.12) 60%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.holo-hover:hover::after {
+  opacity: 1;
+  animation: holo-shimmer 0.8s linear;
+}
+.holo-hover:hover {
+  border-color: rgba(103, 232, 249, 0.4) !important;
+  animation: holo-glow-pulse 2s ease-in-out infinite;
+}
+
+/* Galaxy background canvas wrapper */
+.galaxy-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Animate-galaxy-fly utility */
+.animate-galaxy-fly {
+  animation: galaxy-fly 4s ease-in-out infinite;
 }

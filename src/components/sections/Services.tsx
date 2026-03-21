@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code, Palette, Smartphone, Laptop } from "lucide-react";
+import { Check, Code, Palette, Smartphone, Laptop } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card";
 import { getServices } from "@/lib/content";
@@ -34,67 +34,57 @@ export function Services() {
     };
 
     return (
-        <section id="services" className="py-20 bg-muted/30">
+        <section id="services" className="bg-muted/30 py-20">
             <Container>
-                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-12"
+                    className="mb-12 text-center"
                 >
-                    <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-                        <span className="gradient-text">{t('servicesOffer')}</span>
+                    <h2 className="mb-4 text-3xl font-heading font-bold sm:text-4xl md:text-5xl">
+                        <span className="gradient-text">{t("servicesOffer")}</span>
                     </h2>
-                    <p className="text-muted-foreground max-w-2xl mx-auto">
-                        {t('servicesDescription')}
+                    <p className="mx-auto max-w-2xl text-muted-foreground">
+                        {t("servicesDescription")}
                     </p>
                 </motion.div>
 
-                {/* Services Grid */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={containerVariants}
-                    className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+                    className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
                 >
                     {services.map((service) => {
                         const Icon = iconMap[service.icon as keyof typeof iconMap];
 
                         return (
                             <motion.div key={service.id} variants={itemVariants}>
-                                <Card
-                                    variant="elevated"
-                                    hover
-                                    className="h-full group"
-                                >
+                                <Card variant="elevated" hover className="h-full group">
                                     <CardHeader>
-                                        {/* Icon */}
-                                        <div className="mb-4 p-4 bg-gradient-to-br from-primary-600 to-primary-800 rounded-xl w-fit group-hover:scale-110 transition-transform duration-300">
-                                            <Icon className="w-8 h-8 text-white" />
+                                        <div className="mb-4 w-fit rounded-xl bg-gradient-to-br from-primary-600 to-primary-800 p-4 transition-transform duration-300 group-hover:scale-110">
+                                            <Icon className="h-8 w-8 text-white" />
                                         </div>
 
-                                        {/* Title */}
-                                        <CardTitle className="group-hover:text-primary-600 transition-colors">
+                                        <CardTitle className="transition-colors group-hover:text-primary-600">
                                             {service.title}
                                         </CardTitle>
 
-                                        {/* Description */}
                                         <CardDescription className="mt-2">
                                             {service.description}
                                         </CardDescription>
                                     </CardHeader>
 
                                     <CardContent>
-                                        {/* Features List */}
                                         <ul className="space-y-2">
                                             {service.features.map((feature, index) => (
                                                 <li
                                                     key={index}
                                                     className="flex items-start gap-2 text-sm text-muted-foreground"
                                                 >
-                                                    <span className="text-primary-600 mt-1">✓</span>
+                                                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" />
                                                     <span>{feature}</span>
                                                 </li>
                                             ))}

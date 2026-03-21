@@ -3,9 +3,9 @@
 import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
+import { Moon, Sun, Languages } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/hooks/useTheme";
-import { Moon, Sun, Languages } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const navLinks = [
@@ -24,7 +24,7 @@ interface NavigationProps {
 
 export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
     const pathname = usePathname();
-    const { theme, setTheme, resolvedTheme } = useTheme();
+    const { setTheme, resolvedTheme } = useTheme();
     const { language, setLanguage, t } = useLanguage();
     const [mounted, setMounted] = React.useState(false);
 
@@ -33,7 +33,6 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
     }, []);
 
     const handleLinkClick = (href: string) => {
-        // Handle smooth scroll for anchor links
         if (href.startsWith("/#")) {
             const element = document.querySelector(href.substring(1));
             if (element) {
@@ -47,10 +46,9 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
         setTheme(resolvedTheme === "dark" ? "light" : "dark");
     };
 
-    // Prevent hydration mismatch
     if (!mounted) {
         return (
-            <nav className={mobile ? "flex flex-col space-y-4" : "flex items-center gap-8"}>
+            <nav className={mobile ? "flex flex-col space-y-4" : "flex items-center gap-4 lg:gap-6"}>
                 {navLinks.map((link) => (
                     <Link
                         key={link.href}
@@ -76,9 +74,9 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
                         href={link.href}
                         onClick={() => handleLinkClick(link.href)}
                         className={cn(
-                            "text-lg font-medium transition-colors hover:text-primary-600",
+                            "rounded-xl px-3 py-2 text-base font-medium transition-colors hover:bg-cyan-300/6 hover:text-primary-600 sm:text-lg",
                             pathname === link.href
-                                ? "text-primary-600"
+                                ? "bg-cyan-300/8 text-primary-600"
                                 : "text-foreground"
                         )}
                     >
@@ -86,35 +84,35 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
                     </Link>
                 ))}
 
-                <div className="h-px bg-border my-2" />
+                <div className="my-2 h-px bg-border" />
 
                 <button
                     onClick={toggleTheme}
-                    className="flex items-center gap-2 text-lg font-medium text-foreground hover:text-primary-600 transition-colors"
+                    className="flex items-center gap-2 rounded-xl px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-cyan-300/6 hover:text-primary-600 sm:text-lg"
                     aria-label="Toggle theme"
                 >
                     {resolvedTheme === "dark" ? (
                         <>
-                            <Sun className="w-5 h-5" />
-                            <span>{t('lightMode')}</span>
+                            <Sun className="h-5 w-5" />
+                            <span>{t("lightMode")}</span>
                         </>
                     ) : (
                         <>
-                            <Moon className="w-5 h-5" />
-                            <span>{t('darkMode')}</span>
+                            <Moon className="h-5 w-5" />
+                            <span>{t("darkMode")}</span>
                         </>
                     )}
                 </button>
 
-                <div className="flex items-center gap-4 mt-2">
-                    <span className="text-lg font-medium text-foreground flex items-center gap-2">
-                        <Languages className="w-5 h-5" />
+                <div className="mt-2 flex flex-wrap items-center gap-3">
+                    <span className="flex items-center gap-2 text-base font-medium text-foreground sm:text-lg">
+                        <Languages className="h-5 w-5" />
                     </span>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <button
                             onClick={() => setLanguage("en")}
                             className={cn(
-                                "px-3 py-1 rounded-md text-sm font-medium transition-colors",
+                                "rounded-md px-3 py-1 text-sm font-medium transition-colors",
                                 language === "en" ? "bg-primary-500 text-white" : "bg-muted text-muted-foreground"
                             )}
                         >
@@ -123,11 +121,11 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
                         <button
                             onClick={() => setLanguage("km")}
                             className={cn(
-                                "px-3 py-1 rounded-md text-sm font-medium transition-colors font-sans",
+                                "rounded-md px-3 py-1 text-sm font-medium transition-colors font-sans",
                                 language === "km" ? "bg-primary-500 text-white" : "bg-muted text-muted-foreground"
                             )}
                         >
-                            ខ្មែរ
+                            Khmer
                         </button>
                     </div>
                 </div>
@@ -136,15 +134,15 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
     }
 
     return (
-        <nav className="flex items-center gap-6">
-            <div className="flex items-center gap-6 mr-2">
+        <nav className="flex items-center gap-3 lg:gap-6">
+            <div className="flex items-center gap-4 lg:mr-2 lg:gap-6">
                 {navLinks.map((link) => (
                     <Link
                         key={link.href}
                         href={link.href}
                         onClick={() => handleLinkClick(link.href)}
                         className={cn(
-                            "text-sm font-medium transition-colors hover:text-primary-600 relative",
+                            "fly-hover relative text-sm font-medium transition-colors hover:text-primary-600",
                             pathname === link.href
                                 ? "text-primary-600 after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-0.5 after:bg-primary-600"
                                 : "text-foreground"
@@ -155,25 +153,24 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
                 ))}
             </div>
 
-            <div className="w-px h-6 bg-border mx-2" />
+            <div className="mx-1 hidden h-6 w-px bg-border lg:block" />
 
-            {/* Language Switcher Desktop */}
-            <div className="flex items-center gap-1">
+            <div className="hidden items-center gap-1 lg:flex">
                 <button
                     onClick={() => setLanguage("en")}
                     className={cn(
                         "text-xs font-medium transition-colors hover:text-primary-600",
-                        language === "en" ? "text-primary-600 font-bold" : "text-muted-foreground"
+                        language === "en" ? "font-bold text-primary-600" : "text-muted-foreground"
                     )}
                 >
                     EN
                 </button>
-                <span className="text-muted-foreground text-xs">/</span>
+                <span className="text-xs text-muted-foreground">/</span>
                 <button
                     onClick={() => setLanguage("km")}
                     className={cn(
-                        "text-xs font-medium transition-colors hover:text-primary-600 font-sans",
-                        language === "km" ? "text-primary-600 font-bold" : "text-muted-foreground"
+                        "font-sans text-xs font-medium transition-colors hover:text-primary-600",
+                        language === "km" ? "font-bold text-primary-600" : "text-muted-foreground"
                     )}
                 >
                     KH
@@ -182,13 +179,13 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
 
             <button
                 onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-muted transition-colors ml-2"
+                className="ml-1 rounded-lg p-2 transition-colors hover:bg-muted lg:ml-2"
                 aria-label="Toggle theme"
             >
                 {resolvedTheme === "dark" ? (
-                    <Sun className="w-5 h-5" />
+                    <Sun className="h-5 w-5" />
                 ) : (
-                    <Moon className="w-5 h-5" />
+                    <Moon className="h-5 w-5" />
                 )}
             </button>
         </nav>

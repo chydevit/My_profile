@@ -337,8 +337,9 @@ export function TechStack({ onBack }: TechStackProps) {
     // Update radius based on screen size
     useEffect(() => {
         const updateRadius = () => {
-            if (window.innerWidth < 640) setRadius(120);
-            else if (window.innerWidth < 768) setRadius(150);
+            if (window.innerWidth < 400) setRadius(88);
+            else if (window.innerWidth < 640) setRadius(110);
+            else if (window.innerWidth < 768) setRadius(140);
             else setRadius(190);
         };
         updateRadius();
@@ -407,7 +408,7 @@ export function TechStack({ onBack }: TechStackProps) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="relative w-full h-full cursor-grab active:cursor-grabbing group touch-none"
+            className="group relative h-full w-full overflow-hidden cursor-grab touch-none active:cursor-grabbing"
             onClick={(e) => {
                 if (onBack) {
                     e.stopPropagation();
@@ -438,9 +439,9 @@ export function TechStack({ onBack }: TechStackProps) {
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className={`w-16 h-16 rounded-full border border-foreground/10 flex items-center justify-center bg-foreground/5 backdrop-blur-sm transition-opacity duration-300 ${hoveredTech && !selectedTech ? "opacity-0" : "opacity-100"}`}
+                    className={`flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 bg-foreground/5 backdrop-blur-sm transition-opacity duration-300 sm:h-14 sm:w-14 md:h-16 md:w-16 ${hoveredTech && !selectedTech ? "opacity-0" : "opacity-100"}`}
                 >
-                    <div className="w-8 h-8 rounded-full bg-primary-500/50 blur-md" />
+                    <div className="h-6 w-6 rounded-full bg-primary-500/50 blur-md sm:h-7 sm:w-7 md:h-8 md:w-8" />
                 </motion.div>
             </div>
 
@@ -453,14 +454,14 @@ export function TechStack({ onBack }: TechStackProps) {
                         transition={{ duration: 0.24, ease: "easeOut" }}
                         className="pointer-events-none absolute left-1/2 top-1/2 z-40 w-[min(92%,24rem)] -translate-x-1/2 -translate-y-1/2"
                     >
-                        <div className="rounded-[2rem] border border-white/10 bg-background/70 px-6 py-7 text-center shadow-[0_30px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl">
-                            <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-foreground/5 ${hoveredTech.color}`}>
-                                <hoveredTech.icon className="h-9 w-9 drop-shadow-[0_0_18px_currentColor]" />
+                        <div className="rounded-[2rem] border border-white/10 bg-background/70 px-4 py-5 text-center shadow-[0_30px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:px-6 sm:py-7">
+                            <div className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-foreground/5 sm:h-16 sm:w-16 ${hoveredTech.color}`}>
+                                <hoveredTech.icon className="h-8 w-8 drop-shadow-[0_0_18px_currentColor] sm:h-9 sm:w-9" />
                             </div>
                             <p className={`mb-2 text-sm font-medium tracking-[0.18em] uppercase ${hoveredTech.color}`}>
                                 Tech Stack
                             </p>
-                            <h3 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                            <h3 className="text-2xl font-semibold tracking-tight text-foreground sm:text-4xl">
                                 {hoveredTech.label}
                             </h3>
                             <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-muted-foreground sm:text-base">
@@ -560,7 +561,7 @@ export function TechStack({ onBack }: TechStackProps) {
 
             {/* Click hint */}
             {onBack && !selectedTech && (
-                <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-none">
+                <div className="pointer-events-none absolute bottom-4 left-0 right-0 hidden text-center sm:block">
                     <p className="text-xs text-muted-foreground animate-bounce">Click surrounding space to return</p>
                 </div>
             )}
@@ -572,7 +573,7 @@ export function TechStack({ onBack }: TechStackProps) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 z-[1000] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4 cursor-default"
+                        className="absolute inset-0 z-[1000] flex cursor-default items-center justify-center bg-background/80 p-4 backdrop-blur-sm"
                         onClick={(e) => {
                             e.stopPropagation();
                             setSelectedTech(null);
@@ -583,7 +584,7 @@ export function TechStack({ onBack }: TechStackProps) {
                             animate={{ scale: 1, y: 0, opacity: 1 }}
                             exit={{ scale: 0.9, y: 20, opacity: 0 }}
                             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                            className={`relative bg-background border border-foreground/10 rounded-3xl p-8 pt-12 max-w-sm w-full flex flex-col items-center gap-6 shadow-2xl ${selectedTech.glow} cursor-auto`}
+                            className={`relative flex max-h-[90svh] w-full max-w-sm flex-col items-center gap-5 overflow-y-auto rounded-3xl border border-foreground/10 bg-background p-6 pt-12 shadow-2xl sm:p-8 sm:pt-12 ${selectedTech.glow} cursor-auto`}
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button 
@@ -597,7 +598,7 @@ export function TechStack({ onBack }: TechStackProps) {
                             </button>
                             
                             <div className={`${selectedTech.color} p-4 rounded-2xl bg-foreground/5`}>
-                                <selectedTech.icon className="w-24 h-24 drop-shadow-[0_0_20px_rgba(0,0,0,0.5)]" />
+                                <selectedTech.icon className="h-20 w-20 drop-shadow-[0_0_20px_rgba(0,0,0,0.5)] sm:h-24 sm:w-24" />
                             </div>
                             
                             <div className="text-center space-y-3">

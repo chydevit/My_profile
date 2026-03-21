@@ -146,7 +146,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
                 t: (key: string) => translations[language][key] || key,
             }}
         >
-            <div className={language === 'km' ? 'kantumruy-pro' : ''}>
+            <div className={language === 'km' ? 'khmer-font' : ''}>
                 {children}
             </div>
         </LanguageContext.Provider>

@@ -45,7 +45,7 @@ export function Hero() {
     };
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+        <section className="relative flex min-h-[calc(100svh-4rem)] items-center justify-center overflow-hidden bg-background md:min-h-[calc(100svh-5rem)]">
             {/* Background Image */}
             <div className="absolute inset-0 w-full h-full">
                 <Image
@@ -61,25 +61,25 @@ export function Hero() {
 
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-400/10 rounded-full blur-3xl animate-pulse-slow" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-400/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "1s" }} />
+                <div className="absolute left-[10%] top-[18%] h-56 w-56 rounded-full bg-primary-400/10 blur-3xl animate-pulse-slow sm:h-72 sm:w-72 lg:h-96 lg:w-96" />
+                <div className="absolute bottom-[12%] right-[8%] h-56 w-56 rounded-full bg-primary-400/10 blur-3xl animate-pulse-slow sm:h-72 sm:w-72 lg:h-96 lg:w-96" style={{ animationDelay: "1s" }} />
             </div>
 
-            <Container className="relative z-10 py-10 md:py-20">
-                <div className="grid lg:grid-cols-2 gap-10 md:gap-12 items-center text-center lg:text-left">
+            <Container className="relative z-10 py-8 sm:py-10 md:py-16 lg:py-20">
+                <div className="grid items-center gap-10 text-center lg:grid-cols-2 lg:gap-12 lg:text-left">
                     {/* Left Column - Text Content */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="space-y-8"
+                        className="space-y-6 sm:space-y-8"
                     >
                         {/* Social Icons */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="flex justify-center lg:justify-start gap-4"
+                            className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:justify-start"
                         >
                             {profile.socialLinks.map((social, index) => {
                                 const Icon = socialIcons[social.icon as keyof typeof socialIcons];
@@ -107,7 +107,7 @@ export function Hero() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
                         >
-                            <p className="text-base md:text-lg text-muted-foreground mb-2 flex items-center justify-center lg:justify-start gap-3">
+                            <p className="mb-2 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground sm:text-base md:text-lg lg:justify-start">
                                 {t('helloIam')}
                                 <span className="inline-flex items-center px-4 py-1 rounded-full text-xs md:text-sm font-semibold bg-primary-500/10 text-primary-600 border border-primary-500/20 backdrop-blur-md">
                                     Devit
@@ -130,7 +130,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
-                            className="text-2xl md:text-3xl font-semibold text-primary-600 dark:text-primary-400 min-h-[40px]"
+                            className="min-h-[3.5rem] text-xl font-semibold text-primary-600 dark:text-primary-400 sm:min-h-[3rem] sm:text-2xl md:text-3xl"
                         >
                             <motion.span
                                 key={currentRoleIndex}
@@ -148,7 +148,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7 }}
-                            className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0"
+                            className="mx-auto max-w-xl text-sm text-muted-foreground sm:text-base md:text-lg lg:mx-0"
                         >
                             {t('heroDescription')}.
                         </motion.p>
@@ -158,20 +158,20 @@ export function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
-                            className="flex flex-wrap justify-center lg:justify-start gap-4"
+                            className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4 lg:justify-start"
                         >
                             <a
                                 href="https://t.me/chydevit"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md"
+                                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary-600 px-6 text-base font-medium text-white shadow-sm transition-all duration-200 hover:bg-primary-700 hover:shadow-md active:bg-primary-800 sm:h-13 sm:w-auto sm:px-8 sm:text-lg"
                             >
                                 {t('hireMe')}
                             </a>
                             <a
                                 href={profile.cvUrl}
                                 download
-                                className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-13 px-8 text-lg border-2 border-primary-600 text-primary-600 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950"
+                                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg border-2 border-primary-600 px-6 text-base font-medium text-primary-600 transition-all duration-200 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950 sm:h-13 sm:w-auto sm:px-8 sm:text-lg"
                             >
                                 <Download className="w-5 h-5" />
                                 {t('viewCV')}
@@ -184,10 +184,10 @@ export function Hero() {
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className="relative"
+                        className="relative min-w-0"
                     >
-                        <div className="relative w-full aspect-square max-w-[280px] sm:max-w-md lg:max-w-lg mx-auto">
-                            <div className="relative w-full h-full min-h-[300px] sm:min-h-[400px]">
+                        <div className="relative mx-auto aspect-square w-full max-w-[260px] sm:max-w-sm md:max-w-md lg:max-w-lg">
+                            <div className="relative h-full min-h-[260px] w-full sm:min-h-[340px] md:min-h-[400px]">
                                 <TechStack />
                             </div>
                         </div>
@@ -200,7 +200,7 @@ export function Hero() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.5 }}
                     onClick={scrollToNext}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground hover:text-primary-600 transition-colors cursor-pointer"
+                    className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 cursor-pointer flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-primary-600 sm:flex md:bottom-10"
                     aria-label="Scroll to next section"
                 >
                     <span className="text-sm font-medium">{t('scrollDown')}</span>

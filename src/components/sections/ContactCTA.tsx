@@ -23,7 +23,7 @@ export function ContactCTA() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="holo-panel mx-auto max-w-3xl rounded-[2rem] px-8 py-12 text-center"
+                    className="holo-panel mx-auto max-w-3xl rounded-[2rem] px-5 py-10 text-center sm:px-8 sm:py-12"
                 >
                     {/* Icon */}
                     <motion.div
@@ -37,20 +37,20 @@ export function ContactCTA() {
                     </motion.div>
 
                     {/* Heading */}
-                    <h2 className="mb-4 text-4xl font-heading font-bold text-white md:text-5xl">
+                    <h2 className="mb-4 text-3xl font-heading font-bold text-white sm:text-4xl md:text-5xl">
                         {t('letsWorkTogether')}
                     </h2>
 
                     {/* Description */}
-                    <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-200/90">
+                    <p className="mx-auto mb-8 max-w-2xl text-base text-slate-200/90 sm:text-lg">
                         {t('contactDescription')}
                     </p>
 
                     {/* CTA Buttons */}
-                    <div className="flex flex-wrap justify-center gap-4">
+                    <div className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                         <Link
                             href="/contact"
-                            className="inline-flex h-13 items-center justify-center gap-2 rounded-lg border border-cyan-300/20 bg-cyan-300/90 px-8 text-lg font-medium text-slate-950 transition-all duration-200 hover:bg-cyan-200"
+                            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg border border-cyan-300/20 bg-cyan-300/90 px-6 text-base font-medium text-slate-950 transition-all duration-200 hover:bg-cyan-200 sm:h-13 sm:w-auto sm:px-8 sm:text-lg"
                         >
                             {t('getInTouch')}
                         </Link>
@@ -58,7 +58,7 @@ export function ContactCTA() {
                             href="https://t.me/chydevit"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex h-13 items-center justify-center gap-2 rounded-lg border border-cyan-300/24 bg-white/4 px-8 text-lg font-medium text-cyan-50 transition-all duration-200 hover:bg-cyan-300/10"
+                            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg border border-cyan-300/24 bg-white/4 px-6 text-base font-medium text-cyan-50 transition-all duration-200 hover:bg-cyan-300/10 sm:h-13 sm:w-auto sm:px-8 sm:text-lg"
                         >
                             <Send className="w-5 h-5" />
                             {t('messageTelegram')}
