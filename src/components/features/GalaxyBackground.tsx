@@ -314,6 +314,7 @@ export function GalaxyBackground() {
       ref={canvasRef}
       className="galaxy-bg"
       aria-hidden="true"
+      suppressHydrationWarning
     />
   );
 }

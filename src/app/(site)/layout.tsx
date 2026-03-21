@@ -1,6 +1,12 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { GalaxyBackground } from "@/components/features/GalaxyBackground";
+import dynamic from "next/dynamic";
+
+// Skip SSR entirely — canvas uses browser APIs and would cause hydration mismatch
+const GalaxyBackground = dynamic(
+    () => import("@/components/features/GalaxyBackground").then(m => m.GalaxyBackground),
+    { ssr: false }
+);
 
 export default function SiteLayout({
     children,
