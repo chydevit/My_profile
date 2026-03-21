@@ -1,0 +1,172 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="220" y1="40" x2="1380" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#090E1F"/>
+      <stop offset="0.5" stop-color="#101B3A"/>
+      <stop offset="1" stop-color="#050814"/>
+    </linearGradient>
+    <radialGradient id="nebulaA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(480 260) rotate(31.6) scale(420 260)">
+      <stop stop-color="#7839FF" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#7839FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nebulaB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1190 240) rotate(157.8) scale(420 260)">
+      <stop stop-color="#1AD6FF" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#1AD6FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nebulaC" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(820 720) rotate(90) scale(300 480)">
+      <stop stop-color="#FF4FD8" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FF4FD8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="beam" x1="800" y1="110" x2="800" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7C5"/>
+      <stop offset="0.4" stop-color="#FFD666"/>
+      <stop offset="0.8" stop-color="#FF8A00"/>
+      <stop offset="1" stop-color="#FF5A36"/>
+    </linearGradient>
+    <linearGradient id="shipRed" x1="800" y1="520" x2="800" y2="850" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF5C56"/>
+      <stop offset="1" stop-color="#B70F22"/>
+    </linearGradient>
+    <linearGradient id="shipBlue" x1="800" y1="560" x2="800" y2="810" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6FF4FF"/>
+      <stop offset="1" stop-color="#00A6D6"/>
+    </linearGradient>
+    <linearGradient id="enemy" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7CFBFF"/>
+      <stop offset="0.5" stop-color="#5B7CFF"/>
+      <stop offset="1" stop-color="#DB4CFF"/>
+    </linearGradient>
+    <filter id="glowLarge" x="-120" y="-120" width="1840" height="1140" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+    <filter id="glowSmall" x="-50" y="-50" width="1700" height="1000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#nebulaA)"/>
+  <rect width="1600" height="900" fill="url(#nebulaB)"/>
+  <rect width="1600" height="900" fill="url(#nebulaC)"/>
+
+  <g opacity="0.8">
+    <circle cx="170" cy="90" r="3" fill="#D2E4FF"/>
+    <circle cx="330" cy="160" r="2" fill="#FFFFFF"/>
+    <circle cx="520" cy="80" r="2.5" fill="#A2D9FF"/>
+    <circle cx="690" cy="140" r="2" fill="#FFFFFF"/>
+    <circle cx="920" cy="70" r="3" fill="#B8F5FF"/>
+    <circle cx="1210" cy="110" r="2.5" fill="#FFFFFF"/>
+    <circle cx="1400" cy="180" r="2.5" fill="#8FE5FF"/>
+    <circle cx="150" cy="320" r="2" fill="#B49DFF"/>
+    <circle cx="270" cy="260" r="2.5" fill="#FFFFFF"/>
+    <circle cx="480" cy="360" r="2" fill="#BDE7FF"/>
+    <circle cx="1140" cy="330" r="3" fill="#FFFFFF"/>
+    <circle cx="1360" cy="260" r="2" fill="#D7F8FF"/>
+    <circle cx="1280" cy="530" r="2.5" fill="#B49DFF"/>
+    <circle cx="200" cy="610" r="2.5" fill="#FFFFFF"/>
+    <circle cx="390" cy="700" r="2" fill="#9BE6FF"/>
+    <circle cx="1150" cy="690" r="2" fill="#FFFFFF"/>
+    <circle cx="1400" cy="740" r="3" fill="#9FE9FF"/>
+  </g>
+
+  <g filter="url(#glowLarge)" opacity="0.6">
+    <ellipse cx="800" cy="530" rx="120" ry="90" fill="#FFF0B8"/>
+  </g>
+  <g filter="url(#glowSmall)">
+    <rect x="764" y="110" width="72" height="430" rx="36" fill="url(#beam)"/>
+  </g>
+  <rect x="782" y="110" width="36" height="470" rx="18" fill="#FFF6B0"/>
+
+  <g opacity="0.9" stroke="#FFF5D0" stroke-width="8" stroke-linecap="round">
+    <path d="M758 170L734 192L760 218"/>
+    <path d="M843 210L868 234L842 260"/>
+    <path d="M745 290L717 318L746 347"/>
+    <path d="M852 330L881 359L850 391"/>
+    <path d="M758 435L734 458L760 484"/>
+    <path d="M842 470L868 495L840 520"/>
+  </g>
+
+  <g transform="translate(800 655)">
+    <g filter="url(#glowSmall)">
+      <ellipse cx="0" cy="10" rx="160" ry="95" fill="#FF6038" fill-opacity="0.2"/>
+    </g>
+    <path d="M-180 120L-330 200L-275 92L-120 18L-68 58L-92 128L-180 120Z" fill="url(#shipRed)"/>
+    <path d="M180 120L330 200L275 92L120 18L68 58L92 128L180 120Z" fill="url(#shipRed)"/>
+    <path d="M-72 60L-118 28L-92 -86L-42 -68L-28 38L-72 60Z" fill="url(#shipRed)"/>
+    <path d="M72 60L118 28L92 -86L42 -68L28 38L72 60Z" fill="url(#shipRed)"/>
+    <path d="M-114 144L-54 100L-12 202L-78 214L-114 144Z" fill="#86202F"/>
+    <path d="M114 144L54 100L12 202L78 214L114 144Z" fill="#86202F"/>
+    <path d="M-160 110L-242 154L-188 84L-118 64L-160 110Z" fill="#39D5F7"/>
+    <path d="M160 110L242 154L188 84L118 64L160 110Z" fill="#39D5F7"/>
+    <path d="M-44 40L-66 182H66L44 40L0 -10L-44 40Z" fill="url(#shipRed)"/>
+    <path d="M-6 -140H6L38 40H-38L-6 -140Z" fill="url(#shipRed)"/>
+    <path d="M-96 4H-28L-18 50H-92L-96 4Z" fill="#1E2238"/>
+    <path d="M96 4H28L18 50H92L96 4Z" fill="#1E2238"/>
+    <path d="M-22 52L0 20L22 52L14 150H-14L-22 52Z" fill="url(#shipBlue)"/>
+    <circle cx="0" cy="72" r="18" fill="#F52B43"/>
+    <circle cx="-104" cy="82" r="18" fill="#E63542"/>
+    <circle cx="104" cy="82" r="18" fill="#E63542"/>
+    <rect x="-136" y="-34" width="18" height="118" rx="9" fill="#D5F8FF"/>
+    <rect x="118" y="-34" width="18" height="118" rx="9" fill="#D5F8FF"/>
+    <rect x="-132" y="-32" width="10" height="112" rx="5" fill="#242B42"/>
+    <rect x="122" y="-32" width="10" height="112" rx="5" fill="#242B42"/>
+    <path d="M-42 182L-8 182L-24 246L-48 246L-42 182Z" fill="#FF8A00"/>
+    <path d="M42 182L8 182L24 246L48 246L42 182Z" fill="#FF8A00"/>
+    <path d="M-154 60H-82L-72 78H-146L-154 60Z" fill="#00CCF6"/>
+    <path d="M154 60H82L72 78H146L154 60Z" fill="#00CCF6"/>
+  </g>
+
+  <g filter="url(#glowSmall)" opacity="0.85">
+    <rect x="610" y="378" width="22" height="105" rx="11" fill="#A02DFF"/>
+    <rect x="968" y="378" width="22" height="105" rx="11" fill="#A02DFF"/>
+    <rect x="622" y="472" width="16" height="68" rx="8" fill="#7D1FFF"/>
+    <rect x="980" y="472" width="16" height="68" rx="8" fill="#7D1FFF"/>
+  </g>
+
+  <g transform="translate(320 160) scale(1.05)">
+    <path d="M0 46L36 0L66 14L78 48L40 88L6 78L0 46Z" fill="url(#enemy)"/>
+    <path d="M18 16L-18 -20L6 -28L30 4L18 16Z" fill="#74F5FF"/>
+    <path d="M56 16L92 -20L68 -28L44 4L56 16Z" fill="#74F5FF"/>
+    <path d="M32 26H48V60H32V26Z" fill="#FFB14A"/>
+    <circle cx="40" cy="45" r="11" fill="#7CFF65"/>
+    <path d="M22 88L32 62H48L58 88L40 104L22 88Z" fill="#FF8C40"/>
+  </g>
+  <g transform="translate(1180 160) scale(1.05)">
+    <path d="M0 46L36 0L66 14L78 48L40 88L6 78L0 46Z" fill="url(#enemy)"/>
+    <path d="M18 16L-18 -20L6 -28L30 4L18 16Z" fill="#74F5FF"/>
+    <path d="M56 16L92 -20L68 -28L44 4L56 16Z" fill="#74F5FF"/>
+    <path d="M32 26H48V60H32V26Z" fill="#FFB14A"/>
+    <circle cx="40" cy="45" r="11" fill="#7CFF65"/>
+    <path d="M22 88L32 62H48L58 88L40 104L22 88Z" fill="#FF8C40"/>
+  </g>
+  <g transform="translate(250 340) scale(0.95)">
+    <path d="M0 40L30 8L62 0L92 34L72 74L42 88L12 76L0 40Z" fill="url(#enemy)"/>
+    <path d="M18 18L-20 -10L6 -18L34 8L18 18Z" fill="#74F5FF"/>
+    <path d="M74 18L112 -10L86 -18L58 8L74 18Z" fill="#74F5FF"/>
+    <path d="M30 52L42 20H50L62 52L46 82L30 52Z" fill="#FF8CFF"/>
+  </g>
+  <g transform="translate(560 350) scale(0.95)">
+    <path d="M0 40L30 8L62 0L92 34L72 74L42 88L12 76L0 40Z" fill="url(#enemy)"/>
+    <path d="M18 18L-20 -10L6 -18L34 8L18 18Z" fill="#74F5FF"/>
+    <path d="M74 18L112 -10L86 -18L58 8L74 18Z" fill="#74F5FF"/>
+    <path d="M30 52L42 20H50L62 52L46 82L30 52Z" fill="#FF8CFF"/>
+  </g>
+  <g transform="translate(1040 350) scale(0.95)">
+    <path d="M0 40L30 8L62 0L92 34L72 74L42 88L12 76L0 40Z" fill="url(#enemy)"/>
+    <path d="M18 18L-20 -10L6 -18L34 8L18 18Z" fill="#74F5FF"/>
+    <path d="M74 18L112 -10L86 -18L58 8L74 18Z" fill="#74F5FF"/>
+    <path d="M30 52L42 20H50L62 52L46 82L30 52Z" fill="#FF8CFF"/>
+  </g>
+  <g transform="translate(1330 340) scale(0.95)">
+    <path d="M0 40L30 8L62 0L92 34L72 74L42 88L12 76L0 40Z" fill="url(#enemy)"/>
+    <path d="M18 18L-20 -10L6 -18L34 8L18 18Z" fill="#74F5FF"/>
+    <path d="M74 18L112 -10L86 -18L58 8L74 18Z" fill="#74F5FF"/>
+    <path d="M30 52L42 20H50L62 52L46 82L30 52Z" fill="#FF8CFF"/>
+  </g>
+
+  <g opacity="0.98">
+    <text x="110" y="120" fill="#7CEBFF" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" letter-spacing="8">PLAYABLE GAME</text>
+    <text x="108" y="200" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="118" font-weight="800">GALAXY ATTACK</text>
+    <text x="112" y="258" fill="#B2C7F4" font-family="Arial, Helvetica, sans-serif" font-size="34">Arcade shooter project with fast browser gameplay</text>
+  </g>
+</svg>

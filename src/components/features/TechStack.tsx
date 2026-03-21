@@ -327,24 +327,57 @@ interface TechStackProps {
 export function TechStack({ onBack }: TechStackProps) {
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => setIsMounted(true), []);
-    
+
+    const containerRef = useRef<HTMLDivElement>(null);
     const [radius, setRadius] = useState(190);
+    const [isCompactLayout, setIsCompactLayout] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
     const [selectedTech, setSelectedTech] = useState<typeof items[0] | null>(null);
     const [hoveredTech, setHoveredTech] = useState<typeof items[0] | null>(null);
     const [pointerPosition, setPointerPosition] = useState({ x: 0, y: 0 });
     const [isPointerActive, setIsPointerActive] = useState(false);
 
-    // Update radius based on screen size
+    // Size the sphere from the rendered container so tablet/mobile stay inside bounds.
     useEffect(() => {
-        const updateRadius = () => {
-            if (window.innerWidth < 400) setRadius(88);
-            else if (window.innerWidth < 640) setRadius(110);
-            else if (window.innerWidth < 768) setRadius(140);
-            else setRadius(190);
+        const updateLayout = () => {
+            const container = containerRef.current;
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const compactLayout = viewportWidth < 1024;
+            const touchDevice = window.matchMedia("(pointer: coarse)").matches;
+            const minSize = Math.min(
+                container?.clientWidth ?? viewportWidth,
+                container?.clientHeight ?? viewportHeight,
+            );
+
+            let nextRadius = 190;
+            if (viewportWidth < 400) {
+                nextRadius = Math.min(88, minSize * 0.34);
+            } else if (viewportWidth < 640) {
+                nextRadius = Math.min(108, minSize * 0.36);
+            } else if (viewportWidth < 1024) {
+                nextRadius = Math.min(138, minSize * 0.38);
+            } else {
+                nextRadius = Math.min(190, minSize * 0.4);
+            }
+
+            setRadius(Math.max(72, nextRadius));
+            setIsCompactLayout(compactLayout || viewportHeight < 760);
+            setIsTouchDevice(touchDevice);
         };
-        updateRadius();
-        window.addEventListener("resize", updateRadius);
-        return () => window.removeEventListener("resize", updateRadius);
+
+        updateLayout();
+
+        const observer = new ResizeObserver(() => updateLayout());
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        window.addEventListener("resize", updateLayout);
+        return () => {
+            observer.disconnect();
+            window.removeEventListener("resize", updateLayout);
+        };
     }, []);
 
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
@@ -379,6 +412,7 @@ export function TechStack({ onBack }: TechStackProps) {
     };
 
     const handleDrag = (_: PointerEvent, info: PanInfo) => {
+        if (isCompactLayout || isTouchDevice) return;
         setRotation(prev => ({
             x: prev.x + info.delta.y * 0.1,
             y: prev.y + info.delta.x * 0.1
@@ -386,15 +420,24 @@ export function TechStack({ onBack }: TechStackProps) {
     };
 
     const handleDragEnd = (_: PointerEvent, info: PanInfo) => {
+        if (isCompactLayout || isTouchDevice) {
+            setIsDragging(false);
+            return;
+        }
         setIsDragging(false);
         velocity.current = { x: info.velocity.y, y: info.velocity.x };
     };
 
     const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+        if (isCompactLayout || event.pointerType !== "mouse") return;
         updatePointerPosition(event.clientX, event.clientY, event.currentTarget);
     };
 
     const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+        if (event.pointerType !== "mouse") {
+            resetPointerState();
+            return;
+        }
         updatePointerPosition(event.clientX, event.clientY, event.currentTarget);
     };
 
@@ -405,10 +448,11 @@ export function TechStack({ onBack }: TechStackProps) {
 
     return (
         <motion.div
+            ref={containerRef}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="group relative h-full w-full overflow-hidden cursor-grab touch-none active:cursor-grabbing"
+            className={`group relative h-full w-full overflow-hidden ${isCompactLayout ? "touch-auto" : "cursor-grab touch-pan-y active:cursor-grabbing"}`}
             onClick={(e) => {
                 if (onBack) {
                     e.stopPropagation();
@@ -416,7 +460,10 @@ export function TechStack({ onBack }: TechStackProps) {
                 }
             }}
             onPan={handleDrag}
-            onPanStart={() => setIsDragging(true)}
+            onPanStart={() => {
+                if (isCompactLayout || isTouchDevice) return;
+                setIsDragging(true);
+            }}
             onPanEnd={handleDragEnd}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
@@ -446,7 +493,7 @@ export function TechStack({ onBack }: TechStackProps) {
             </div>
 
             <AnimatePresence>
-                {hoveredTech && !selectedTech && (
+                {hoveredTech && !selectedTech && !isCompactLayout && (
                     <motion.div
                         initial={{ opacity: 0, y: 18, scale: 0.94 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -501,7 +548,7 @@ export function TechStack({ onBack }: TechStackProps) {
                 const zIndex = Math.floor(z2 + radius);
                 const blur = Math.max(0, (radius - z2) * 0.02); // Depth blur
                 const distanceFromPointer = Math.hypot(pointerPosition.x - x2, pointerPosition.y - y1);
-                const hoverStrength = isPointerActive ? Math.max(0, 1 - distanceFromPointer / 140) : 0;
+                const hoverStrength = !isCompactLayout && isPointerActive ? Math.max(0, 1 - distanceFromPointer / 140) : 0;
                 const interactiveScale = scale + hoverStrength * 0.22;
                 const interactiveY = y1 - hoverStrength * 14;
                 const interactiveOpacity = Math.min(1, opacity + hoverStrength * 0.35);
@@ -518,20 +565,30 @@ export function TechStack({ onBack }: TechStackProps) {
                         }}
                     >
                         <div 
-                            className={`relative group p-2 md:p-4 rounded-2xl transition-all duration-500 hover:bg-white/5 cursor-pointer`}
-                            onMouseEnter={() => setHoveredTech(item)}
-                            onMouseLeave={() => setHoveredTech((current) => current?.label === item.label ? null : current)}
+                            className={`relative group rounded-2xl p-1.5 transition-all duration-500 ${isCompactLayout ? "cursor-default" : "cursor-pointer hover:bg-white/5"} sm:p-2 md:p-4`}
+                            onMouseEnter={() => {
+                                if (isCompactLayout) return;
+                                setHoveredTech(item);
+                            }}
+                            onMouseLeave={() => {
+                                if (isCompactLayout) return;
+                                setHoveredTech((current) => current?.label === item.label ? null : current);
+                            }}
                             onPointerDown={(e) => {
                                 e.stopPropagation();
-                                setHoveredTech(item);
+                                if (!isCompactLayout && e.pointerType === "mouse") {
+                                    setHoveredTech(item);
+                                }
                             }}
                             onClick={(e) => {
                                 e.stopPropagation();
+                                if (isCompactLayout) return;
                                 setSelectedTech(item);
                             }}
                             role="button"
-                            tabIndex={0}
+                            tabIndex={isCompactLayout ? -1 : 0}
                             onKeyDown={(e) => {
+                                if (isCompactLayout) return;
                                 if (e.key === "Enter" || e.key === " ") {
                                     e.preventDefault();
                                     setSelectedTech(item);
@@ -542,7 +599,7 @@ export function TechStack({ onBack }: TechStackProps) {
                             }}
                         >
                             <item.icon
-                                className={`w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 drop-shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-110`}
+                                className={`h-7 w-7 drop-shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-transform duration-300 sm:h-9 sm:w-9 ${isCompactLayout ? "md:h-11 md:w-11" : "md:h-16 md:w-16"} group-hover:scale-110`}
                                 style={{
                                     transform: `scale(${1 + hoverStrength * 0.18})`,
                                     filter: `drop-shadow(0 0 ${15 + hoverStrength * 18}px currentColor)`,
@@ -561,7 +618,7 @@ export function TechStack({ onBack }: TechStackProps) {
 
             {/* Click hint */}
             {onBack && !selectedTech && (
-                <div className="pointer-events-none absolute bottom-4 left-0 right-0 hidden text-center sm:block">
+                <div className="pointer-events-none absolute bottom-4 left-0 right-0 hidden text-center lg:block">
                     <p className="text-xs text-muted-foreground animate-bounce">Click surrounding space to return</p>
                 </div>
             )}

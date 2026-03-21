@@ -15,7 +15,7 @@ const projectSchema = z.object({
     slug: z.string().min(1, "Slug is required"),
     description: z.string().min(1, "Description is required"),
     image: z.string().min(1, "Image URL is required"),
-    category: z.enum(["web", "mobile", "fullstack", "other"]),
+    category: z.enum(["web", "mobile", "fullstack", "game", "other"]),
     featured: z.boolean().default(false),
     technologies: z.string().transform(val => val.split(',').map(s => s.trim()).filter(Boolean)),
     liveUrl: z.string().optional(),
@@ -117,6 +117,7 @@ export function ProjectForm({ initialData, isEditing = false }: ProjectFormProps
                         <option value="web">Web</option>
                         <option value="mobile">Mobile</option>
                         <option value="fullstack">Full Stack</option>
+                        <option value="game">Game</option>
                         <option value="other">Other</option>
                     </select>
                 </div>

@@ -71,13 +71,17 @@ export interface Project {
     technologies: string[];
     liveUrl?: string;
     githubUrl?: string;
+    ctaLabel?: string;
+    status?: ProjectStatus;
     featured: boolean;
     category: ProjectCategory;
     completedDate: string;
     features?: string[];
 }
 
-export type ProjectCategory = "web" | "mobile" | "fullstack" | "other";
+export type ProjectCategory = "web" | "mobile" | "fullstack" | "game" | "other";
+
+export type ProjectStatus = "live" | "coming-soon";
 
 export interface BlogPost {
     slug: string;

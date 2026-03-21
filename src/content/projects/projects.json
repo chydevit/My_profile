@@ -1,5 +1,40 @@
 [
     {
+        "id": "galaxy-attack",
+        "slug": "galaxy-attack",
+        "title": "Galaxy Attack",
+        "description": "A browser space shooter you can play directly online with fast arcade action and a classic galaxy defense feel.",
+        "longDescription": "Galaxy Attack is a playable web game built for quick sessions and responsive controls. It drops players into a classic arcade-style space battle with waves of enemies, score chasing, and a lightweight browser experience that works instantly from a shared link.",
+        "image": "/images/galaxy-attack-cover.svg",
+        "images": [
+            "/images/galaxy-attack-cover.svg"
+        ],
+        "tags": [
+            "Game",
+            "Arcade",
+            "Playable"
+        ],
+        "technologies": [
+            "JavaScript",
+            "HTML5",
+            "Canvas",
+            "Vercel"
+        ],
+        "liveUrl": "https://game-galaxy-attack.vercel.app/",
+        "githubUrl": "",
+        "ctaLabel": "Play Now",
+        "status": "live",
+        "featured": true,
+        "category": "game",
+        "completedDate": "2026",
+        "features": [
+            "Instant browser gameplay",
+            "Arcade-style space combat",
+            "Responsive controls for quick sessions",
+            "Deployed online for easy sharing"
+        ]
+    },
+    {
         "id": "emenu-system",
         "slug": "emenu-system",
         "title": "Digital E-Menu System",
@@ -19,8 +54,10 @@
             "Tailwind CSS",
             "Framer Motion"
         ],
-        "liveUrl": "",
+        "liveUrl": "https://e-menu-test-1.vercel.app/",
         "githubUrl": "https://github.com/chydevit/e-menu-test-1.git",
+        "ctaLabel": "View Live",
+        "status": "live",
         "featured": true,
         "category": "web",
         "completedDate": "2024",

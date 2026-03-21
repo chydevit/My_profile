@@ -111,6 +111,12 @@ export function FeaturedProjects() {
                                         {project.description}
                                     </p>
 
+                                    {project.status === "coming-soon" && (
+                                        <div className="mb-4 inline-flex rounded-full border border-amber-300/25 bg-amber-400/10 px-3 py-1 text-xs font-medium text-amber-200">
+                                            Coming soon
+                                        </div>
+                                    )}
+
                                     {/* Tags */}
                                     <div className="flex flex-wrap gap-2">
                                         {project.tags.slice(0, 3).map((tag) => (
@@ -121,6 +127,30 @@ export function FeaturedProjects() {
                                                 {tag}
                                             </span>
                                         ))}
+                                    </div>
+
+                                    <div className="mt-6 flex flex-wrap gap-3">
+                                        <Link
+                                            href={`/projects/${project.slug}`}
+                                            className="inline-flex h-9 items-center justify-center rounded-lg border-2 border-primary-600 px-4 text-sm font-medium text-primary-600 transition-all duration-200 hover:bg-primary-50 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950"
+                                        >
+                                            Details
+                                        </Link>
+                                        {project.liveUrl ? (
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-medium text-white transition-all duration-200 hover:bg-primary-700"
+                                            >
+                                                <ExternalLink className="h-4 w-4" />
+                                                {project.ctaLabel ?? "View Live"}
+                                            </a>
+                                        ) : (
+                                            <span className="inline-flex h-9 items-center justify-center rounded-lg bg-primary-600 px-4 text-sm font-medium text-white opacity-50">
+                                                {project.ctaLabel ?? "Coming Soon"}
+                                            </span>
+                                        )}
                                     </div>
                                 </CardContent>
                             </Card>

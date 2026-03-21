@@ -65,7 +65,7 @@ export function Hero() {
                 <div className="absolute bottom-[12%] right-[8%] h-56 w-56 rounded-full bg-primary-400/10 blur-3xl animate-pulse-slow sm:h-72 sm:w-72 lg:h-96 lg:w-96" style={{ animationDelay: "1s" }} />
             </div>
 
-            <Container className="relative z-10 py-8 sm:py-10 md:py-16 lg:py-20">
+            <Container className="relative z-10 py-8 pb-20 sm:py-10 sm:pb-24 md:py-16 md:pb-28 lg:py-20 lg:pb-32">
                 <div className="grid items-center gap-10 text-center lg:grid-cols-2 lg:gap-12 lg:text-left">
                     {/* Left Column - Text Content */}
                     <motion.div
@@ -184,7 +184,7 @@ export function Hero() {
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className="relative min-w-0"
+                        className="relative hidden min-w-0 lg:block"
                     >
                         <div className="relative mx-auto aspect-square w-full max-w-[260px] sm:max-w-sm md:max-w-md lg:max-w-lg">
                             <div className="relative h-full min-h-[260px] w-full sm:min-h-[340px] md:min-h-[400px]">
@@ -200,7 +200,7 @@ export function Hero() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.5 }}
                     onClick={scrollToNext}
-                    className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 cursor-pointer flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-primary-600 sm:flex md:bottom-10"
+                    className="absolute bottom-3 left-1/2 hidden -translate-x-1/2 cursor-pointer flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-primary-600 sm:flex md:bottom-5 lg:bottom-6"
                     aria-label="Scroll to next section"
                 >
                     <span className="text-sm font-medium">{t('scrollDown')}</span>

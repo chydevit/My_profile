@@ -19,7 +19,6 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
 
-    // Combine main image and additional images for gallery
     const galleryImages = [project.image, ...(project.images || [])];
 
     const openLightbox = (index: number) => {
@@ -30,97 +29,104 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
     return (
         <div className="min-h-screen py-24">
             <Container>
-                {/* Breadcrumb Navigation */}
                 <motion.nav
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
+                    className="mb-8 flex items-center gap-2 text-sm text-muted-foreground"
                 >
-                    <Link href="/" className="hover:text-primary-600 transition-colors">
-                        <Home className="w-4 h-4" />
+                    <Link href="/" className="transition-colors hover:text-primary-600">
+                        <Home className="h-4 w-4" />
                     </Link>
-                    <ChevronRight className="w-4 h-4" />
-                    <Link href="/projects" className="hover:text-primary-600 transition-colors">
+                    <ChevronRight className="h-4 w-4" />
+                    <Link href="/projects" className="transition-colors hover:text-primary-600">
                         Projects
                     </Link>
-                    <ChevronRight className="w-4 h-4" />
-                    <span className="text-foreground font-medium truncate max-w-[200px]">
+                    <ChevronRight className="h-4 w-4" />
+                    <span className="max-w-[200px] truncate font-medium text-foreground">
                         {project.title}
                     </span>
                 </motion.nav>
 
-                {/* Project Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-12"
                 >
-                    <div className="flex flex-wrap items-center gap-3 mb-4">
-                        <span className="px-4 py-1.5 text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-600 rounded-full capitalize">
+                    <div className="mb-4 flex flex-wrap items-center gap-3">
+                        <span className="rounded-full bg-primary-100 px-4 py-1.5 text-sm font-medium capitalize text-primary-600 dark:bg-primary-900/30">
                             {project.category}
                         </span>
                         {project.featured && (
-                            <span className="px-4 py-1.5 text-sm font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 rounded-full">
-                                ⭐ Featured
+                            <span className="rounded-full bg-zinc-100 px-4 py-1.5 text-sm font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                                Featured
+                            </span>
+                        )}
+                        {project.status === "coming-soon" && (
+                            <span className="rounded-full bg-amber-100/80 px-4 py-1.5 text-sm font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
+                                Coming soon
                             </span>
                         )}
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+                    <h1 className="mb-4 text-4xl font-heading font-bold md:text-5xl">
                         {project.title}
                     </h1>
 
-                    <p className="text-xl text-muted-foreground mb-6">
+                    <p className="mb-6 text-xl text-muted-foreground">
                         {project.description}
                     </p>
 
-                    {/* Meta Info */}
                     <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
                         <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4" />
+                            <Calendar className="h-4 w-4" />
                             <span>{project.completedDate}</span>
                         </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-wrap gap-4 mt-6">
+                    <div className="mt-6 flex flex-wrap gap-4">
                         {project.liveUrl && (
                             <a
                                 href={project.liveUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-12 px-6 text-base bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary-600 px-6 text-base font-medium text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-700 hover:shadow-md active:bg-primary-800"
                             >
-                                <ExternalLink className="w-5 h-5" />
-                                View Live Demo
+                                <ExternalLink className="h-5 w-5" />
+                                {project.ctaLabel ?? "View Live Demo"}
                             </a>
+                        )}
+                        {!project.liveUrl && project.status === "coming-soon" && (
+                            <button
+                                type="button"
+                                disabled
+                                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-amber-400/30 bg-amber-500/15 px-6 text-base font-medium text-amber-700 cursor-not-allowed dark:text-amber-300"
+                            >
+                                {project.ctaLabel ?? "Coming Soon"}
+                            </button>
                         )}
                         {project.githubUrl && (
                             <a
                                 href={project.githubUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 h-12 px-6 text-base border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300"
+                                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-gray-300 px-6 text-base font-medium text-gray-700 transition-all duration-200 hover:border-gray-400 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-600 dark:hover:bg-gray-800"
                             >
-                                <Github className="w-5 h-5" />
+                                <Github className="h-5 w-5" />
                                 View Source Code
                             </a>
                         )}
                     </div>
                 </motion.div>
 
-                {/* Main Content & Sidebar */}
-                <div className="grid lg:grid-cols-3 gap-12">
-                    {/* Main Column */}
-                    <div className="lg:col-span-2 space-y-12">
-                        {/* Main Image */}
+                <div className="grid gap-12 lg:grid-cols-3">
+                    <div className="space-y-12 lg:col-span-2">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
                         >
                             <Card
-                                className="overflow-hidden cursor-pointer group"
+                                className="cursor-pointer overflow-hidden group"
                                 onClick={() => openLightbox(0)}
                             >
                                 <div className="relative aspect-video">
@@ -131,8 +137,8 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                                         priority
                                     />
-                                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-colors duration-300">
-                                        <span className="opacity-0 group-hover:opacity-100 bg-white/90 dark:bg-black/80 text-black dark:text-white px-4 py-2 rounded-full text-sm font-medium transition-opacity duration-300">
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/20">
+                                        <span className="rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-black opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:bg-black/80 dark:text-white">
                                             View Fullscreen
                                         </span>
                                     </div>
@@ -140,38 +146,36 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                             </Card>
                         </motion.div>
 
-                        {/* Long Description */}
                         {project.longDescription && (
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
                             >
-                                <h2 className="text-2xl font-heading font-semibold mb-4">
+                                <h2 className="mb-4 text-2xl font-heading font-semibold">
                                     About This Project
                                 </h2>
-                                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                                <p className="leading-relaxed whitespace-pre-line text-muted-foreground">
                                     {project.longDescription}
                                 </p>
                             </motion.div>
                         )}
 
-                        {/* Image Gallery */}
                         {project.images && project.images.length > 0 && (
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.35 }}
                             >
-                                <h2 className="text-2xl font-heading font-semibold mb-6">
+                                <h2 className="mb-6 text-2xl font-heading font-semibold">
                                     Gallery
                                 </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                                     {project.images.map((img, idx) => (
                                         <Card
                                             key={idx}
-                                            className="overflow-hidden cursor-pointer group"
-                                            onClick={() => openLightbox(idx + 1)} // +1 because main image is 0
+                                            className="cursor-pointer overflow-hidden group"
+                                            onClick={() => openLightbox(idx + 1)}
                                         >
                                             <div className="relative aspect-[4/3]">
                                                 <Image
@@ -180,7 +184,7 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                                                     fill
                                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                                 />
-                                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                                                <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10" />
                                             </div>
                                         </Card>
                                     ))}
@@ -188,20 +192,21 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                             </motion.div>
                         )}
 
-                        {/* Features */}
                         {project.features && project.features.length > 0 && (
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
                             >
-                                <h2 className="text-2xl font-heading font-semibold mb-4">
+                                <h2 className="mb-4 text-2xl font-heading font-semibold">
                                     Key Features
                                 </h2>
                                 <ul className="space-y-3">
                                     {project.features.map((feature, index) => (
                                         <li key={index} className="flex items-start gap-3">
-                                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 mt-0.5 text-sm">✓</span>
+                                            <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-sm font-semibold text-green-600 dark:bg-green-900/30 dark:text-green-400">
+                                                +
+                                            </span>
                                             <span className="text-muted-foreground">{feature}</span>
                                         </li>
                                     ))}
@@ -210,9 +215,7 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                         )}
                     </div>
 
-                    {/* Sidebar */}
                     <div className="space-y-8">
-                        {/* Technologies */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -220,15 +223,15 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                         >
                             <Card>
                                 <CardContent className="p-6">
-                                    <h3 className="text-lg font-heading font-semibold mb-4 flex items-center gap-2">
-                                        <Tag className="w-5 h-5" />
+                                    <h3 className="mb-4 flex items-center gap-2 text-lg font-heading font-semibold">
+                                        <Tag className="h-5 w-5" />
                                         Technologies Used
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {project.technologies.map((tech) => (
                                             <span
                                                 key={tech}
-                                                className="px-3 py-1.5 text-sm bg-muted rounded-lg text-foreground font-medium"
+                                                className="rounded-lg bg-muted px-3 py-1.5 text-sm font-medium text-foreground"
                                             >
                                                 {tech}
                                             </span>
@@ -238,7 +241,6 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                             </Card>
                         </motion.div>
 
-                        {/* Tags */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -246,12 +248,12 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                         >
                             <Card>
                                 <CardContent className="p-6">
-                                    <h3 className="text-lg font-heading font-semibold mb-4">Tags</h3>
+                                    <h3 className="mb-4 text-lg font-heading font-semibold">Tags</h3>
                                     <div className="flex flex-wrap gap-2">
                                         {project.tags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="px-3 py-1 text-sm bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-300 rounded-full border border-primary-100 dark:border-primary-800"
+                                                className="rounded-full border border-primary-100 bg-primary-50 px-3 py-1 text-sm text-primary-600 dark:border-primary-800 dark:bg-primary-900/20 dark:text-primary-300"
                                             >
                                                 {tag}
                                             </span>
@@ -263,26 +265,25 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                     </div>
                 </div>
 
-                {/* Related Projects */}
                 {relatedProjects.length > 0 && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.7 }}
-                        className="mt-20 pt-12 border-t border-border"
+                        className="mt-20 border-t border-border pt-12"
                     >
-                        <div className="flex items-center justify-between mb-8">
+                        <div className="mb-8 flex items-center justify-between">
                             <h2 className="text-3xl font-heading font-bold">
                                 Related Projects
                             </h2>
                             <Link
                                 href="/projects"
-                                className="text-primary-600 hover:text-primary-700 font-medium flex items-center gap-1"
+                                className="flex items-center gap-1 font-medium text-primary-600 hover:text-primary-700"
                             >
-                                View All <ChevronRight className="w-4 h-4" />
+                                View All <ChevronRight className="h-4 w-4" />
                             </Link>
                         </div>
-                        <div className="grid md:grid-cols-3 gap-6">
+                        <div className="grid gap-6 md:grid-cols-3">
                             {relatedProjects.map((relatedProject) => (
                                 <Link key={relatedProject.id} href={`/projects/${relatedProject.slug}`}>
                                     <Card variant="elevated" hover className="h-full overflow-hidden group">
@@ -291,14 +292,14 @@ export default function ProjectDetails({ project, relatedProjects }: ProjectDeta
                                                 src={relatedProject.image}
                                                 alt={relatedProject.title}
                                                 fill
-                                                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                                className="object-cover transition-transform duration-500 group-hover:scale-110"
                                             />
                                         </div>
                                         <CardContent className="p-4">
-                                            <h3 className="font-heading font-semibold mb-2 group-hover:text-primary-600 transition-colors">
+                                            <h3 className="mb-2 font-heading font-semibold transition-colors group-hover:text-primary-600">
                                                 {relatedProject.title}
                                             </h3>
-                                            <p className="text-sm text-muted-foreground line-clamp-2">
+                                            <p className="line-clamp-2 text-sm text-muted-foreground">
                                                 {relatedProject.description}
                                             </p>
                                         </CardContent>

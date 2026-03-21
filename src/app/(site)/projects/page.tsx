@@ -36,24 +36,9 @@ export default function ProjectsPage() {
         return matchesSearch && matchesCategory && matchesTag;
     });
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-            },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
-    };
-
     return (
         <div className="min-h-screen py-20">
-            <Container>
+            <Container className="max-w-[1400px]">
                 {/* Page Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -141,14 +126,21 @@ export default function ProjectsPage() {
 
                 {/* Projects Grid */}
                 <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={containerVariants}
-                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    key={`${selectedCategory ?? "all"}-${selectedTag ?? "all"}-${searchQuery}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                    className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
                 >
-                    {filteredProjects.map((project) => (
-                        <motion.div key={project.id} variants={itemVariants}>
-                            <Card variant="elevated" hover className="h-full overflow-hidden group">
+                    {filteredProjects.map((project, index) => (
+                        <motion.div
+                            key={project.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.25, delay: index * 0.04 }}
+                            className="h-full w-full"
+                        >
+                            <Card variant="elevated" hover className="group h-full w-full overflow-hidden">
                                 {/* Project Image */}
                                 <div className="relative h-48 overflow-hidden bg-muted">
                                     <Image
@@ -202,6 +194,12 @@ export default function ProjectsPage() {
                                         {project.description}
                                     </p>
 
+                                    {project.status === "coming-soon" && (
+                                        <div className="mb-4 inline-flex rounded-full border border-amber-300/30 bg-amber-400/10 px-3 py-1 text-xs font-medium text-amber-300">
+                                            Coming soon
+                                        </div>
+                                    )}
+
                                     {/* Tags */}
                                     <div className="flex flex-wrap gap-2">
                                         {project.tags.slice(0, 3).map((tag) => (
@@ -216,6 +214,30 @@ export default function ProjectsPage() {
                                         {project.tags.length > 3 && (
                                             <span className="text-xs px-2 py-1 text-muted-foreground">
                                                 +{project.tags.length - 3}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="mt-6 flex flex-wrap gap-3">
+                                        <Link
+                                            href={`/projects/${project.slug}`}
+                                            className="inline-flex h-9 items-center justify-center rounded-lg border-2 border-primary-600 px-4 text-sm font-medium text-primary-600 transition-all duration-200 hover:bg-primary-50 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950"
+                                        >
+                                            Details
+                                        </Link>
+                                        {project.liveUrl ? (
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-medium text-white transition-all duration-200 hover:bg-primary-700"
+                                            >
+                                                <ExternalLink className="w-4 h-4" />
+                                                {project.ctaLabel ?? "View Live"}
+                                            </a>
+                                        ) : (
+                                            <span className="inline-flex h-9 items-center justify-center rounded-lg bg-primary-600 px-4 text-sm font-medium text-white opacity-50">
+                                                {project.ctaLabel ?? "Coming Soon"}
                                             </span>
                                         )}
                                     </div>
