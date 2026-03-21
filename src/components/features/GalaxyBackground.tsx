@@ -29,20 +29,31 @@ interface Burst {
 }
 
 // ── Constants ──────────────────────────────────────────────────────────────
-const STAR_COLORS = [
+const STAR_COLORS_DARK = [
   "rgba(103,232,249,",   // cyan
   "rgba(99,102,241,",    // indigo
   "rgba(167,139,250,",   // violet
   "rgba(248,200,255,",   // pink-white
   "rgba(255,255,255,",   // white
 ];
-const COUNT          = 280;
-const GATHER_RADIUS  = 160;
+
+const STAR_COLORS_LIGHT = [
+  "rgba(6,182,212,",     // cyan-600 — visible on white
+  "rgba(79,70,229,",     // indigo-600
+  "rgba(124,58,237,",    // violet-600
+  "rgba(219,39,119,",    // pink-600
+  "rgba(100,116,139,",   // slate-500
+];
+
+const COUNT           = 280;
+const GATHER_RADIUS   = 160;
 const GATHER_STRENGTH = 0.07;
 const RETURN_STRENGTH = 0.028;
-const CONNECT_DIST   = 90;    // max px to draw constellation line
-const SHOOT_INTERVAL = 2800;  // ms between shooting stars
+const CONNECT_DIST    = 90;
+const SHOOT_INTERVAL  = 2800;
 const BURST_PARTICLES = 28;
+
+const isDark = () => document.documentElement.classList.contains("dark");
 
 export function GalaxyBackground() {
   const canvasRef  = useRef<HTMLCanvasElement>(null);
@@ -75,10 +86,11 @@ export function GalaxyBackground() {
 
     // ── Click burst ──────────────────────────────────────────────────────
     const onClick = (e: MouseEvent) => {
+      const colors = isDark() ? STAR_COLORS_DARK : STAR_COLORS_LIGHT;
       const particles = Array.from({ length: BURST_PARTICLES }, () => {
         const angle = Math.random() * Math.PI * 2;
         const speed = Math.random() * 4 + 1.5;
-        const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
         return {
           x: e.clientX, y: e.clientY,
           vx: Math.cos(angle) * speed,
@@ -96,12 +108,13 @@ export function GalaxyBackground() {
     for (let i = 0; i < COUNT; i++) {
       const x = Math.random() * window.innerWidth;
       const y = Math.random() * window.innerHeight;
+      const colors = isDark() ? STAR_COLORS_DARK : STAR_COLORS_LIGHT;
       stars.push({
         x, y, ox: x, oy: y,
         z:    Math.random() * 1.6 + 0.2,
         size: Math.random() * 1.8 + 0.3,
         speed: Math.random() * 0.28 + 0.04,
-        color: STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)],
+        color: colors[Math.floor(Math.random() * colors.length)],
         vx: 0, vy: 0,
         twinkleOffset: Math.random() * Math.PI * 2,
       });
@@ -109,7 +122,8 @@ export function GalaxyBackground() {
 
     // ── Spawn shooting star ──────────────────────────────────────────────
     const spawnShooter = () => {
-      const angle = (Math.random() * 30 + 15) * (Math.PI / 180); // 15–45°
+      const colors = isDark() ? STAR_COLORS_DARK : STAR_COLORS_LIGHT;
+      const angle = (Math.random() * 30 + 15) * (Math.PI / 180);
       const speed = Math.random() * 8 + 6;
       shooters.current.push({
         x: Math.random() * canvas.width * 0.7,
@@ -118,26 +132,28 @@ export function GalaxyBackground() {
         vy:  Math.sin(angle) * speed,
         life: 1,
         maxLife: Math.random() * 60 + 40,
-        color: STAR_COLORS[Math.floor(Math.random() * 3)],
+        color: colors[Math.floor(Math.random() * 3)],
         tail: [],
       });
     };
     const shootInterval = setInterval(spawnShooter, SHOOT_INTERVAL);
 
-    // ── Nebula gradient (static, drawn once per frame as bg layer) ───────
+    // ── Nebula gradient ───────────────────────────────────────────────────
     const drawNebula = () => {
       const w = canvas.width;
       const h = canvas.height;
       const t = Date.now() * 0.0002;
+      const dark = isDark();
 
-      // Slow-breathing nebula blobs
       const blobs = [
-        { x: w * 0.15, y: h * 0.2,  r: w * 0.28, c: "rgba(99,102,241,"  },
-        { x: w * 0.82, y: h * 0.15, r: w * 0.22, c: "rgba(103,232,249," },
-        { x: w * 0.5,  y: h * 0.75, r: w * 0.3,  c: "rgba(167,139,250," },
+        { x: w * 0.15, y: h * 0.2,  r: w * 0.28, c: dark ? "rgba(99,102,241,"   : "rgba(79,70,229,"   },
+        { x: w * 0.82, y: h * 0.15, r: w * 0.22, c: dark ? "rgba(103,232,249,"  : "rgba(6,182,212,"   },
+        { x: w * 0.5,  y: h * 0.75, r: w * 0.3,  c: dark ? "rgba(167,139,250,"  : "rgba(124,58,237,"  },
       ];
+      // Light mode uses stronger opacity so blobs are visible on white
+      const baseOpacity = dark ? 0.03 : 0.07;
       for (const b of blobs) {
-        const pulse = 0.03 + Math.sin(t + b.x) * 0.015;
+        const pulse = baseOpacity + Math.sin(t + b.x) * (dark ? 0.015 : 0.025);
         const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
         g.addColorStop(0,   `${b.c}${pulse})`);
         g.addColorStop(0.5, `${b.c}${pulse * 0.4})`);
@@ -151,11 +167,12 @@ export function GalaxyBackground() {
 
     // ── Draw constellation lines ─────────────────────────────────────────
     const drawConstellations = (mx: number, my: number) => {
+      const dark = isDark();
       for (let i = 0; i < stars.length; i++) {
         const a = stars[i];
         const dax = mx - a.x, day = my - a.y;
         const distA = Math.sqrt(dax * dax + day * day);
-        if (distA > GATHER_RADIUS * 1.4) continue; // only near mouse
+        if (distA > GATHER_RADIUS * 1.4) continue;
 
         for (let j = i + 1; j < stars.length; j++) {
           const b = stars[j];
@@ -163,11 +180,14 @@ export function GalaxyBackground() {
           const d  = Math.sqrt(dx * dx + dy * dy);
           if (d > CONNECT_DIST) continue;
 
-          const alpha = (1 - d / CONNECT_DIST) * 0.18;
+          const alpha = (1 - d / CONNECT_DIST) * (dark ? 0.18 : 0.35);
+          const lineColor = dark
+            ? `rgba(103,232,249,${alpha.toFixed(3)})`
+            : `rgba(79,70,229,${alpha.toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(103,232,249,${alpha.toFixed(3)})`;
+          ctx.strokeStyle = lineColor;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
@@ -274,7 +294,10 @@ export function GalaxyBackground() {
 
         const proximity  = dist < GATHER_RADIUS ? 1 - dist / GATHER_RADIUS : 0;
         const twinkle    = Math.sin(now * 0.0012 * star.z + star.twinkleOffset);
-        const alpha      = Math.min(1, 0.3 + twinkle * 0.2 + proximity * 0.5);
+        const dark       = isDark();
+        // Light mode needs higher base alpha to be visible on white
+        const baseAlpha  = dark ? 0.3 : 0.55;
+        const alpha      = Math.min(1, baseAlpha + twinkle * 0.2 + proximity * 0.5);
         const drawSize   = Math.max(0.1, star.size * star.z * (1 + proximity * 1.0));
 
         if (proximity > 0.08) {
