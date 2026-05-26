@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 type Language = "en" | "km";
 
@@ -33,6 +33,7 @@ const translations: Record<Language, Record<string, string>> = {
         hireMe: "Hire Me",
         viewCV: "View CV",
         scrollDown: "Scroll Down",
+        scrollUp: "Scroll Up",
         heroDescription: "Experienced frontend developer with a passion for creating visually stunning and user-friendly websites",
         role_software: "Software Development",
         role_mobile: "Mobile Developer",
@@ -60,6 +61,9 @@ const translations: Record<Language, Record<string, string>> = {
         featuredProjects: "Featured Projects",
         projectsDescription: "A showcase of my recent work and personal projects",
         viewAllProjects: "View All Projects",
+        comingSoon: "Coming soon",
+        details: "Details",
+        viewLive: "View Live",
         // Services
         servicesOffer: "Services I Offer",
         servicesDescription: "I work together with my team to deliver exceptional digital solutions",
@@ -69,7 +73,33 @@ const translations: Record<Language, Record<string, string>> = {
         getInTouch: "Get In Touch",
         messageTelegram: "Message on Telegram",
         clientTestimonials: "Client Testimonials",
-        testimonialsDescription: "What others say about working with me"
+        testimonialsDescription: "What others say about working with me",
+        // Contact page
+        getInTouchTitle: "Get In Touch",
+        getInTouchTitleStart: "Get In",
+        getInTouchTitleHighlight: "Touch",
+        getInTouchDescription: "Have a project in mind or just want to chat? I'd love to hear from you. Fill out the form below and I'll get back to you as soon as possible.",
+        contactInformation: "Contact Information",
+        location: "Location",
+        connectWithMe: "Connect With Me",
+        responseTime: "Response Time",
+        responseTimeDescription: "I typically respond within 24-48 hours during business days. For urgent matters, feel free to reach out via phone or social media.",
+        sendMeMessage: "Send Me a Message",
+        formName: "Name",
+        formEmail: "Email",
+        formSubject: "Subject",
+        formMessage: "Message",
+        formNamePlaceholder: "John Doe",
+        formEmailPlaceholder: "john@example.com",
+        formSubjectPlaceholder: "What's this about?",
+        formMessagePlaceholder: "Tell me more...",
+        sendMessage: "Send Message",
+        sending: "Sending...",
+        messageSentSuccess: "Message sent successfully! I'll get back to you soon.",
+        errorName: "Name must be at least 2 characters",
+        errorEmail: "Please enter a valid email address",
+        errorSubject: "Subject must be at least 5 characters",
+        errorMessage: "Message must be at least 10 characters"
     },
     km: {
         welcome: "សូមស្វាគមន៍!",
@@ -93,6 +123,7 @@ const translations: Record<Language, Record<string, string>> = {
         hireMe: "ជួលខ្ញុំ",
         viewCV: "មើលប្រវត្តិរូប",
         scrollDown: "អូសចុះក្រោម",
+        scrollUp: "Scroll Up",
         heroDescription: "អ្នកអភិវឌ្ឍន៍ Frontend ដែលមានបទពិសោធន៍ និងមានក្តីស្រឡាញ់ក្នុងការបង្កើតវេបសាយដែលស្អាត និងងាយស្រួលប្រើ",
         role_software: "ការអភិវឌ្ឍន៍កម្មវិធី",
         role_mobile: "អ្នកអភិវឌ្ឍន៍កម្មវិធីទូរស័ព្ទ",
@@ -120,6 +151,9 @@ const translations: Record<Language, Record<string, string>> = {
         featuredProjects: "គម្រោងលេចធ្លោ",
         projectsDescription: "ការបង្ហាញអំពីការងារថ្មីៗ និងគម្រោងផ្ទាល់ខ្លួនរបស់ខ្ញុំ",
         viewAllProjects: "មើលគម្រោងទាំងអស់",
+        comingSoon: "នឹងមកដល់ឆាប់ៗ",
+        details: "ព័ត៌មានលម្អិត",
+        viewLive: "មើលផ្ទាល់",
         // Services
         servicesOffer: "សេវាកម្មដែលខ្ញុំផ្តល់ជូន",
         servicesDescription: "ខ្ញុំធ្វើការជាមួយក្រុមរបស់ខ្ញុំដើម្បីផ្តល់ជូនដំណោះស្រាយឌីជីថលដ៏ល្អបំផុត",
@@ -129,14 +163,62 @@ const translations: Record<Language, Record<string, string>> = {
         getInTouch: "ទំនាក់ទំនង",
         messageTelegram: "ផ្ញើសារតាម Telegram",
         clientTestimonials: "សក្ខីកម្មអតិថិជន",
-        testimonialsDescription: "អ្វីដែលអ្នកដទៃនិយាយអំពីការធ្វើការជាមួយខ្ញុំ"
+        testimonialsDescription: "អ្វីដែលអ្នកដទៃនិយាយអំពីការធ្វើការជាមួយខ្ញុំ",
+        // Contact page
+        getInTouchTitle: "ទាក់ទងមកខ្ញុំ",
+        getInTouchTitleStart: "ទាក់ទង",
+        getInTouchTitleHighlight: "មកខ្ញុំ",
+        getInTouchDescription: "មានគម្រោងក្នុងចិត្តទេ ឬចង់និយាយជជែកប្រាប់ខ្ញុំ? ខ្ញុំចង់ឮពីអ្នកណាស់។ សូមបំពេញទម្រង់ខាងក្រោម ហើយខ្ញុំនឹងឆ្លើយតបទៅអ្នកវិញឱ្យបានឆាប់បំផុត។",
+        contactInformation: "ព័ត៌មានទំនាក់ទំនង",
+        location: "ទីតាំង",
+        connectWithMe: "ភ្ជាប់ជាមួយខ្ញុំ",
+        responseTime: "រយៈពេលឆ្លើយតប",
+        responseTimeDescription: "ជាធម្មតាខ្ញុំឆ្លើយតបក្នុងរយៈពេល ២៤-៤៨ ម៉ោងនៅថ្ងៃធ្វើការ។ សម្រាប់រឿងបន្ទាន់ សូមទាក់ទងតាមទូរស័ព្ទ ឬប្រព័ន្ធផ្សព្វផ្សាយសង្គម។",
+        sendMeMessage: "ផ្ញើសារមកខ្ញុំ",
+        formName: "ឈ្មោះ",
+        formEmail: "អ៊ីមែល",
+        formSubject: "ប្រធានបទ",
+        formMessage: "សារ",
+        formNamePlaceholder: "ឈ្មោះរបស់អ្នក",
+        formEmailPlaceholder: "you@example.com",
+        formSubjectPlaceholder: "តើនេះអំពីអ្វី?",
+        formMessagePlaceholder: "ប្រាប់ខ្ញុំបន្ថែម...",
+        sendMessage: "ផ្ញើសារ",
+        sending: "កំពុងផ្ញើ...",
+        messageSentSuccess: "បានផ្ញើសារដោយជោគជ័យ! ខ្ញុំនឹងឆ្លើយតបទៅអ្នកវិញឆាប់ៗ។",
+        errorName: "ឈ្មោះត្រូវមានយ៉ាងតិច ២ តួអក្សរ",
+        errorEmail: "សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែលត្រឹមត្រូវ",
+        errorSubject: "ប្រធានបទត្រូវមានយ៉ាងតិច ៥ តួអក្សរ",
+        errorMessage: "សារត្រូវមានយ៉ាងតិច ១០ តួអក្សរ"
     }
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const STORAGE_KEY = "preferred-language";
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [language, setLanguage] = useState<Language>("en");
+    const [language, setLanguageState] = useState<Language>("en");
+
+    useEffect(() => {
+        try {
+            const stored = window.localStorage.getItem(STORAGE_KEY);
+            if (stored === "en" || stored === "km") {
+                setLanguageState(stored);
+            }
+        } catch {
+            // ignore (SSR / disabled storage)
+        }
+    }, []);
+
+    const setLanguage = (lang: Language) => {
+        setLanguageState(lang);
+        try {
+            window.localStorage.setItem(STORAGE_KEY, lang);
+        } catch {
+            // ignore
+        }
+    };
 
     return (
         <LanguageContext.Provider

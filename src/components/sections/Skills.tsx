@@ -55,33 +55,35 @@ export function Skills() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="flex flex-wrap justify-center gap-3 mb-12"
+                    className="mb-12 -mx-4 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0"
                 >
-                    <button
-                        onClick={() => setSelectedCategory(null)}
-                        className={cn(
-                             "px-4 md:px-6 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300 border",
-                             selectedCategory === null
-                                 ? "border-cyan-300/24 bg-cyan-400/14 text-cyan-50 shadow-[0_0_28px_rgba(34,211,238,0.14)]"
-                                 : "border-cyan-300/10 bg-slate-900/60 hover:bg-cyan-300/8 text-foreground"
-                         )}
-                    >
-                        {t('all')}
-                    </button>
-                    {skillsData.categories.map((category) => (
+                    <div className="flex min-w-max gap-3 sm:min-w-0 sm:flex-wrap sm:justify-center">
                         <button
-                            key={category.name}
-                            onClick={() => setSelectedCategory(category.name)}
+                            onClick={() => setSelectedCategory(null)}
                             className={cn(
-                                 "px-4 md:px-6 py-1.5 md:py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300 border",
-                                 selectedCategory === category.name
-                                     ? "border-cyan-300/24 bg-cyan-400/14 text-cyan-50 shadow-[0_0_28px_rgba(34,211,238,0.14)]"
-                                     : "border-cyan-300/10 bg-slate-900/60 hover:bg-cyan-300/8 text-foreground"
+                                 "rounded-full border px-4 py-2 text-sm font-medium whitespace-nowrap transition-all duration-300 md:px-6 md:text-base",
+                                 selectedCategory === null
+                                     ? "border-cyan-500/40 bg-cyan-500/20 text-cyan-800 shadow-[0_0_28px_rgba(34,211,238,0.18)] dark:border-cyan-300/24 dark:bg-cyan-400/14 dark:text-cyan-50"
+                                     : "border-cyan-500/20 bg-white/60 text-foreground hover:bg-cyan-500/10 dark:border-cyan-300/10 dark:bg-slate-900/60 dark:hover:bg-cyan-300/8"
                              )}
                         >
-                            {category.name}
+                            {t('all')}
                         </button>
-                    ))}
+                        {skillsData.categories.map((category) => (
+                            <button
+                                key={category.name}
+                                onClick={() => setSelectedCategory(category.name)}
+                                className={cn(
+                                     "rounded-full border px-4 py-2 text-sm font-medium whitespace-nowrap transition-all duration-300 md:px-6 md:text-base",
+                                     selectedCategory === category.name
+                                         ? "border-cyan-500/40 bg-cyan-500/20 text-cyan-800 shadow-[0_0_28px_rgba(34,211,238,0.18)] dark:border-cyan-300/24 dark:bg-cyan-400/14 dark:text-cyan-50"
+                                         : "border-cyan-500/20 bg-white/60 text-foreground hover:bg-cyan-500/10 dark:border-cyan-300/10 dark:bg-slate-900/60 dark:hover:bg-cyan-300/8"
+                                 )}
+                            >
+                                {category.name}
+                            </button>
+                        ))}
+                    </div>
                 </motion.div>
 
                 {/* Skills Grid */}
@@ -103,17 +105,15 @@ export function Skills() {
                                         <Card
                                             variant="premium"
                                             hover
-                                            className="p-6 text-center group"
+                                            className="group h-full p-4 text-center sm:p-5 md:p-6"
                                         >
                                             <div className="space-y-3">
-                                                {/* Skill Name */}
                                                 <h4 className="font-semibold text-foreground group-hover:text-primary-600 transition-colors">
                                                     {skill.name}
                                                 </h4>
 
-                                                {/* Proficiency Bar */}
                                                 <div className="space-y-1">
-                                                    <div className="w-full h-2 rounded-full overflow-hidden bg-slate-900/70 ring-1 ring-cyan-300/10">
+                                                    <div className="w-full h-2 rounded-full overflow-hidden bg-slate-200 ring-1 ring-cyan-500/20 dark:bg-slate-900/70 dark:ring-cyan-300/10">
                                                         <motion.div
                                                             initial={{ width: 0 }}
                                                             whileInView={{ width: `${skill.proficiency}%` }}

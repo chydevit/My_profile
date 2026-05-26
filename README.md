@@ -173,7 +173,7 @@ RESEND_API_KEY=your_resend_api_key
 
 ## 📧 Contact
 
-- **Email**: Chydevit2023@gmail.com
+- **Email**: chydevit.dev@gmail.com
 - **LinkedIn**: [linkedin.com/in/chy-devit-4971032b2](https://www.linkedin.com/in/chy-devit-4971032b2/)
 - **GitHub**: [github.com/chydevit](https://github.com/chydevit)
 - **Telegram**: [@chydevit](https://t.me/chydevit)

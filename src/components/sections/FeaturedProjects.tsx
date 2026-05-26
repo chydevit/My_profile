@@ -51,13 +51,12 @@ export function FeaturedProjects() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={containerVariants}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+                    className="mb-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
                 >
                     {projects.map((project) => (
                         <motion.div key={project.id} variants={itemVariants}>
-                            <Card variant="premium" hover className="h-full group">
-                                {/* Project Image */}
-                                <div className="relative h-48 overflow-hidden bg-slate-950/60">
+                            <Card variant="premium" hover className="group h-full">
+                                <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-950/60">
                                     <Image
                                         src={project.image}
                                         alt={project.title}
@@ -68,7 +67,6 @@ export function FeaturedProjects() {
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/88 via-slate-950/18 to-cyan-300/6 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     <div className="absolute inset-x-4 top-3 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent opacity-70" />
 
-                                    {/* Links overlay */}
                                     <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         {project.liveUrl && (
                                             <a
@@ -96,59 +94,55 @@ export function FeaturedProjects() {
                                 </div>
 
                                 <CardContent className="p-6">
-                                    {/* Category Badge */}
                                      <span className="holo-chip inline-block rounded-full px-3 py-1 text-xs font-medium mb-3">
                                         {project.category}
                                     </span>
 
-                                    {/* Title */}
                                     <h3 className="text-xl font-heading font-semibold mb-2 group-hover:text-primary-600 transition-colors">
                                         {project.title}
                                     </h3>
 
-                                    {/* Description */}
                                     <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
                                         {project.description}
                                     </p>
 
                                     {project.status === "coming-soon" && (
-                                        <div className="mb-4 inline-flex rounded-full border border-amber-300/25 bg-amber-400/10 px-3 py-1 text-xs font-medium text-amber-200">
-                                            Coming soon
+                                        <div className="mb-4 inline-flex rounded-full border border-amber-500/40 bg-amber-400/15 px-3 py-1 text-xs font-medium text-amber-700 dark:border-amber-300/25 dark:bg-amber-400/10 dark:text-amber-200">
+                                            {t('comingSoon')}
                                         </div>
                                     )}
 
-                                    {/* Tags */}
                                     <div className="flex flex-wrap gap-2">
                                         {project.tags.slice(0, 3).map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="rounded-md border border-cyan-300/10 bg-slate-900/55 px-2 py-1 text-xs text-muted-foreground"
+                                                className="rounded-md border border-cyan-500/20 bg-slate-100 px-2 py-1 text-xs text-muted-foreground dark:border-cyan-300/10 dark:bg-slate-900/55"
                                             >
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
 
-                                    <div className="mt-6 flex flex-wrap gap-3">
+                                    <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                                         <Link
                                             href={`/projects/${project.slug}`}
-                                            className="inline-flex h-9 items-center justify-center rounded-lg border-2 border-primary-600 px-4 text-sm font-medium text-primary-600 transition-all duration-200 hover:bg-primary-50 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950"
+                                            className="inline-flex h-10 w-full items-center justify-center rounded-lg border-2 border-primary-600 px-4 text-sm font-medium text-primary-600 transition-all duration-200 hover:bg-primary-50 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950 sm:h-9 sm:w-auto"
                                         >
-                                            Details
+                                            {t('details')}
                                         </Link>
                                         {project.liveUrl ? (
                                             <a
                                                 href={project.liveUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-medium text-white transition-all duration-200 hover:bg-primary-700"
+                                                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-medium text-white transition-all duration-200 hover:bg-primary-700 sm:h-9 sm:w-auto"
                                             >
                                                 <ExternalLink className="h-4 w-4" />
-                                                {project.ctaLabel ?? "View Live"}
+                                                {project.ctaLabel ?? t('viewLive')}
                                             </a>
                                         ) : (
-                                            <span className="inline-flex h-9 items-center justify-center rounded-lg bg-primary-600 px-4 text-sm font-medium text-white opacity-50">
-                                                {project.ctaLabel ?? "Coming Soon"}
+                                            <span className="inline-flex h-10 w-full items-center justify-center rounded-lg bg-primary-600 px-4 text-sm font-medium text-white opacity-50 sm:h-9 sm:w-auto">
+                                                {project.ctaLabel ?? t('comingSoon')}
                                             </span>
                                         )}
                                     </div>
@@ -158,7 +152,6 @@ export function FeaturedProjects() {
                     ))}
                 </motion.div>
 
-                {/* View All Button */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -167,7 +160,7 @@ export function FeaturedProjects() {
                 >
                     <Link
                         href="/projects"
-                        className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-cyan-300/22 bg-cyan-400/10 px-6 text-base font-medium text-cyan-100 transition-all duration-200 hover:bg-cyan-400/18 md:h-13 md:px-8 md:text-lg"
+                        className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-cyan-500/40 bg-cyan-500/10 px-6 text-base font-medium text-cyan-700 transition-all duration-200 hover:bg-cyan-500/20 dark:border-cyan-300/22 dark:bg-cyan-400/10 dark:text-cyan-100 dark:hover:bg-cyan-400/18 md:h-13 md:px-8 md:text-lg"
                     >
                         <ArrowRight className="w-5 h-5" />
                         {t('viewAllProjects')}

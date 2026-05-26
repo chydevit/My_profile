@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -8,15 +8,14 @@ import { motion } from 'framer-motion';
 import { Loader2, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
-const contactSchema = z.object({
-    name: z.string().min(2, 'Name must be at least 2 characters'),
-    email: z.string().email('Please enter a valid email address'),
-    subject: z.string().min(5, 'Subject must be at least 5 characters'),
-    message: z.string().min(10, 'Message must be at least 10 characters'),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+type ContactFormData = {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+};
 
 interface ContactFormProps {
     className?: string;
@@ -26,6 +25,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
+    const { t } = useLanguage();
+
+    const contactSchema = useMemo(
+        () =>
+            z.object({
+                name: z.string().min(2, t('errorName')),
+                email: z.string().email(t('errorEmail')),
+                subject: z.string().min(5, t('errorSubject')),
+                message: z.string().min(10, t('errorMessage')),
+            }),
+        [t]
+    );
 
     const {
         register,
@@ -79,37 +90,33 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
             className={className}
         >
             <div className="space-y-6">
-                {/* Name */}
                 <Input
-                    label="Name"
+                    label={t('formName')}
                     type="text"
-                    placeholder="John Doe"
+                    placeholder={t('formNamePlaceholder')}
                     error={errors.name?.message}
                     {...register('name')}
                 />
 
-                {/* Email */}
                 <Input
-                    label="Email"
+                    label={t('formEmail')}
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder={t('formEmailPlaceholder')}
                     error={errors.email?.message}
                     {...register('email')}
                 />
 
-                {/* Subject */}
                 <Input
-                    label="Subject"
+                    label={t('formSubject')}
                     type="text"
-                    placeholder="What's this about?"
+                    placeholder={t('formSubjectPlaceholder')}
                     error={errors.subject?.message}
                     {...register('subject')}
                 />
 
-                {/* Message */}
                 <Textarea
-                    label="Message"
-                    placeholder="Tell me more..."
+                    label={t('formMessage')}
+                    placeholder={t('formMessagePlaceholder')}
                     rows={6}
                     error={errors.message?.message}
                     {...register('message')}
@@ -124,7 +131,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
                     >
                         <CheckCircle2 size={20} />
                         <p className="text-sm font-medium">
-                            Message sent successfully! I'll get back to you soon.
+                            {t('messageSentSuccess')}
                         </p>
                     </motion.div>
                 )}
@@ -151,12 +158,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
                     {isSubmitting ? (
                         <>
                             <Loader2 className="animate-spin" size={20} />
-                            Sending...
+                            {t('sending')}
                         </>
                     ) : (
                         <>
                             <Send size={20} />
-                            Send Message
+                            {t('sendMessage')}
                         </>
                     )}
                 </Button>

@@ -67,14 +67,14 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
 
     if (mobile) {
         return (
-            <nav className="flex flex-col space-y-4">
+            <nav className="flex flex-col gap-2">
                 {navLinks.map((link) => (
                     <Link
                         key={link.href}
                         href={link.href}
                         onClick={() => handleLinkClick(link.href)}
                         className={cn(
-                            "rounded-xl px-3 py-2 text-base font-medium transition-colors hover:bg-cyan-300/6 hover:text-primary-600 sm:text-lg",
+                            "rounded-2xl px-4 py-3 text-base font-medium transition-colors hover:bg-cyan-300/6 hover:text-primary-600 sm:text-lg",
                             pathname === link.href
                                 ? "bg-cyan-300/8 text-primary-600"
                                 : "text-foreground"
@@ -84,11 +84,11 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
                     </Link>
                 ))}
 
-                <div className="my-2 h-px bg-border" />
+                <div className="my-3 h-px bg-slate-300/40 dark:bg-white/8" />
 
                 <button
                     onClick={toggleTheme}
-                    className="flex items-center gap-2 rounded-xl px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-cyan-300/6 hover:text-primary-600 sm:text-lg"
+                    className="flex items-center gap-3 rounded-2xl px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-cyan-300/6 hover:text-primary-600 sm:text-lg"
                     aria-label="Toggle theme"
                 >
                     {resolvedTheme === "dark" ? (
@@ -104,15 +104,16 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
                     )}
                 </button>
 
-                <div className="mt-2 flex flex-wrap items-center gap-3">
-                    <span className="flex items-center gap-2 text-base font-medium text-foreground sm:text-lg">
+                <div className="mt-3 rounded-2xl border border-slate-300/40 bg-slate-100/60 px-4 py-3 dark:border-white/8 dark:bg-white/3">
+                    <span className="mb-3 flex items-center gap-2 text-sm font-medium uppercase tracking-[0.24em] text-muted-foreground">
                         <Languages className="h-5 w-5" />
+                        Language
                     </span>
                     <div className="flex flex-wrap gap-2">
                         <button
                             onClick={() => setLanguage("en")}
                             className={cn(
-                                "rounded-md px-3 py-1 text-sm font-medium transition-colors",
+                                "rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
                                 language === "en" ? "bg-primary-500 text-white" : "bg-muted text-muted-foreground"
                             )}
                         >
@@ -121,7 +122,7 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
                         <button
                             onClick={() => setLanguage("km")}
                             className={cn(
-                                "rounded-md px-3 py-1 text-sm font-medium transition-colors font-sans",
+                                "rounded-full px-3 py-1.5 text-sm font-medium transition-colors font-sans",
                                 language === "km" ? "bg-primary-500 text-white" : "bg-muted text-muted-foreground"
                             )}
                         >
@@ -142,7 +143,7 @@ export function Navigation({ mobile = false, onLinkClick }: NavigationProps) {
                         href={link.href}
                         onClick={() => handleLinkClick(link.href)}
                         className={cn(
-                            "fly-hover relative text-sm font-medium transition-colors hover:text-primary-600",
+                            "relative text-sm font-medium transition-colors hover:text-primary-600",
                             pathname === link.href
                                 ? "text-primary-600 after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-0.5 after:bg-primary-600"
                                 : "text-foreground"

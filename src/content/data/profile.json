@@ -8,10 +8,10 @@
         "Vibe Coding"
     ],
     "bio": "Experienced frontend developer with a passion for creating visually stunning and user-friendly websites. Currently studying Information Technology at Norton University in Phnom Penh, Cambodia. Skilled in mobile and web application development with a focus on modern technologies.",
-    "email": "Chydevit2023@gmail.com",
+    "email": "chydevit.dev@gmail.com",
     "phone": "+855 16517170",
     "location": "Russei Keo, Phnom Penh, Cambodia",
-    "image": "/images/profile.jpg",
+    "image": "/images/about-avatar.jpg",
     "cvUrl": "/cv/chy-devit-cv.pdf",
     "socialLinks": [
         {
@@ -31,7 +31,7 @@
         },
         {
             "platform": "Email",
-            "url": "mailto:Chydevit2023@gmail.com",
+            "url": "mailto:chydevit.dev@gmail.com",
             "icon": "mail"
         }
     ],

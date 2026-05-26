@@ -80,15 +80,16 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
                 const Icon = iconMap[link.icon] || ExternalLink;
                 const isColorful = variant === 'colorful';
                 const colorClass = isColorful ? colorMap[link.icon] : '';
+                const isExternalUrl = /^https?:\/\//i.test(link.url);
 
                 return (
                     <motion.a
                         key={index}
                         href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={isExternalUrl ? "_blank" : undefined}
+                        rel={isExternalUrl ? "noopener noreferrer" : undefined}
                         variants={itemVariants}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileHover={showLabels ? { scale: 1.02, y: -4 } : { scale: 1.1, rotate: 5 }}
                         whileTap={{ scale: 0.95 }}
                         className={cn(
                             'flex items-center justify-center rounded-full transition-all duration-300',
@@ -96,17 +97,18 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
                             'text-gray-700 dark:text-gray-300',
                             'hover:shadow-lg hover:border-transparent',
                             'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
-                            sizeStyles[size],
+                            !showLabels && sizeStyles[size],
                             colorClass,
                             variant === 'minimal' && 'border-none hover:bg-gray-100 dark:hover:bg-gray-800',
-                            showLabels && 'px-4 w-auto gap-2'
+                            showLabels && 'min-h-14 w-full justify-start gap-3 rounded-2xl px-5 py-3.5 text-left',
+                            showLabels && variant === 'colorful' && 'border-cyan-300/18 bg-white/70 shadow-[0_14px_34px_rgba(15,23,42,0.06)] backdrop-blur-sm dark:border-cyan-300/14 dark:bg-slate-900/62 dark:hover:bg-slate-800/82'
                         )}
                         aria-label={link.platform}
                         title={link.platform}
                     >
                         <Icon size={iconSizes[size]} />
                         {showLabels && (
-                            <span className="text-sm font-medium">{link.platform}</span>
+                            <span className="text-sm font-semibold sm:text-base">{link.platform}</span>
                         )}
                     </motion.a>
                 );

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
-import { WelcomePopup } from "@/components/ui/WelcomePopup";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
@@ -38,7 +37,6 @@ export default function RootLayout({
         >
           <LanguageProvider>
             {children}
-            <WelcomePopup />
             <Analytics />
           </LanguageProvider>
         </ThemeProvider>
