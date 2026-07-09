@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -98,9 +97,9 @@
   --color-info: var(--info);
 
   /* Fonts */
-  --font-sans: 'Google Sans', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
-  --font-mono: 'Fira Code', 'Courier New', monospace;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-sora), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), 'Courier New', monospace;
   --font-khmer: "Moulpali", sans-serif;
 
   /* Animations */
@@ -119,9 +118,47 @@
   @apply border-border;
 }
 
+/* Typographic defaults — heading presence + no orphans */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+h1 {
+  letter-spacing: -0.035em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Tabular figures for stats / percentages */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle film grain — breaks the flat digital surface (fixed, non-interactive) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.dark body::after {
+  opacity: 0.05;
+}
+
 body {
   @apply bg-background text-foreground font-sans antialiased;
   font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   background-image:
     radial-gradient(circle at 20% 0%, rgba(14, 165, 233, 0.06), transparent 28%),
     radial-gradient(circle at 80% 18%, rgba(99, 102, 241, 0.05), transparent 24%),
@@ -307,16 +344,16 @@ body {
   box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 10px 28px rgba(2, 6, 23, 0.18);
 }
 
-/* Gradient Text */
+/* Gradient Text — single teal→cyan accent (no indigo drift) */
 .gradient-text {
-  background: linear-gradient(135deg, #0e7490, #0284c7, #4f46e5);
+  background: linear-gradient(120deg, #0f766e, #0e7490, #0891b2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .dark .gradient-text {
-  background: linear-gradient(135deg, #67e8f9, #38bdf8, #818cf8);
+  background: linear-gradient(120deg, #5eead4, #38bdf8, #22d3ee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

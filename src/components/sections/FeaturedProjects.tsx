@@ -55,7 +55,16 @@ export function FeaturedProjects() {
                 >
                     {projects.map((project) => (
                         <motion.div key={project.id} variants={itemVariants}>
-                            <Card variant="premium" hover className="group h-full">
+                            <Card variant="premium" hover className="group relative isolate h-full">
+                                {project.liveUrl && (
+                                    <a
+                                        href={project.liveUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`Open ${project.title} live site`}
+                                        className="absolute inset-0 z-10"
+                                    />
+                                )}
                                 <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-950/60">
                                     <Image
                                         src={project.image}
@@ -67,13 +76,13 @@ export function FeaturedProjects() {
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/88 via-slate-950/18 to-cyan-300/6 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     <div className="absolute inset-x-4 top-3 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent opacity-70" />
 
-                                    <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         {project.liveUrl && (
                                             <a
                                                 href={project.liveUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="holo-chip p-3 rounded-full transition-colors hover:bg-cyan-300/22"
+                                                className="holo-chip pointer-events-auto p-3 rounded-full transition-colors hover:bg-cyan-300/22"
                                                 aria-label="View live project"
                                             >
                                                 <ExternalLink className="w-5 h-5" />
@@ -84,7 +93,7 @@ export function FeaturedProjects() {
                                                 href={project.githubUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="holo-chip p-3 rounded-full transition-colors hover:bg-cyan-300/22"
+                                                className="holo-chip pointer-events-auto p-3 rounded-full transition-colors hover:bg-cyan-300/22"
                                                 aria-label="View source code"
                                             >
                                                 <Github className="w-5 h-5" />
@@ -123,7 +132,7 @@ export function FeaturedProjects() {
                                         ))}
                                     </div>
 
-                                    <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                                    <div className="relative z-20 mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                                         <Link
                                             href={`/projects/${project.slug}`}
                                             className="inline-flex h-10 w-full items-center justify-center rounded-lg border-2 border-primary-600 px-4 text-sm font-medium text-primary-600 transition-all duration-200 hover:bg-primary-50 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950 sm:h-9 sm:w-auto"

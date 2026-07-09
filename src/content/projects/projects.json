@@ -1,5 +1,41 @@
 [
     {
+        "id": "gennal",
+        "slug": "gennal",
+        "title": "GenNal",
+        "description": "A multi-model AI desktop cockpit — run Codex, Claude, Gemini, and custom CLIs side by side.",
+        "longDescription": "GenNal is a desktop cockpit for vibe coding with limitless possibilities. Run Codex, Claude, Gemini, and custom CLIs side by side in one local workspace with terminals, previews, usage tracking, themes, and project context always in reach. Built with Electron, it supports Windows, macOS, and Linux.",
+        "image": "/images/gennal-logo.png",
+        "images": [
+            "/images/gennal-logo.png"
+        ],
+        "tags": [
+            "AI",
+            "Desktop",
+            "Tool"
+        ],
+        "technologies": [
+            "Electron",
+            "TypeScript",
+            "React",
+            "Tailwind CSS"
+        ],
+        "liveUrl": "https://gen-nal.onrender.com/",
+        "githubUrl": "https://github.com/Gen-Group/GenNal",
+        "ctaLabel": "View Live",
+        "status": "live",
+        "featured": true,
+        "category": "other",
+        "completedDate": "2026",
+        "features": [
+            "Multi-agent grid with Codex, Claude, Gemini, and shell",
+            "Live usage & quota tracking",
+            "13 built-in themes with IDE mode",
+            "Command palette, Kanban board, and custom CLIs",
+            "Thread-based project workspace"
+        ]
+    },
+    {
         "id": "galaxy-attack",
         "slug": "galaxy-attack",
         "title": "Galaxy Attack",

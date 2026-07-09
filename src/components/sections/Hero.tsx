@@ -154,9 +154,10 @@ export function Hero() {
                                 href="https://t.me/chydevit"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary-600 px-6 text-base font-medium text-white shadow-sm transition-all duration-200 hover:bg-primary-700 hover:shadow-md active:bg-primary-800 sm:h-13 sm:w-auto sm:min-w-[11rem] sm:px-8 sm:text-lg"
+                                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary-600 px-6 text-base font-medium text-white shadow-sm transition-all duration-200 hover:bg-primary-700 hover:shadow-md active:scale-[0.98] active:bg-primary-800 sm:h-13 sm:w-auto sm:min-w-[11rem] sm:px-8 sm:text-lg"
                             >
                                 {t('hireMe')}
+                                <Send className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                             </a>
                         </motion.div>
 

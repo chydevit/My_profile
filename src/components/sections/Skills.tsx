@@ -119,10 +119,10 @@ export function Skills() {
                                                             whileInView={{ width: `${skill.proficiency}%` }}
                                                             viewport={{ once: true }}
                                                             transition={{ duration: 1, delay: 0.2 }}
-                                                            className="h-full rounded-full bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 shadow-[0_0_16px_rgba(56,189,248,0.35)]"
+                                                            className="h-full rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-sky-500 shadow-[0_0_16px_rgba(56,189,248,0.35)]"
                                                         />
                                                     </div>
-                                                    <p className="text-xs text-muted-foreground">
+                                                    <p className="text-xs text-muted-foreground tabular-nums">
                                                         {skill.proficiency}%
                                                     </p>
                                                 </div>

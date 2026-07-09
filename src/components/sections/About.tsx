@@ -54,7 +54,7 @@ export function About() {
                                 <h2 className="text-3xl font-heading font-bold md:text-5xl">{t("hello")}</h2>
                                 <span className="text-sm uppercase tracking-[0.3em] text-cyan-300/80">scan</span>
                             </div>
-                            <div className="mx-auto h-1.5 w-20 rounded-full bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 lg:mx-0" />
+                            <div className="mx-auto h-1.5 w-20 rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-sky-500 lg:mx-0" />
 
                             <h3 className="text-center text-xl font-heading font-semibold text-foreground md:text-3xl lg:text-left">
                                 {t("aboutTitle").replace("{name}", profile.name)}
