@@ -1,5 +1,42 @@
 [
     {
+        "id": "gen-docs",
+        "slug": "gen-docs",
+        "title": "GenDocs",
+        "description": "A bilingual English and Khmer documentation hub for animated icons and frontend design tools.",
+        "longDescription": "GenDocs is a responsive documentation hub that organizes practical guides for Flutter animated icons and React design tools. It offers complete English and Khmer content, focused article layouts, categorized navigation, and a light or dark reading experience across desktop and mobile devices.",
+        "image": "/images/gen-docs.png",
+        "images": [
+            "/images/gen-docs.png"
+        ],
+        "tags": [
+            "Documentation",
+            "Bilingual",
+            "Developer Tools"
+        ],
+        "technologies": [
+            "React",
+            "Vite",
+            "React Router",
+            "Hugeicons",
+            "CSS"
+        ],
+        "liveUrl": "https://gen-docs-azure.vercel.app/",
+        "githubUrl": "",
+        "ctaLabel": "View Docs",
+        "status": "live",
+        "featured": true,
+        "category": "web",
+        "completedDate": "2026",
+        "features": [
+            "Complete English and Khmer documentation",
+            "Guides for Flutter animated icons and React design tools",
+            "Categorized sidebar navigation",
+            "Light and dark reading themes",
+            "Responsive mobile navigation"
+        ]
+    },
+    {
         "id": "gennal",
         "slug": "gennal",
         "title": "GenNal",
